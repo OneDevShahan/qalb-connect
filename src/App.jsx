@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom"; // Import BrowserRouter (or Router) for React Router v6
 import Footer from "./components/base/Footer";
 import Header from "./components/base/Header";
@@ -26,7 +26,6 @@ const App = () => {
     <Router basename="/qalb-connect">
       <div className="min-h-screen flex flex-col dark:bg-gray-900">
         <Header />
-
         {/* Routes setup */}
         <Routes>
           <Route path="/" element={<Dashboard sampleDua={sampleDua} />} />
