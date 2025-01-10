@@ -43,21 +43,6 @@ const Header = () => {
     setIsDropdownOpen((prev) => !prev);
   };
 
-  const positionSubmenu = (submenu) => {
-    if (submenu && submenuRef.current) {
-      const rect = submenu.getBoundingClientRect();
-      const windowWidth = window.innerWidth;
-
-      if (rect.right > windowWidth) {
-        submenu.style.left = "auto";
-        submenu.style.right = "100%";
-      } else {
-        submenu.style.left = "100%";
-        submenu.style.right = "auto";
-      }
-    }
-  };
-
   const renderMoreMenu = (isMobile = false) => (
     <div
       className={`absolute top-full left-0 ${
@@ -126,23 +111,40 @@ const Header = () => {
 
   return (
     <header className="flex justify-between items-center px-6 py-4 bg-gray-100 dark:bg-gray-800 dark:text-white shadow-lg transition-all">
-      <div className="text-2xl font-extrabold text-blue-500">
-        <Link to="/" className="hover:text-blue-400 transition-all">
+      <div className="text-2xl font-extrabold flex items-center">
+        <Link
+          to="/"
+          className="hover:scale-110 duration-300 transition-all flex items-center"
+        >
+          <img
+            src={isDarkMode ? "QalbConnect_Dark.svg" : "QalbConnect_Light.svg"}
+            alt="QalbConnect Logo"
+            className="h-8 text-black dark:text-white"
+          />
           QalbConnect
         </Link>
       </div>
 
       <nav className="hidden md:flex space-x-6 items-center relative">
-        <Link to="/daily" className="flex items-center space-x-2">
-          <FaCalendarAlt className="text-lg" />
+        <Link
+          to="/daily"
+          className="flex items-center space-x-2 hover:scale-110 duration-300 ease-in-out"
+        >
+          <FaCalendarAlt className="text-lg hover:text-blue-400" />
           <span>Daily</span>
         </Link>
-        <Link to="/favorite" className="flex items-center space-x-2">
-          <FaHeart className="text-lg" />
+        <Link
+          to="/favorite"
+          className="flex items-center space-x-2 hover:scale-110 duration-300 ease-in-out"
+        >
+          <FaHeart className="text-lg hover:text-red-600" />
           <span>Favorite</span>
         </Link>
-        <Link to="/reminder" className="flex items-center space-x-2">
-          <FaBell className="text-lg" />
+        <Link
+          to="/reminder"
+          className="flex items-center space-x-2 hover:scale-110 duration-300 ease-in-out"
+        >
+          <FaBell className="text-lg hover:text-yellow-300" />
           <span>Reminder</span>
         </Link>
         <div
@@ -191,35 +193,36 @@ const Header = () => {
         </div>
       </nav>
 
-      <button onClick={toggleDarkMode} className="text-2xl">
-        {isDarkMode ? <FaSun /> : <FaMoon />}
-      </button>
-
-      <button
-        className="md:hidden block text-2xl"
-        onClick={() => setMenuOpen(!menuOpen)}
-      >
-        {menuOpen ? <FaTimes /> : <FaBars />}
-      </button>
+      <div className="flex items-center space-x-6">
+        <button onClick={toggleDarkMode} className="text-2xl">
+          {isDarkMode ? <FaSun /> : <FaMoon />}
+        </button>
+        <button
+          className="md:hidden block text-2xl"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          {menuOpen ? <FaTimes /> : <FaBars />}
+        </button>
+      </div>
 
       {menuOpen && (
         <div className="absolute right-6 top-16 bg-white dark:bg-gray-700 rounded-lg shadow-md z-10 w-48">
           <Link to="/daily" className="flex items-center px-6 py-3 space-x-2">
-            <FaCalendarAlt className="text-lg" />
+            <FaCalendarAlt className="text-lg hover:text-blue-400" />
             <span>Daily</span>
           </Link>
           <Link
             to="/favorite"
             className="flex items-center px-6 py-3 space-x-2"
           >
-            <FaHeart className="text-lg" />
+            <FaHeart className="text-lg hover:text-red-600" />
             <span>Favorite</span>
           </Link>
           <Link
             to="/reminder"
             className="flex items-center px-6 py-3 space-x-2"
           >
-            <FaBell className="text-lg" />
+            <FaBell className="text-lg hover:text-yellow-300" />
             <span>Reminder</span>
           </Link>
           <div
