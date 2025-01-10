@@ -13,7 +13,7 @@ import { sampleDua } from "./components/utility/Contant";
 
 const App = () => {
   return (
-    <Router>
+    <Router basename="/qalb-connect">
       <div className="min-h-screen flex flex-col dark:bg-gray-900">
         <Header />
 
