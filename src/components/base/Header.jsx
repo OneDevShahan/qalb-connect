@@ -114,12 +114,12 @@ const Header = () => {
       <div className="text-2xl font-extrabold flex items-center">
         <Link
           to="/"
-          className="hover:scale-110 duration-300 transition-all flex items-center"
+          className="hover:scale-105 duration-300 transition-all flex items-center"
         >
           <img
             src={isDarkMode ? "QalbConnect_Dark.svg" : "QalbConnect_Light.svg"}
             alt="QalbConnect Logo"
-            className="h-8 text-black dark:text-white"
+            className="h-12 w-12 text-black dark:text-white"
           />
           QalbConnect
         </Link>
@@ -194,7 +194,7 @@ const Header = () => {
       </nav>
 
       <div className="flex items-center space-x-6">
-        <button onClick={toggleDarkMode} className="text-2xl">
+        <button onClick={toggleDarkMode} className="text-xl">
           {isDarkMode ? <FaSun /> : <FaMoon />}
         </button>
         <button

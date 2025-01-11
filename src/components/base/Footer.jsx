@@ -2,12 +2,17 @@
 
 import { useEffect, useState } from "react";
 import {
+  FaArrowUp,
+  FaBell,
+  FaCalendarAlt,
   FaEnvelope,
   FaGithub,
+  FaHeart,
   FaInstagram,
   FaLinkedinIn,
   FaTwitter,
 } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const [date, setDate] = useState(null);
@@ -54,12 +59,12 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-gray-100 dark:bg-gray-800 text-black dark:text-white py-6">
-      <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
+    <footer className="bg-gray-100 dark:bg-gray-800 text-black dark:text-white py-8">
+      <div className="container mx-auto grid grid-cols-1 gap-8 px-4 md:grid-cols-3">
         {/* Contact Section */}
-        <div>
-          <h3 className="text-lg font-bold mb-2">Contact</h3>
-          <ul>
+        <div className="flex flex-col space-y-4">
+          <h3 className="text-lg font-bold">Contact</h3>
+          <ul className="space-y-2">
             <li>
               <span>Email: </span>
               <a
@@ -83,8 +88,8 @@ const Footer = () => {
         </div>
 
         {/* About Section */}
-        <div>
-          <h3 className="text-lg font-bold mb-2">About</h3>
+        <div className="flex flex-col space-y-4">
+          <h3 className="text-lg font-bold">About</h3>
           <p>
             QalbConnect is a platform for sharing Duas, Islamic content, and
             spiritual resources. It offers a rich collection of Duas, Quranic
@@ -93,31 +98,37 @@ const Footer = () => {
           </p>
         </div>
 
-        {/* Categories Section */}
-        <div>
-          <h3 className="text-lg font-bold mb-2">Categories</h3>
-          <ul>
-            <li>
-              <a href="#" className="hover:underline hover:text-blue-500">
-                Daily
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:underline hover:text-blue-500">
-                Favorite
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:underline hover:text-blue-500">
-                Suggested for You
-              </a>
-            </li>
-          </ul>
+        {/* Footer Categories Section */}
+        <div className="flex flex-col space-y-4">
+          <h3 className="text-lg font-bold">Categories</h3>
+          <div className="flex flex-col space-y-4 md:flex-row md:space-x-6 md:space-y-0">
+            <Link
+              to="/daily"
+              className="flex items-center space-x-2 hover:scale-110 duration-300 ease-in-out"
+            >
+              <FaCalendarAlt className="text-lg hover:text-blue-400" />
+              <span>Daily</span>
+            </Link>
+            <Link
+              to="/favorite"
+              className="flex items-center space-x-2 hover:scale-110 duration-300 ease-in-out"
+            >
+              <FaHeart className="text-lg hover:text-red-600" />
+              <span>Favorite</span>
+            </Link>
+            <Link
+              to="/suggested"
+              className="flex items-center space-x-2 hover:scale-110 duration-300 ease-in-out"
+            >
+              <FaBell className="text-lg hover:text-yellow-300" />
+              <span>Suggested For You</span>
+            </Link>
+          </div>
         </div>
       </div>
 
       {/* Social Media Links */}
-      <div className="container mx-auto flex justify-center gap-6 mt-6">
+      <div className="container mx-auto flex justify-center gap-6 mt-8">
         {socialLinks.map((link) => (
           <a
             key={link.name}
@@ -125,7 +136,7 @@ const Footer = () => {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={link.name}
-            className={`text-gray-700 dark:text-gray-300 ${link.bgColor} p-3 rounded-full transition-all`}
+            className={`text-gray-700 dark:text-gray-300 ${link.bgColor} p-3 rounded-full transition-all hover:scale-110`}
           >
             {link.icon}
           </a>
@@ -133,12 +144,13 @@ const Footer = () => {
       </div>
 
       {/* Back to Top Button */}
-      <div className="text-center mt-6">
+      <div>
         <button
           onClick={scrollToTop}
-          className="bg-blue-500 text-white py-2 px-4 rounded-full hover:bg-blue-600 dark:bg-blue-700 dark:hover:bg-blue-800 transition duration-200"
+          className="fixed bottom-6 right-6 bg-blue-500 text-white p-4 rounded-full shadow-lg hover:bg-blue-600 dark:bg-blue-700 dark:hover:bg-blue-800 transition duration-200"
+          aria-label="Back to Top"
         >
-          Back to Top
+          <FaArrowUp className="text-lg" />
         </button>
       </div>
 
