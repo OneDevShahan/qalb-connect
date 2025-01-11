@@ -47,7 +47,7 @@ const Header = () => {
     <div
       className={`absolute top-full left-0 ${
         isMobile ? "mt-0" : ""
-      } bg-white dark:bg-gray-700 rounded-lg shadow-lg w-56 z-10`}
+      } bg-gray-700 dark:bg-gray-700 rounded-lg shadow-lg w-56 z-10`}
       onMouseEnter={() => setDesktopMoreMenuOpen(true)}
       onMouseLeave={() => setDesktopMoreMenuOpen(false)}
     >
@@ -71,7 +71,7 @@ const Header = () => {
       ].map(({ path, pages }) => (
         <div
           key={path}
-          className="relative px-6 py-3 hover:bg-gray-200 dark:hover:bg-gray-600 cursor-pointer"
+          className="relative px-6 py-3 hover:bg-gray-400 dark:hover:bg-gray-600 cursor-pointer"
           onMouseEnter={!isMobile ? () => handleSubMenu(path) : null}
           onMouseLeave={!isMobile ? () => setSubMenu(null) : null}
           onClick={isMobile ? () => handleSubMenu(path) : null}
@@ -83,7 +83,7 @@ const Header = () => {
               ref={submenuRef}
               className={`absolute left-full top-0 ${
                 isMobile ? "right-full" : ""
-              } bg-white dark:bg-gray-700 rounded-lg shadow-lg w-56 z-20`}
+              } bg-gray-700 dark:bg-gray-700 rounded-lg shadow-lg w-56 z-20`}
               onMouseEnter={() => setSubMenu(path)} // Stay open when hovering over submenu
               onMouseLeave={() => setSubMenu(null)} // Close when mouse leaves submenu
             >
@@ -102,7 +102,7 @@ const Header = () => {
       ))}
       <Link
         to="/page4"
-        className="block px-6 py-3 hover:bg-gray-200 dark:hover:bg-gray-600"
+        className="block px-6 py-3 hover:bg-gray-400 dark:hover:bg-gray-600"
       >
         Page 4
       </Link>
@@ -110,7 +110,7 @@ const Header = () => {
   );
 
   return (
-    <header className="flex justify-between items-center px-6 py-4 bg-gray-100 dark:bg-gray-800 dark:text-white shadow-lg transition-all">
+    <header className="flex justify-between items-center px-6 py-4 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 dark:from-gray-900 dark:via-gray-800 dark:to-gray-700 text-white shadow-lg transition-all">
       <div className="text-2xl font-extrabold flex items-center">
         <Link
           to="/"
@@ -169,10 +169,10 @@ const Header = () => {
             <FaChevronDown />
           </button>
           {isDropdownOpen && (
-            <div className="absolute top-full left-0 bg-white dark:bg-gray-700 rounded-lg shadow-lg w-56 z-10 mt-2">
+            <div className="absolute top-full left-0 bg-gray-700 dark:bg-gray-700 rounded-lg shadow-lg w-56 z-10 mt-2">
               <Link
                 to="/path1/page11"
-                className="block px-6 py-3 hover:bg-gray-200 dark:hover:bg-gray-600"
+                className="block px-6 py-3 hover:bg-gray-400 dark:hover:bg-gray-600"
               >
                 Page 11
               </Link>

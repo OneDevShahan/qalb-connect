@@ -17,7 +17,7 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   const [date, setDate] = useState(null);
   useEffect(() => {
-    setDate(new Date().getFullYear()); // Example of dynamic content
+    setDate(new Date().getFullYear());
   }, []);
 
   const socialLinks = [
@@ -53,13 +53,12 @@ const Footer = () => {
     },
   ];
 
-  // Scroll to top function
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
-    <footer className="bg-gray-100 dark:bg-gray-800 text-black dark:text-white py-8">
+    <footer className="bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 dark:from-gray-800 dark:via-gray-900 dark:to-black text-white py-8">
       <div className="container mx-auto grid grid-cols-1 gap-8 px-4 md:grid-cols-3">
         {/* Contact Section */}
         <div className="flex flex-col space-y-4">
@@ -69,7 +68,7 @@ const Footer = () => {
               <span>Email: </span>
               <a
                 href="mailto:onedevshahan@gmail.com"
-                className="underline hover:text-blue-500"
+                className="underline hover:text-blue-200"
               >
                 onedevshahan@gmail.com
               </a>
@@ -78,7 +77,7 @@ const Footer = () => {
               <span>Phone: </span>
               <a
                 href="tel:+918445470641"
-                className="underline hover:text-blue-500"
+                className="underline hover:text-blue-200"
               >
                 +91 8445470641
               </a>
@@ -104,21 +103,21 @@ const Footer = () => {
           <div className="flex flex-col space-y-4 md:flex-row md:space-x-6 md:space-y-0">
             <Link
               to="/daily"
-              className="flex items-center space-x-2 hover:scale-110 duration-300 ease-in-out"
+              className="flex items-center space-x-2 hover:scale-110 transition-transform duration-300 ease-in-out"
             >
-              <FaCalendarAlt className="text-lg hover:text-blue-400" />
+              <FaCalendarAlt className="text-lg hover:text-blue-200" />
               <span>Daily</span>
             </Link>
             <Link
               to="/favorite"
-              className="flex items-center space-x-2 hover:scale-110 duration-300 ease-in-out"
+              className="flex items-center space-x-2 hover:scale-110 transition-transform duration-300 ease-in-out"
             >
-              <FaHeart className="text-lg hover:text-red-600" />
+              <FaHeart className="text-lg hover:text-red-300" />
               <span>Favorite</span>
             </Link>
             <Link
               to="/suggested"
-              className="flex items-center space-x-2 hover:scale-110 duration-300 ease-in-out"
+              className="flex items-center space-x-2 hover:scale-110 transition-transform duration-300 ease-in-out"
             >
               <FaBell className="text-lg hover:text-yellow-300" />
               <span>Suggested For You</span>
@@ -136,7 +135,7 @@ const Footer = () => {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={link.name}
-            className={`text-gray-700 dark:text-gray-300 ${link.bgColor} p-3 rounded-full transition-all hover:scale-110`}
+            className={`text-white ${link.bgColor} p-3 rounded-full transition-all hover:scale-110`}
           >
             {link.icon}
           </a>
@@ -147,7 +146,7 @@ const Footer = () => {
       <div>
         <button
           onClick={scrollToTop}
-          className="fixed bottom-6 right-6 bg-blue-500 text-white p-4 rounded-full shadow-lg hover:bg-blue-600 dark:bg-blue-700 dark:hover:bg-blue-800 transition duration-200"
+          className="fixed bottom-6 right-6 bg-blue-600 text-white p-4 rounded-full shadow-lg hover:bg-blue-700 transition duration-200"
           aria-label="Back to Top"
         >
           <FaArrowUp className="text-lg" />
@@ -155,7 +154,7 @@ const Footer = () => {
       </div>
 
       {/* Footer Bottom */}
-      <div className="text-center mt-6 border-t border-gray-300 dark:border-gray-700 pt-4">
+      <div className="text-center mt-6 border-t border-white pt-4">
         <p>
           © {date} <strong>QalbConnect</strong>. All rights reserved.
         </p>
