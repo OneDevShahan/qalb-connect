@@ -1,7 +1,7 @@
 import React from "react";
 import { FaBell, FaHeart } from "react-icons/fa";
 
-const DuaCard = ({ name, arabic, translations, benefits }) => {
+const DuaCard = ({ name, arabic, translations, benefits, reference }) => {
   // Ensure translations is an array
   const translationsArray = Array.isArray(translations)
     ? translations
@@ -39,6 +39,11 @@ const DuaCard = ({ name, arabic, translations, benefits }) => {
         {/* Benefits */}
         <p className="mt-8 text-gray-800 dark:text-gray-200 italic text-sm md:text-base">
           {benefits}
+        </p>
+
+        {/* Reference */}
+        <p className="mt-5 mb-0 text-gray-700 dark:text-gray-400 text-sm">
+          {(reference && `Reference: ${reference}`) || "Reference: Not available"}
         </p>
       </div>
 

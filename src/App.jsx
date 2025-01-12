@@ -10,6 +10,7 @@ import Reminder from "./components/dua/Reminder";
 import "./index.css"; // Ensure index.css exists in the src folder
 import Dashboard from "./components/base/Dashboard";
 import { sampleDua } from "./components/utility/Contant";
+import { DailyDua } from "./components/utility/Contant";
 import Page1 from "./components/more/path1/Page11";
 import Page2 from "./components/more/path2/Page21";
 import Page3 from "./components/more/Page4";
@@ -20,15 +21,17 @@ import Page33 from "./components/more/path3/Page33";
 import Page21 from "./components/more/path2/Page21";
 import Page22 from "./components/more/path2/Page22";
 import Page11 from "./components/more/path1/Page11";
+import ScrollToTop from "./components/base/ScrollToTop";
 
 const App = () => {
   return (
     <Router basename="/qalb-connect">
+      <ScrollToTop />
       <div className="min-h-screen flex flex-col dark:bg-gray-900">
         <Header />
         {/* Routes setup */}
         <Routes>
-          <Route path="/" element={<Dashboard sampleDua={sampleDua} />} />
+          <Route path="/" element={<Dashboard data={DailyDua} />} />
           <Route path="/daily" element={<Daily />} />{" "}
           {/* Adjust the path to match the basename */}
           <Route path="/favorite" element={<Favorite />} />

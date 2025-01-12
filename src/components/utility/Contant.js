@@ -13,6 +13,7 @@ export const DailyDua = [
   {
     id: 1,
     title: "UPON GOING TO SLEEP",
+    category: "Favorite",
     name: {
       urdu: "سونے سے پہلے",
       hindi: "सोने से पहले",
@@ -34,6 +35,7 @@ export const DailyDua = [
   {
     id: 2,
     title: "WAKE UP FROM SLEEP",
+    category: "Daily",
     name: {
       urdu: "نیند سے بیدار ہونے کی دعا",
       hindi: "उठने की दुआ",
@@ -62,6 +64,7 @@ export const DailyDua = [
   {
     id: 3,
     title: "ENTERING THE TOILET",
+    category: "Reminder",
     name: {
       urdu: "بیت الخلاء میں داخل ہونے کی دعا",
       hindi: "शौचालय में प्रवेश करते समय",
@@ -89,6 +92,7 @@ export const DailyDua = [
   {
     id: 4,
     title: "LEAVING THE TOILET",
+    category: "Daily",
     name: {
       urdu: "بیت الخلاء سے باہر آنے کی دعا",
       hindi: "शौचालय से बाहर आने की दुआ",
@@ -110,6 +114,7 @@ export const DailyDua = [
   {
     id: 5,
     title: "START OF WUDU",
+    category: "Reminder",
     name: {
       urdu: "وضو کی شروعات",
       hindi: "वुदू की शुरुआत",
@@ -137,12 +142,14 @@ export const DailyDua = [
   {
     id: 6,
     title: "COMPLETION OF WUDU",
+    category: "Reminder",
     name: {
       urdu: "وضو کی تکمیل",
       hindi: "वुदू का पूरा होना",
       english: "COMPLETION OF WUDU",
     },
-    arabic: "أَشْهَدُ أَنْ لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ",
+    arabic:
+      "أَشْهَدُ أَنْ لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ",
     translations: [
       {
         language: "English",
@@ -158,6 +165,7 @@ export const DailyDua = [
       },
     ],
     reference: "Sahih Muslim 1/209",
-    benefits: "This dua reminds us of the Allah's oneness and the prophethood of Muhammad (PBUH).",
+    benefits:
+      "This dua reminds us of the Allah's oneness and the prophethood of Muhammad (PBUH).",
   },
 ];
