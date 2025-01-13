@@ -168,4 +168,117 @@ export const DailyDua = [
     benefits:
       "This dua reminds us of the Allah's oneness and the prophethood of Muhammad (PBUH).",
   },
+  {
+    id: 7,
+    title: "ENTERING THE MASJID",
+    category: "Reminder",
+    name: {
+      urdu: "مسجد میں داخل ہونے کی دعا",
+      hindi: "मस्जिद में प्रवेश करते समय",
+      english: "ENTERING THE MASJID",
+    },
+    arabic: "اللَّهُمَّ افْتَحْ لِي أَبْوَابَ رَحْمَتِكَ",
+
+    translations: [
+      {
+        language: "English",
+        text: "O Allah, open the doors of Your mercy for me.",
+      },
+      {
+        language: "Hindi",
+        text: "हे अल्लाह, मेरे लिए अपनी रहमत के दरवाजे खोलो।",
+      },
+      {
+        language: "Urdu",
+        text: "اللہ کے نام سے شروع جو بڑا مہربان نہایت رحم والا ہے",
+      },
+    ],
+    reference: "Abu Dawood | Ibn As Sunan 888 | Al Albani",
+    benefits:
+      "This dua reminds us of the importance of seeking Allah's mercy and blessings before entering the mosque.",
+  },
+  {
+    id: 8,
+    title: "LEAVING THE MASJID",
+    category: "Reminder",
+    name: {
+      urdu: "مسجد سے باہر آنے کی دعا",
+      hindi: "मस्जिद से बाहर आने की दुआ",
+      english: "LEAVING THE MASJID",
+    },
+    arabic: "اللَّهُمَّ إِنِّي أَسْأَلُكَ مِنْ فَضْلِكَ",
+    translations: [
+      {
+        language: "English",
+        text: "O Allah, I ask You for Your grace.",
+      },
+      {
+        language: "Hindi",
+        text: "हे अल्लाह, मैं आपसे आपकी कृपा के लिए प्रार्थना करता हूँ।",
+      },
+      {
+        language: "Urdu",
+        text: "اللہ کے نام سے شروع جو بڑا مہربان نہایت رحم والا ہے",
+      },
+    ],
+    reference: "Abu Dawood | Sahee Al Jaami 4591",
+    benefits:
+      "This dua reminds us of the importance of seeking Allah's grace and blessings before leaving the mosque.",
+  },
+  {
+    id: 9,
+    title: "BEFORE THE MEALS",
+    category: "Reminder",
+    name: {
+      urdu: "کھانے سے پہلے",
+      hindi: "भोजन से पहले",
+      english: "BEFORE THE MEALS",
+    },
+    arabic: "بِسْمِ اللَّهِ وَعَلَى بَرَكَةِ اللَّهِ",
+    translations: [
+      {
+        language: "English",
+        text: "In the name of Allah and with the blessings of Allah.",
+      },
+      {
+        language: "Hindi",
+        text: "अल्लाह के नाम में और अल्लाह की बरकत के साथ।",
+      },
+      {
+        language: "Urdu",
+        text: "اللہ کے نام سے شروع جو بڑا مہربان نہایت رحم والا ہے",
+      },
+    ],
+    reference: "Abu Dawood 3/437 | At-Tirmidhi 4/288",
+    benefits:
+      "This dua reminds us of the importance of seeking Allah's blessings before eating.",
+  },
+  {
+    id: 10,
+    title: "FORGETTING TO RECITE BISMILLAH",
+    category: "Reminder",
+    name: {
+      urdu: "بسم اللہ کہنا بھول جانے پر",
+      hindi: "बिस्मिल्लाह भूल जाने पर",
+      english: "FORGETTING TO RECITE BISMILLAH",
+    },
+    arabic: "بِسْمِ اللَّهِ فِي أَوَّلِهِ وَآخِرِهِ",
+    translations: [
+      {
+        language: "English",
+        text: "In the name of Allah at the beginning and at the end.",
+      },
+      {
+        language: "Hindi",
+        text: "अल्लाह के नाम से शुरू और अंत में।",
+      },
+      {
+        language: "Urdu",
+        text: "اللہ کے نام سے شروع جو بڑا مہربان نہایت رحم والا ہے",
+      },
+    ],
+    reference: "Abu Dawood 3/437 | At-Tirmidhi 4/288",
+    benefits:
+      "This dua reminds us of the importance of seeking Allah's blessings before doing anything.",
+  },
 ];
