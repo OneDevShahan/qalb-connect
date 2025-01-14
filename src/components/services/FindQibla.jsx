@@ -1,5 +1,5 @@
 const QIBLA_API = import.meta.env.VITE_API_BASE_URL_QIBLA;
-const PROXY_URL = import.meta.env.VITE_PROXY_URL;
+const PROXY_URL = import.meta.env.VITE_API_PROXY_URL;
 
 export const getQiblaDirection = async (latitude, longitude) => {
 
