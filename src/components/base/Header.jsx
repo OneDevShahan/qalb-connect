@@ -1,15 +1,17 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { BiSolidNavigation } from "react-icons/bi";
 import {
-  FaMoon,
-  FaSun,
   FaBars,
-  FaTimes,
-  FaHeart,
-  FaCalendarAlt,
   FaBell,
+  FaCalendarAlt,
   FaChevronDown,
   FaChevronRight,
+  FaHeart,
+  FaMoon,
+  FaSun,
+  FaTimes,
 } from "react-icons/fa";
+
 import { Link } from "react-router-dom";
 
 const Header = () => {
@@ -51,6 +53,15 @@ const Header = () => {
       onMouseEnter={() => setDesktopMoreMenuOpen(true)}
       onMouseLeave={() => setDesktopMoreMenuOpen(false)}
     >
+      <Link
+        to="/find-qibla"
+        className="block px-6 py-3 hover:bg-gray-200 dark:hover:bg-gray-600"
+      >
+        <div className="flex items-center">
+          <BiSolidNavigation className="mr-2" />
+          Find Qibla
+        </div>
+      </Link>
       {[
         { path: "path1", pages: [{ name: "Page 11", link: "/path1/page11" }] },
         {
@@ -170,6 +181,15 @@ const Header = () => {
           </button>
           {isDropdownOpen && (
             <div className="absolute top-full left-0 bg-gray-700 dark:bg-gray-700 rounded-lg shadow-lg w-56 z-10 mt-2">
+              <Link
+                to="/find-qibla"
+                className="block px-6 py-3 hover:bg-gray-200 dark:hover:bg-gray-600"
+              >
+                <div className="flex items-center space-x-2">
+                  <BiSolidNavigation className="mr-2" />
+                  Find Qibla
+                </div>
+              </Link>
               <Link
                 to="/path1/page11"
                 className="block px-6 py-3 hover:bg-gray-400 dark:hover:bg-gray-600"

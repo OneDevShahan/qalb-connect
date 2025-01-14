@@ -22,6 +22,7 @@ import Page21 from "./components/more/path2/Page21";
 import Page22 from "./components/more/path2/Page22";
 import Page11 from "./components/more/path1/Page11";
 import ScrollToTop from "./components/base/ScrollToTop";
+import Qibla from "./components/qibla/Qibla";
 
 const App = () => {
   return (
@@ -43,6 +44,7 @@ const App = () => {
           <Route path="/path3/page32" element={<Page32 />} />
           <Route path="/path3/page33" element={<Page33 />} />
           <Route path="/page4" element={<Page4 />} />
+          <Route path="/find-qibla" element={<Qibla/>} />
         </Routes>
 
         {/* Main content area */}
