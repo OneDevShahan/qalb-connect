@@ -1,5 +1,3 @@
-import React from "react";
-
 const GenericCard = ({ title, description, onClick }) => {
   return (
     <div

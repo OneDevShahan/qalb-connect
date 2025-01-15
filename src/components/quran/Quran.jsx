@@ -60,7 +60,7 @@ const Quran = () => {
       <p className="text-lg text-center text-gray-600 dark:text-gray-300 mb-10">
         Explore the Quran in various interpretations and formats. Whether you
         seek a deep understanding in English, the original Arabic text, or
-        soul-soothing recitations, we've got you covered.
+        soul-soothing recitations, we have got you covered.
       </p>
 
       {/* Cards Section */}
