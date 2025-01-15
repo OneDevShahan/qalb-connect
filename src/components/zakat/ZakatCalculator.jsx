@@ -9,8 +9,9 @@ function ZakatCalculator() {
   const [propertyValue, setPropertyValue] = useState("");
   const [debtsValue, setDebtsValue] = useState("");
   const [zakatAmount, setZakatAmount] = useState(null);
-  
-    // Function to calculate Zakat
+  const [notEligible, setNotEligible] = useState(false);
+
+  // Function to calculate Zakat
   const calculateZakat = () => {
     const totalAssets =
       parseFloat(goldValue) +
@@ -26,6 +27,7 @@ function ZakatCalculator() {
       setZakatAmount(zakat);
     } else {
       setZakatAmount(0);
+      setNotEligible(true);
     }
   };
 
@@ -78,45 +80,45 @@ function ZakatCalculator() {
       ],
     },
   ];
-    
+
   const formInputFieldsDetails = [
-      {
-        label: "Nisab Value (Total value in ₹)",
-        description: "Threshold based on 87.48g gold or 612.36g silver",
-        value: nisabValue,
-        setter: setNisabValue,
-      },
-      {
-        label: "Gold Value (Total value in ₹)",
-        description: "Based on weight × current gold price per gram",
-        value: goldValue,
-        setter: setGoldValue,
-      },
-      {
-        label: "Silver Value (Total value in ₹)",
-        description: "Based on weight × current silver price per gram",
-        value: silverValue,
-        setter: setSilverValue,
-      },
-      {
-        label: "Cash Value (Savings in ₹)",
-        description: "Including bank and liquid cash",
-        value: cashValue,
-        setter: setCashValue,
-      },
-      {
-        label: "Property Value (Investment in ₹)",
-        description: "Excluding personal-use items",
-        value: propertyValue,
-        setter: setPropertyValue,
-      },
-      {
-        label: "Debts and Liabilities (Outstanding amount in ₹)",
-        description: "Debt, loans, or liabilities to be repaid",
-        value: debtsValue,
-        setter: setDebtsValue,
-      },
-    ];
+    {
+      label: "Nisab Value (Total value in ₹)",
+      description: "Threshold based on 87.48g gold or 612.36g silver",
+      value: nisabValue,
+      setter: setNisabValue,
+    },
+    {
+      label: "Gold Value (Total value in ₹)",
+      description: "Based on weight × current gold price per gram",
+      value: goldValue,
+      setter: setGoldValue,
+    },
+    {
+      label: "Silver Value (Total value in ₹)",
+      description: "Based on weight × current silver price per gram",
+      value: silverValue,
+      setter: setSilverValue,
+    },
+    {
+      label: "Cash Value (Savings in ₹)",
+      description: "Including bank and liquid cash",
+      value: cashValue,
+      setter: setCashValue,
+    },
+    {
+      label: "Property Value (Investment in ₹)",
+      description: "Excluding personal-use items",
+      value: propertyValue,
+      setter: setPropertyValue,
+    },
+    {
+      label: "Debts and Liabilities (Outstanding amount in ₹)",
+      description: "Debt, loans, or liabilities to be repaid",
+      value: debtsValue,
+      setter: setDebtsValue,
+    },
+  ];
 
   // Function to download PDF
   const downloadPDF = () => {
@@ -173,7 +175,7 @@ function ZakatCalculator() {
     // Save the PDF
     doc.save("zakat-summary.pdf");
   };
-    
+
   // Form validation
   const isFormValid =
     nisabValue &&
@@ -270,9 +272,16 @@ function ZakatCalculator() {
                   parseFloat(propertyValue)}{" "}
               </p>
               <p>Debts: ₹ {debtsValue}</p>
-              <p className="mt-4 font-semibold">
-                Zakat Amount: ₹ {zakatAmount}
-              </p>
+              {!notEligible ? (
+                <p className="mt-4 font-semibold">
+                  Zakat Amount: ₹ {zakatAmount}
+                </p>
+              ) : (
+                <p className="mt-4 font-semibold text-red-500">
+                  You are not eligible to pay Zakat as your net assets are less
+                  than the Nisab value.
+                </p>
+              )}
             </div>
             <div className="flex justify-center items-center p-2 m-2">
               <button
