@@ -24,6 +24,9 @@ import Page11 from "./components/more/path1/Page11";
 import ScrollToTop from "./components/base/ScrollToTop";
 import Qibla from "./components/qibla/Qibla";
 import ZakatCalculator from "./components/zakat/ZakatCalculator";
+import Quran from "./components/quran/Quran";
+import SurahCard from "./components/quran/SurahCard";
+import AyahCard from "./components/quran/AyahCard";
 
 const App = () => {
   return (
@@ -47,6 +50,9 @@ const App = () => {
           <Route path="/page4" element={<Page4 />} />
           <Route path="/find-qibla" element={<Qibla />} />
           <Route path="/zakat" element={<ZakatCalculator />} />
+          <Route path="/quran" element={<Quran />} />
+          <Route path="/surah-details" element={<SurahCard />} />
+          <Route path="/ayah-details" element={<AyahCard />} />
         </Routes>
 
         {/* Main content area */}

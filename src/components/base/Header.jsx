@@ -12,6 +12,8 @@ import {
   FaTimes,
 } from "react-icons/fa";
 import { HiOutlineCalculator } from "react-icons/hi";
+import { FaBookQuran } from "react-icons/fa6";
+
 
 import { Link } from "react-router-dom";
 
@@ -148,6 +150,13 @@ const Header = () => {
 
       <nav className="hidden md:flex space-x-6 items-center relative">
         <Link
+          to="/quran"
+          className="flex items-center space-x-2 hover:scale-110 duration-300 ease-in-out"
+        >
+          <FaBookQuran className="text-lg hover:text-green-500" />
+          <span>Quran</span>
+        </Link>
+        <Link
           to="/daily"
           className="flex items-center space-x-2 hover:scale-110 duration-300 ease-in-out"
         >
@@ -246,6 +255,10 @@ const Header = () => {
 
       {menuOpen && (
         <div className="absolute right-6 top-16 bg-white dark:bg-gray-700 rounded-lg shadow-md z-10 w-48">
+          <Link to="/quran" className="flex items-center px-6 py-3 space-x-2">
+            <FaBookQuran className="text-lg hover:text-green-500" />
+            <span>Quran</span>
+          </Link>
           <Link to="/daily" className="flex items-center px-6 py-3 space-x-2">
             <FaCalendarAlt className="text-lg hover:text-blue-400" />
             <span>Daily</span>
