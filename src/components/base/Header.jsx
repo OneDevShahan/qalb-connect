@@ -11,6 +11,7 @@ import {
   FaSun,
   FaTimes,
 } from "react-icons/fa";
+import { HiOutlineCalculator } from "react-icons/hi";
 
 import { Link } from "react-router-dom";
 
@@ -67,7 +68,7 @@ const Header = () => {
         className="block px-6 py-3 hover:bg-gray-200 dark:hover:bg-gray-600"
       >
         <div className="flex items-center">
-          <BiSolidNavigation className="mr-2" />
+          <HiOutlineCalculator className="mr-2" />
           Calculate Zakat
         </div>
       </Link>
@@ -204,7 +205,7 @@ const Header = () => {
                 className="block px-6 py-3 hover:bg-gray-200 dark:hover:bg-gray-600"
               >
                 <div className="flex items-center space-x-2">
-                  <BiSolidNavigation className="mr-2" />
+                  <HiOutlineCalculator className="mr-2" />
                   Calculate Zakat
                 </div>
               </Link>
