@@ -62,6 +62,15 @@ const Header = () => {
           Find Qibla
         </div>
       </Link>
+      <Link
+        to="/zakat"
+        className="block px-6 py-3 hover:bg-gray-200 dark:hover:bg-gray-600"
+      >
+        <div className="flex items-center">
+          <BiSolidNavigation className="mr-2" />
+          Calculate Zakat
+        </div>
+      </Link>
       {[
         { path: "path1", pages: [{ name: "Page 11", link: "/path1/page11" }] },
         {
@@ -188,6 +197,15 @@ const Header = () => {
                 <div className="flex items-center space-x-2">
                   <BiSolidNavigation className="mr-2" />
                   Find Qibla
+                </div>
+              </Link>
+              <Link
+                to="/zakat"
+                className="block px-6 py-3 hover:bg-gray-200 dark:hover:bg-gray-600"
+              >
+                <div className="flex items-center space-x-2">
+                  <BiSolidNavigation className="mr-2" />
+                  Calculate Zakat
                 </div>
               </Link>
               <Link

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getQiblaDirection } from "../services/FindQibla";
+import { getQiblaDirection } from "../services/IslamicDevelopersAPIServices";
 
 function Qibla() {
   const [direction, setDirection] = useState(null);
