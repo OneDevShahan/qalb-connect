@@ -1,14 +1,22 @@
+import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import LoadingIcon from "../base/LoadingIcon";
 
 const SurahCard = () => {
   const location = useLocation();
   const navigate = useNavigate(); // Replaced useHistory with useNavigate
   const { data } = location.state; // Get passed data from the navigation state
+  const [loadingSurah, setLoadingSurah] = useState(null); // Tracks loading state for each Surah
 
-  const handleButtonClick = (surah) => {
-    console.log("Surah:", surah);
-    // Navigate to the AyahCard component with Surah details
-    navigate("/ayah-details", { state: { surah } }); // Use navigate for routing in v6
+  const handleButtonClick = async (surah) => {
+    setLoadingSurah(surah.number); // Set the loading state for the clicked Surah
+    try {
+        navigate("/ayah-details", { state: { surah } });
+        setLoadingSurah(null); // Reset loading state after navigation
+    } catch (error) {
+      console.error("Error loading Surah:", error);
+      setLoadingSurah(null); // Reset loading state on error
+    }
   };
 
   return (
@@ -51,9 +59,21 @@ const SurahCard = () => {
           <div className="mt-6">
             <button
               onClick={() => handleButtonClick(surah)}
-              className="px-4 py-2 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600"
+              className={`w-full flex justify-center items-center dark:text-white px-4 py-2 rounded-lg shadow-md 
+              transition-all duration-300 ease-in-out ${
+                loadingSurah === surah.number
+                  ? "bg-gray-400 cursor-not-allowed"
+                  : "bg-blue-500 hover:bg-blue-600"
+              }`}
+              disabled={loadingSurah === surah.number}
             >
-              View Detailed Ayahs
+              {loadingSurah === surah.number ? (
+                <>
+                  <LoadingIcon size="1.25em" />{" "}
+                </>
+              ) : (
+                "View Detailed Ayahs"
+              )}
             </button>
           </div>
         </div>

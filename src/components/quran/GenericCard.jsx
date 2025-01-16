@@ -1,4 +1,16 @@
+import { useState } from "react";
+import LoadingIcon from "../base/LoadingIcon";
+
 const GenericCard = ({ title, description, onClick }) => {
+    const [isLoading, setIsLoading] = useState(false);
+    
+      const handleButtonClick = async () => {
+        setIsLoading(true); // Start loading
+        await onClick(); // Call the provided onClick function
+        setIsLoading(false); // Stop loading
+      };
+    
+
   return (
     <div
       className="max-w-xs mx-auto bg-gradient-to-r from-blue-50 via-purple-100 to-indigo-50 
@@ -21,12 +33,13 @@ const GenericCard = ({ title, description, onClick }) => {
       {/* Button */}
       <div className="p-4">
         <button
-          onClick={onClick}
-          className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white 
+          onClick={handleButtonClick}
+          className={`w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white 
           py-2 rounded-lg hover:from-blue-600 hover:to-indigo-700 transition-all 
-          duration-300 ease-in-out shadow-md"
+          duration-300 ease-in-out shadow-md flex items-center justify-center`}
+          disabled={isLoading}
         >
-          View Details
+          {isLoading ? <LoadingIcon /> : "View Details"}
         </button>
       </div>
     </div>
