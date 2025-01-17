@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GiSpellBook } from "react-icons/gi";
 import { useLocation, useNavigate } from "react-router-dom";
 import LoadingIcon from "../base/LoadingIcon";
 
@@ -9,10 +10,11 @@ const SurahCard = () => {
   const [loadingSurah, setLoadingSurah] = useState(null); // Tracks loading state for each Surah
 
   const handleButtonClick = async (surah) => {
+    console.log("Surah:", surah);
     setLoadingSurah(surah.number); // Set the loading state for the clicked Surah
     try {
-        navigate("/ayah-details", { state: { surah } });
-        setLoadingSurah(null); // Reset loading state after navigation
+      navigate("/ayah-details", { state: { surah } });
+      setLoadingSurah(null); // Reset loading state after navigation
     } catch (error) {
       console.error("Error loading Surah:", error);
       setLoadingSurah(null); // Reset loading state on error
@@ -22,9 +24,15 @@ const SurahCard = () => {
   return (
     <div className="p-6 bg-gradient-to-b from-gray-50 to-gray-100 min-h-screen dark:from-gray-800 dark:to-gray-900">
       {/* Section Header */}
-      <h1 className="text-4xl font-bold text-center text-gray-800 dark:text-white mb-6">
-        Surah Details
-      </h1>
+      <h2 className="text-2xl font-semibold text-center dark:text-white">
+        <div className="flex justify-center items-center font-bold text-xl md:text-2xl space-x-2">
+          <GiSpellBook size={25} className="mr-2 hover:text-green-400" />
+          Surah Details
+        </div>
+        <div className="flex justify-center text-center">
+          <hr className="text-center w-2/4 md:w-1/6 mt-3 mb-8" />
+        </div>
+      </h2>
 
       {/* Component Write-Up */}
       <div className="mb-6 text-lg text-gray-800 dark:text-white">
@@ -59,20 +67,24 @@ const SurahCard = () => {
           <div className="mt-6">
             <button
               onClick={() => handleButtonClick(surah)}
-              className={`w-full flex justify-center items-center dark:text-white px-4 py-2 rounded-lg shadow-md 
-              transition-all duration-300 ease-in-out ${
-                loadingSurah === surah.number
-                  ? "bg-gray-400 cursor-not-allowed"
-                  : "bg-blue-500 hover:bg-blue-600"
-              }`}
-              disabled={loadingSurah === surah.number}
+              className={`w-full flex items-center justify-center px-4 py-2 
+             bg-gradient-to-r from-green-400 to-green-600 text-white rounded-lg shadow-md
+             hover:from-green-500 hover:to-green-700 
+             ${
+               loadingSurah === surah.number
+                 ? "bg-gray-400 cursor-not-allowed" // When loading, disable the button
+                 : "bg-red-500 hover:bg-red-600"
+             } // If not loading, set a red button color
+             transition-colors duration-300 ease-in-out`} // Smooth transition for color changes
+              disabled={loadingSurah === surah.number} // Disable button when loading
             >
               {loadingSurah === surah.number ? (
                 <>
                   <LoadingIcon size="1.25em" />{" "}
+                  {/* Show loading icon when loading */}
                 </>
               ) : (
-                "View Detailed Ayahs"
+                <p className="text-white">View Detailed Ayahs</p> // Text when not loading
               )}
             </button>
           </div>

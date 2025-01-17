@@ -1,5 +1,6 @@
 import { useState } from "react";
 import LoadingIcon from "../base/LoadingIcon";
+import { FaBell, FaHeart } from "react-icons/fa";
 
 const GenericCard = ({ title, description, onClick }) => {
     const [isLoading, setIsLoading] = useState(false);
@@ -34,9 +35,7 @@ const GenericCard = ({ title, description, onClick }) => {
       <div className="p-4">
         <button
           onClick={handleButtonClick}
-          className={`w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white 
-          py-2 rounded-lg hover:from-blue-600 hover:to-indigo-700 transition-all 
-          duration-300 ease-in-out shadow-md flex items-center justify-center`}
+          className={`w-full bg-gradient-to-r from-green-400 to-green-600 text-white px-5 py-2 rounded-lg hover:from-green-500 hover:to-green-700 transition-all duration-300 ease-in-out shadow-md flex items-center justify-center`}
           disabled={isLoading}
         >
           {isLoading ? <LoadingIcon /> : "View Details"}

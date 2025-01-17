@@ -6,7 +6,7 @@ function Dashboard({ data }) {
     <div className="p-6 bg-gradient-to-b from-gray-50 to-gray-100 min-h-screen dark:from-gray-800 dark:to-gray-900">
       {/* Dashboard Title and Write-up */}
       <div className="text-center mb-12">
-        <h1 className="text-3xl md:text-4xl font-extrabold text-gray-800 dark:text-white">
+        <h1 className="text-xl md:text-2xl font-extrabold text-gray-800 dark:text-white">
           Welcome to QalbConnect
         </h1>
         <p className="mt-4 text-lg md:text-xl text-gray-600 dark:text-gray-300">

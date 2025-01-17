@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import GenericCard from "./GenericCard";
+import { FaBookQuran } from "react-icons/fa6";
 
 const Quran = () => {
     
@@ -54,9 +55,15 @@ const Quran = () => {
   return (
     <div className="p-6 bg-gradient-to-b from-gray-50 to-gray-100 min-h-screen dark:from-gray-800 dark:to-gray-900">
       {/* Section Header */}
-      <h1 className="text-4xl font-bold text-center text-gray-800 dark:text-white mb-6">
-        Discover the Quran
-      </h1>
+      <h2 className="text-2xl font-semibold text-center dark:text-white">
+        <div className="flex justify-center items-center font-bold text-xl md:text-2xl space-x-2">
+                  <FaBookQuran className="text-lg mr-2 hover:text-green-500" />
+                  Explore the Quran
+        </div>
+        <div className="flex justify-center text-center">
+          <hr className="text-center w-2/4 md:w-1/5 mt-3 mb-8" />
+        </div>
+      </h2>
       <p className="text-lg text-center text-gray-600 dark:text-gray-300 mb-10">
         Explore the Quran in various interpretations and formats. Whether you
         seek a deep understanding in English, the original Arabic text, or

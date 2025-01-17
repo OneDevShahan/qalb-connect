@@ -199,10 +199,15 @@ function ZakatCalculator() {
   return (
     <div className="p-6 bg-gradient-to-b from-gray-50 to-gray-100 min-h-screen dark:from-gray-800 dark:to-gray-900">
       <div className="text-center mb-12">
-        <h1 className="text-3xl md:text-4xl font-extrabold text-gray-800 dark:text-white">
-          Zakat Calculator 2025
-        </h1>
-        <p className="mt-4 text-lg md:text-xl text-gray-600 dark:text-gray-300">
+        <h2 className="text-2xl font-semibold text-center dark:text-white">
+          <div className="flex justify-center items-center font-bold text-xl md:text-2xl space-x-2">
+            Zakat Calculator 2025
+          </div>
+          <div className="flex justify-center text-center">
+            <hr className="text-center w-2/4 md:w-1/4 mt-3 mb-8" />
+          </div>
+        </h2>
+        <p className="my-4 text-lg md:text-xl md:my-4 text-gray-600 dark:text-gray-300">
           Calculate your Zakat obligations based on your assets, liabilities,
           and Nisab values.
         </p>

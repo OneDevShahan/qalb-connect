@@ -27,6 +27,7 @@ import ZakatCalculator from "./components/zakat/ZakatCalculator";
 import Quran from "./components/quran/Quran";
 import SurahCard from "./components/quran/SurahCard";
 import AyahCard from "./components/quran/AyahCard";
+import Bismillah from "./components/base/Bismillah";
 
 const App = () => {
   return (
@@ -34,6 +35,12 @@ const App = () => {
       <ScrollToTop />
       <div className="min-h-screen flex flex-col dark:bg-gray-900">
         <Header />
+        <Bismillah
+          size="lg"
+          showArabic={true}
+          showEnglish={true}
+          showHindi={true}
+        />
         {/* Routes setup */}
         <Routes>
           <Route path="/" element={<Dashboard data={DailyDua} />} />

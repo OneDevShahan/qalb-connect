@@ -254,7 +254,10 @@ const Header = () => {
       </div>
 
       {menuOpen && (
-        <div className="absolute right-6 top-16 bg-white dark:bg-gray-700 rounded-lg shadow-md z-10 w-48">
+        // <div className="absolute right-6 top-16 bg-white dark:bg-gray-700 rounded-lg shadow-md z-10 w-48">
+        <div
+          className="absolute right-6 top-16 rounded-lg shadow-md z-10 w-48 bg-gray-700"
+        >
           <Link to="/quran" className="flex items-center px-6 py-3 space-x-2">
             <FaBookQuran className="text-lg hover:text-green-500" />
             <span>Quran</span>
