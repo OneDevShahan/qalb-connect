@@ -149,11 +149,11 @@ const Footer = () => {
               <span>Favorite</span>
             </Link>
             <Link
-              to="/favorite"
+              to="/all-duas"
               className="flex items-center space-x-2 hover:scale-110 transition-transform duration-300 ease-in-out"
             >
               <FaPersonPraying className="text-lg text-gray-400" />
-              <span>Favorite</span>
+              <span>Dua</span>
             </Link>
           </div>
         </div>

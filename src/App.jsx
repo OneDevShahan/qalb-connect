@@ -45,7 +45,7 @@ const App = () => {
         {/* Routes setup */}
         <Routes>
           <Route path="/" element={<Dashboard data={DailyDua} />} />
-          <Route path="/all-duas" element={<AllDua data={DailyDua} />} />
+          <Route path="/all-dua" element={<AllDua data={DailyDua} />} />
           <Route path="/daily" element={<Daily />} />{" "}
           {/* Adjust the path to match the basename */}
           <Route path="/favorite" element={<Favorite />} />

@@ -161,11 +161,11 @@ const Header = () => {
           <span>Quran</span>
         </Link>
         <Link
-          to="/all-duas"
+          to="/all-dua"
           className="flex items-center space-x-2 hover:scale-110 duration-300 ease-in-out"
         >
           <FaPersonPraying className="text-lg text-gray-400" />
-          <span>Duas</span>
+          <span>Dua</span>
         </Link>
         <Link
           to="/daily"
@@ -264,11 +264,14 @@ const Header = () => {
       </div>
 
       {menuOpen && (
-        // <div className="absolute right-6 top-16 bg-white dark:bg-gray-700 rounded-lg shadow-md z-10 w-48">
         <div className="absolute right-6 top-16 rounded-lg shadow-md z-10 w-48 bg-gray-700">
           <Link to="/quran" className="flex items-center px-6 py-3 space-x-2">
             <FaBookQuran className="text-lg text-green-500" />
             <span>Quran</span>
+          </Link>
+          <Link to="/all-dua" className="flex items-center px-6 py-3 space-x-2">
+            <FaPersonPraying className="text-lg text-gray-500" />
+            <span>Dua</span>
           </Link>
           <Link to="/daily" className="flex items-center px-6 py-3 space-x-2">
             <FaCalendarAlt className="text-lg text-blue-400" />
