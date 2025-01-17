@@ -12,6 +12,11 @@ import {
   FaLinkedinIn,
   FaTwitter,
 } from "react-icons/fa";
+import { FaBookQuran } from "react-icons/fa6";
+import { HiOutlineCalculator } from "react-icons/hi";
+import { RiCompass3Line } from "react-icons/ri";
+import { FaPersonPraying } from "react-icons/fa6";
+
 import { Link } from "react-router-dom";
 
 const Footer = () => {
@@ -100,27 +105,55 @@ const Footer = () => {
         {/* Footer Categories Section */}
         <div className="flex flex-col space-y-4">
           <h3 className="text-lg font-bold">Categories</h3>
-          <div className="flex flex-col space-y-4 md:flex-row md:space-x-6 md:space-y-0">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <Link
+              to="/quran"
+              className="flex items-center space-x-2 hover:scale-110 transition-transform duration-300 ease-in-out"
+            >
+              <FaBookQuran className="text-lg text-green-500" />
+              <span>Quran</span>
+            </Link>
+            <Link
+              to="/zakat"
+              className="flex items-center space-x-2 hover:scale-110 transition-transform duration-300 ease-in-out"
+            >
+              <HiOutlineCalculator className="text-lg text-red-400" />
+              <span>Zakat</span>
+            </Link>
+            <Link
+              to="/find-qibla"
+              className="flex items-center space-x-2 hover:scale-110 transition-transform duration-300 ease-in-out"
+            >
+              <RiCompass3Line className="mr-1 text-lg text-green-500" />
+              Qibla
+            </Link>
             <Link
               to="/daily"
               className="flex items-center space-x-2 hover:scale-110 transition-transform duration-300 ease-in-out"
             >
-              <FaCalendarAlt className="text-lg hover:text-blue-200" />
+              <FaCalendarAlt className="text-lg text-blue-200" />
               <span>Daily</span>
+            </Link>
+            <Link
+              to="/reminder"
+              className="flex items-center space-x-2 hover:scale-110 transition-transform duration-300 ease-in-out"
+            >
+              <FaBell className="text-lg text-yellow-300" />
+              <span>Reminder</span>
             </Link>
             <Link
               to="/favorite"
               className="flex items-center space-x-2 hover:scale-110 transition-transform duration-300 ease-in-out"
             >
-              <FaHeart className="text-lg hover:text-red-300" />
+              <FaHeart className="text-lg text-red-400" />
               <span>Favorite</span>
             </Link>
             <Link
-              to="/suggested"
+              to="/favorite"
               className="flex items-center space-x-2 hover:scale-110 transition-transform duration-300 ease-in-out"
             >
-              <FaBell className="text-lg hover:text-yellow-300" />
-              <span>Suggested For You</span>
+              <FaPersonPraying className="text-lg text-gray-400" />
+              <span>Favorite</span>
             </Link>
           </div>
         </div>

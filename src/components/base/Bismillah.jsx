@@ -14,7 +14,7 @@ const Bismillah = ({
 
   return (
     <div
-      className={`flex flex-col items-center justify-center rounded-lg shadow-lg text-center ${sizeClasses[size]}
+      className={`flex flex-col items-center justify-center shadow-lg text-center ${sizeClasses[size]}
       bg-gradient-to-r from-green-400 to-green-600 text-white
       dark:from-green-700 dark:to-green-900 dark:text-gray-200`}
     >

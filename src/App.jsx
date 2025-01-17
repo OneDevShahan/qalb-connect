@@ -28,6 +28,7 @@ import Quran from "./components/quran/Quran";
 import SurahCard from "./components/quran/SurahCard";
 import AyahCard from "./components/quran/AyahCard";
 import Bismillah from "./components/base/Bismillah";
+import AllDua from "./components/dua/AllDua";
 
 const App = () => {
   return (
@@ -44,6 +45,7 @@ const App = () => {
         {/* Routes setup */}
         <Routes>
           <Route path="/" element={<Dashboard data={DailyDua} />} />
+          <Route path="/all-duas" element={<AllDua data={DailyDua} />} />
           <Route path="/daily" element={<Daily />} />{" "}
           {/* Adjust the path to match the basename */}
           <Route path="/favorite" element={<Favorite />} />

@@ -8,7 +8,7 @@ function Daily() {
     <div className="flex-1 p-4 my-10 mx-5">
       <h2 className="text-2xl font-semibold text-center dark:text-white">
         <div className="flex justify-center items-center font-bold text-xl md:text-2xl space-x-2">
-          <FaCalendarAlt size={25} className="mx-2 text-lg hover:text-blue-400" />
+          <FaCalendarAlt size={25} className="mx-2 text-lg text-blue-400" />
           Daily Duas
         </div>
         <div className="flex justify-center text-center">

@@ -11,7 +11,7 @@ import {
   FaSun,
   FaTimes,
 } from "react-icons/fa";
-import { FaBookQuran } from "react-icons/fa6";
+import { FaBookQuran, FaPersonPraying } from "react-icons/fa6";
 
 
 
@@ -146,7 +146,9 @@ const Header = () => {
             alt="QalbConnect Logo"
             className="h-12 w-12 text-black dark:text-white"
           />
-          QalbConnect
+          <div className="gradient-heading text-3xl font-bold ml-2">
+            QalbConnect
+          </div>
         </Link>
       </div>
 
@@ -157,6 +159,13 @@ const Header = () => {
         >
           <FaBookQuran className="text-lg text-green-500" />
           <span>Quran</span>
+        </Link>
+        <Link
+          to="/all-duas"
+          className="flex items-center space-x-2 hover:scale-110 duration-300 ease-in-out"
+        >
+          <FaPersonPraying className="text-lg text-gray-400" />
+          <span>Duas</span>
         </Link>
         <Link
           to="/daily"
@@ -190,7 +199,6 @@ const Header = () => {
           </div>
           {desktopMoreMenuOpen && renderMoreMenu()}
         </div>
-
         {/* Dropdown after More option */}
         {/* <div ref={dropdownRef} className="relative">
           <button
