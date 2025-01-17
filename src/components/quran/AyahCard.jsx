@@ -27,7 +27,7 @@ const AyahCard = () => {
       {/* Section Header */}
       <h2 className="text-2xl font-semibold text-center dark:text-white">
         <div className="flex justify-center items-center font-bold text-xl md:text-2xl space-x-2">
-          <GiBookAura className="mr-2 hover:text-green-400" />
+          <GiBookAura className="mr-2 text-green-500" />
           Surah - <strong>{surah.name}</strong>
         </div>
         <div className="flex justify-center text-center">
@@ -38,7 +38,7 @@ const AyahCard = () => {
       {/* Detailed Surah Info */}
       <div className="bg-gradient-to-r from-blue-50 via-purple-100 to-indigo-50 dark:from-gray-800 dark:via-gray-700 dark:to-gray-800 shadow-2xl rounded-xl p-6 mb-6">
         <p className="text-xl font-bold text-center text-gray-800 dark:text-white">
-          <strong>{surah.name}</strong>
+          <strong className="text-green-500">{surah.name}</strong>
         </p>
         <div className="flex mt-4 text-md font-bold text-gray-700 dark:text-gray-300">
           Arabic:
@@ -72,7 +72,7 @@ const AyahCard = () => {
               <div key={ayah.number} className="my-6">
                 <div className="text-lg text-gray-800 dark:text-white">
                   <p className="text-lg font-semibold">Ayah {ayah.number}:</p>
-                  <p className="italic hover:text-green-500">{ayah.text} </p>
+                  <p className="italic text-green-500">{ayah.text} </p>
                 </div>
                 <p className="text-sm text-gray-600 dark:text-gray-400">
                   Juz: {ayah.juz}, Manzil: {ayah.manzil}, Page: {ayah.page}
@@ -86,7 +86,7 @@ const AyahCard = () => {
                   />
                   <AiFillAudio
                     size={20}
-                    className="cursor-pointer hover:text-red-600"
+                    className="cursor-pointer hover:text-green-500"
                     title="Read Ayah Loud"
                     onClick={() => handleReadAyahLoud(ayah.text)}
                   />

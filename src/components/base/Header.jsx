@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { BiSolidNavigation } from "react-icons/bi";
 import {
   FaBars,
@@ -11,11 +11,13 @@ import {
   FaSun,
   FaTimes,
 } from "react-icons/fa";
-import { HiOutlineCalculator } from "react-icons/hi";
 import { FaBookQuran } from "react-icons/fa6";
 
 
+
 import { Link } from "react-router-dom";
+import { RiCompass3Line } from "react-icons/ri";
+import { HiOutlineCalculator } from "react-icons/hi";
 
 const Header = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -61,7 +63,7 @@ const Header = () => {
         className="block px-6 py-3 hover:bg-gray-200 dark:hover:bg-gray-600"
       >
         <div className="flex items-center">
-          <BiSolidNavigation className="mr-2" />
+          <RiCompass3Line className="mr-2 text-green-500" />
           Find Qibla
         </div>
       </Link>
@@ -70,7 +72,7 @@ const Header = () => {
         className="block px-6 py-3 hover:bg-gray-200 dark:hover:bg-gray-600"
       >
         <div className="flex items-center">
-          <HiOutlineCalculator className="mr-2" />
+          <HiOutlineCalculator className="mr-2 text-red-400" />
           Calculate Zakat
         </div>
       </Link>
@@ -104,7 +106,7 @@ const Header = () => {
           {subMenu === path && (
             <div
               ref={submenuRef}
-              className={`absolute left-full top-0 ${
+              className={`absolute right-full top-0 ${
                 isMobile ? "right-full" : ""
               } bg-gray-700 dark:bg-gray-700 rounded-lg shadow-lg w-56 z-20`}
               onMouseEnter={() => setSubMenu(path)} // Stay open when hovering over submenu
@@ -153,28 +155,28 @@ const Header = () => {
           to="/quran"
           className="flex items-center space-x-2 hover:scale-110 duration-300 ease-in-out"
         >
-          <FaBookQuran className="text-lg hover:text-green-500" />
+          <FaBookQuran className="text-lg text-green-500" />
           <span>Quran</span>
         </Link>
         <Link
           to="/daily"
           className="flex items-center space-x-2 hover:scale-110 duration-300 ease-in-out"
         >
-          <FaCalendarAlt className="text-lg hover:text-blue-400" />
+          <FaCalendarAlt className="text-lg text-blue-400" />
           <span>Daily</span>
         </Link>
         <Link
           to="/favorite"
           className="flex items-center space-x-2 hover:scale-110 duration-300 ease-in-out"
         >
-          <FaHeart className="text-lg hover:text-red-600" />
+          <FaHeart className="text-lg text-red-600" />
           <span>Favorite</span>
         </Link>
         <Link
           to="/reminder"
           className="flex items-center space-x-2 hover:scale-110 duration-300 ease-in-out"
         >
-          <FaBell className="text-lg hover:text-yellow-300" />
+          <FaBell className="text-lg text-yellow-300" />
           <span>Reminder</span>
         </Link>
         <div
@@ -190,7 +192,7 @@ const Header = () => {
         </div>
 
         {/* Dropdown after More option */}
-        <div ref={dropdownRef} className="relative">
+        {/* <div ref={dropdownRef} className="relative">
           <button
             onClick={toggleDropdown}
             className="flex items-center space-x-2"
@@ -205,7 +207,7 @@ const Header = () => {
                 className="block px-6 py-3 hover:bg-gray-200 dark:hover:bg-gray-600"
               >
                 <div className="flex items-center space-x-2">
-                  <BiSolidNavigation className="mr-2" />
+                  <RiCompass3Line className="mr-2" />
                   Find Qibla
                 </div>
               </Link>
@@ -214,7 +216,7 @@ const Header = () => {
                 className="block px-6 py-3 hover:bg-gray-200 dark:hover:bg-gray-600"
               >
                 <div className="flex items-center space-x-2">
-                  <HiOutlineCalculator className="mr-2" />
+                  <HiOutlineCalculator className="mr-2 text-red-400" />
                   Calculate Zakat
                 </div>
               </Link>
@@ -238,7 +240,7 @@ const Header = () => {
               </Link>
             </div>
           )}
-        </div>
+        </div> */}
       </nav>
 
       <div className="flex items-center space-x-6">
@@ -255,29 +257,27 @@ const Header = () => {
 
       {menuOpen && (
         // <div className="absolute right-6 top-16 bg-white dark:bg-gray-700 rounded-lg shadow-md z-10 w-48">
-        <div
-          className="absolute right-6 top-16 rounded-lg shadow-md z-10 w-48 bg-gray-700"
-        >
+        <div className="absolute right-6 top-16 rounded-lg shadow-md z-10 w-48 bg-gray-700">
           <Link to="/quran" className="flex items-center px-6 py-3 space-x-2">
-            <FaBookQuran className="text-lg hover:text-green-500" />
+            <FaBookQuran className="text-lg text-green-500" />
             <span>Quran</span>
           </Link>
           <Link to="/daily" className="flex items-center px-6 py-3 space-x-2">
-            <FaCalendarAlt className="text-lg hover:text-blue-400" />
+            <FaCalendarAlt className="text-lg text-blue-400" />
             <span>Daily</span>
           </Link>
           <Link
             to="/favorite"
             className="flex items-center px-6 py-3 space-x-2"
           >
-            <FaHeart className="text-lg hover:text-red-600" />
+            <FaHeart className="text-lg text-red-600" />
             <span>Favorite</span>
           </Link>
           <Link
             to="/reminder"
             className="flex items-center px-6 py-3 space-x-2"
           >
-            <FaBell className="text-lg hover:text-yellow-300" />
+            <FaBell className="text-lg text-yellow-300" />
             <span>Reminder</span>
           </Link>
           <div
