@@ -1072,4 +1072,33 @@ export const DailyDua = [
     ],
     reference: "Al-Bayhaqi 2/210",
   },
+  {
+    id: 40,
+    title: "UPON TRAVELING",
+    category: "Favorite",
+    name: {
+      urdu: "سفر کے دوران",
+      hindi: "यात्रा के दौरान",
+      english: "UPON TRAVELING",
+    },
+    arabic:
+      "سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَذَا وَمَا كُنَّا لَهُ مُقْرِنِينَ وَإِنَّا إِلَى رَبِّنَا لَمُنْقَلِبُونَ",
+    translations: [
+      {
+        language: "English",
+        text: "Glory is to Him who has brought this under our control; whereas we were unable to control it. Surely, we will return to our Lord.",
+      },
+      {
+        language: "Hindi",
+        text: "महिमा उस अल्लाह को, जिसने इसे हमारे नियंत्रण में ला दिया; जबकि हम इसे नियंत्रित करने में असमर्थ थे। निश्चय ही, हम अपने रब के पास लौटेंगे।",
+      },
+      {
+        language: "Urdu",
+        text: "پاک ہے وہ جس نے اس کو ہمارے قابو میں دے دیا، حالانکہ ہم اس کو قابو میں کرنے والے نہ تھے، اور ہم اپنے رب کی طرف لوٹنے والے ہیں۔",
+      },
+    ],
+    reference: "Sahih Muslim 4/2084 | Abu Dawood 3/100",
+    benefits:
+      "This dua acknowledges Allah’s power and blessings in making travel possible, instills gratitude for the journey, and reminds us of our ultimate return to Allah, fostering mindfulness and humility during travel.",
+  },
 ];
