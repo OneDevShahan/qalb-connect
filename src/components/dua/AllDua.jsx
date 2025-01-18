@@ -1,26 +1,27 @@
-import DuaCard from "./DuaCard";
+import { FaPersonPraying } from "react-icons/fa6";
 import { DailyDua } from "../utility/Contant";
-import { FaBell } from "react-icons/fa";
+import DuaCard from "./DuaCard";
 
-function Reminder() {
+function AllDua() {
   return (
     <div className="flex-1 p-4 my-10 mx-5">
       <h2 className="text-2xl font-semibold text-center dark:text-white">
         <div className="flex justify-center items-center font-bold text-xl md:text-2xl space-x-2">
-          <FaBell size={25} className="mx-2 text-lg text-yellow-300" />
-          Reminder Duas
+          <FaPersonPraying size={25} className="mx-2 text-lg text-gray-400" />
+          All Duas ({DailyDua.length})
         </div>
         <div className="flex justify-center text-center">
-          <hr className="text-center w-2/5 md:w-1/5 mt-3 mb-10" />
+          <hr className="text-center w-2/5 md:w-1/6 mt-3 mb-10" />
         </div>
       </h2>
 
       {/* Write-up */}
-      <p className="text-lg text-center text-gray-700 dark:text-gray-300 mb-8">
-        Reminder Duas are those prayers that you can set as a reminder to recite
-        throughout your day. These duas help you stay connected with your
-        spiritual practices and are perfect for keeping you aligned with your
-        intentions.
+      <p className="text-md text-center text-gray-700 dark:text-gray-300 mb-8">
+        Duas enrich our daily lives, offering spiritual guidance and peace.
+        Daily duas foster mindfulness, favorite duas hold personal significance,
+        reminders ensure we stay steadfast in faith, and occasional duas bring
+        blessings for special moments. Together, they strengthen our connection
+        with the Divine, infusing every day with tranquility and purpose.
       </p>
 
       {DailyDua.length > 0 ? (
@@ -37,4 +38,4 @@ function Reminder() {
     </div>
   );
 }
-export default Reminder;
+export default AllDua;
