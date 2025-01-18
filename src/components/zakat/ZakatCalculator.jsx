@@ -1,5 +1,6 @@
 import { jsPDF } from "jspdf";
-import React, { useState } from "react";
+import { useState } from "react";
+import { HiOutlineCalculator } from "react-icons/hi";
 
 function ZakatCalculator() {
   const [nisabValue, setNisabValue] = useState("");
@@ -201,13 +202,14 @@ function ZakatCalculator() {
       <div className="text-center mb-12">
         <h2 className="text-2xl font-semibold text-center dark:text-white">
           <div className="flex justify-center items-center font-bold text-xl md:text-2xl space-x-2">
-            Zakat Calculator 2025
+            <HiOutlineCalculator className="mr-2 text-red-400" />
+            Zakat Calculator {new Date().getFullYear()}
           </div>
           <div className="flex justify-center text-center">
             <hr className="text-center w-2/4 md:w-1/4 mt-3 mb-8" />
           </div>
         </h2>
-        <p className="my-4 text-lg md:text-xl md:my-4 text-gray-600 dark:text-gray-300">
+        <p className="my-4 text-lg md:my-4 text-gray-600 dark:text-gray-300">
           Calculate your Zakat obligations based on your assets, liabilities,
           and Nisab values.
         </p>
@@ -220,7 +222,7 @@ function ZakatCalculator() {
             key={label}
             className="flex flex-col dark:text-white sm:flex-row sm:items-center sm:space-x-4 space-y-4 sm:space-y-0 md:m-8"
           >
-            <label className="text-lg text-gray-800 dark:text-white sm:w-1/3">
+            <label className="text-sm text-gray-800 dark:text-white sm:w-1/3">
               {label}
             </label>
             <div className="flex-1">

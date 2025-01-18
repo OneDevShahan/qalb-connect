@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const Bismillah = ({
   size = "md", // Default size: md
   showArabic = false, // Flag to show Arabic text
@@ -43,7 +45,13 @@ const Bismillah = ({
         </p>
       )}
     </div>
-  );
-};
-
+    );
+  };
+  
+Bismillah.propTypes = {
+    size: PropTypes.oneOf(["sm", "md", "lg", "xl"]),
+    showArabic: PropTypes.bool,
+    showEnglish: PropTypes.bool,
+    showHindi: PropTypes.bool,
+}
 export default Bismillah;

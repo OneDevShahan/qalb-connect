@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { getQiblaDirection } from "../services/IslamicDevelopersAPIServices";
-import { FaCalendarAlt } from "react-icons/fa";
-import { BiSolidNavigation } from "react-icons/bi";
+import { RiCompass3Line } from "react-icons/ri";
 
 function Qibla() {
   const [direction, setDirection] = useState(null);
@@ -29,14 +28,11 @@ function Qibla() {
       <div className="text-center mb-12">
         <h2 className="text-2xl font-semibold text-center dark:text-white">
           <div className="flex justify-center items-center font-bold text-xl md:text-2xl space-x-2">
-            <BiSolidNavigation
-              size={25}
-              className="mr-2 text-lg hover:text-green-400"
-            />{" "}
-            Welcome to QalbConnect
+            <RiCompass3Line size={25} className="mr-3 text-green-500" />
+            Qibla Direction
           </div>
           <div className="flex justify-center text-center">
-            <hr className="text-center w-2/4 md:w-1/3 mt-3 mb-10" />
+            <hr className="text-center w-2/5 md:w-1/5 mt-3 mb-10" />
           </div>
         </h2>
         <p className="mt-4 text-lg md:text-xl text-gray-600 dark:text-gray-300">
@@ -44,7 +40,11 @@ function Qibla() {
           Choose any category below to dive deeper into your spiritual journey.
         </p>
       </div>
-      <div>
+      <div className="dark:text-yellow-300 text-center text-2xl font-bold text-red-500">
+        Feature is coming soon...
+        </div>
+
+      {/* <div>
         {error && <p className="text-red-500">{error}</p>}
         {direction !== null ? (
           <div className="compass">
@@ -56,9 +56,8 @@ function Qibla() {
         ) : (
           <p>Loading...</p>
         )}
-      </div>
+      </div> */}
     </div>
   );
 }
-
 export default Qibla;

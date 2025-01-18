@@ -101,5 +101,4 @@ const AyahCard = () => {
     </div>
   );
 };
-
 export default AyahCard;

@@ -1,4 +1,3 @@
-import React from "react";
 import { DailyDua } from "../utility/Contant";
 import DuaCard from "./DuaCard";
 import { FaCalendarAlt } from "react-icons/fa";
@@ -12,7 +11,7 @@ function Daily() {
           Daily Duas
         </div>
         <div className="flex justify-center text-center">
-          <hr className="text-center w-2/4 md:w-1/6 mt-3 mb-10" />
+          <hr className="text-center w-2/5 md:w-1/6 mt-3 mb-10" />
         </div>
       </h2>
 

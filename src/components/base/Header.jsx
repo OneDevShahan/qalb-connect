@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { BiSolidNavigation } from "react-icons/bi";
 import {
   FaBars,
   FaBell,

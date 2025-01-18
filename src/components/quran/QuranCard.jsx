@@ -1,16 +1,15 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 import LoadingIcon from "../base/LoadingIcon";
-import { FaBell, FaHeart } from "react-icons/fa";
 
-const GenericCard = ({ title, description, onClick }) => {
-    const [isLoading, setIsLoading] = useState(false);
-    
-      const handleButtonClick = async () => {
-        setIsLoading(true); // Start loading
-        await onClick(); // Call the provided onClick function
-        setIsLoading(false); // Stop loading
-      };
-    
+const QuranCard = ({ title, description, onClick }) => {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleButtonClick = async () => {
+    setIsLoading(true); // Start loading
+    await onClick(); // Call the provided onClick function
+    setIsLoading(false); // Stop loading
+  };
 
   return (
     <div
@@ -25,7 +24,6 @@ const GenericCard = ({ title, description, onClick }) => {
         </h3>
 
         {/* Description */}
-        {/* <p className="mt-4 text-sm text-gray-700 dark:text-gray-300 text-center"> */}
         <p className="mt-4 text-sm sm:text-base md:text-lg text-gray-700 dark:text-gray-300 text-center">
           {description}
         </p>
@@ -45,4 +43,9 @@ const GenericCard = ({ title, description, onClick }) => {
   );
 };
 
-export default GenericCard;
+QuranCard.propTypes = {
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+};
+export default QuranCard;

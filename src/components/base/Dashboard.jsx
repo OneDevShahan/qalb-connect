@@ -1,15 +1,18 @@
-import React from "react";
 import { Link } from "react-router-dom";
+import PropTypes from 'prop-types';
 
 function Dashboard({ data }) {
   return (
     <div className="p-6 bg-gradient-to-b from-gray-50 to-gray-100 min-h-screen dark:from-gray-800 dark:to-gray-900">
       {/* Dashboard Title and Write-up */}
       <div className="text-center mb-12">
-        <h1 className="text-xl md:text-2xl font-extrabold text-gray-800 dark:text-white">
+        <h2 className="text-xl md:text-2xl font-extrabold text-gray-800 dark:text-white">
           Welcome to QalbConnect
-        </h1>
-        <p className="mt-4 text-lg md:text-xl text-gray-600 dark:text-gray-300">
+        </h2>
+        <div className="flex justify-center text-center">
+          <hr className="text-center w-2/3 md:w-1/4 mt-3 mb-10" />
+        </div>
+        <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
           Here you can explore your daily duas, favorite prayers, and reminders.
           Choose any category below to dive deeper into your spiritual journey.
         </p>
@@ -34,6 +37,10 @@ function Dashboard({ data }) {
             buttonClassName +=
               " bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600";
             linkTo = "/reminder";
+          } else {
+            buttonClassName +=
+              " bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600";
+            linkTo = "/all-dua";
           }
 
           return (
@@ -57,6 +64,9 @@ function Dashboard({ data }) {
               </p>
               {/* View Button */}
               <div className="flex justify-center items-center mt-auto">
+                <Link to="/all-dua" className={`${buttonClassName} mr-3`}>
+                  <span>All Dua</span>
+                </Link>
                 <Link to={linkTo} className={buttonClassName}>
                   {dua.category === "Daily"
                     ? "View Daily Duas"
@@ -74,5 +84,18 @@ function Dashboard({ data }) {
     </div>
   );
 }
-
+Dashboard.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      category: PropTypes.string.isRequired,
+      name: PropTypes.shape({
+        urdu: PropTypes.string.isRequired,
+        hindi: PropTypes.string.isRequired,
+        english: PropTypes.string.isRequired,
+      }).isRequired,
+      arabic: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+};
 export default Dashboard;

@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import GenericCard from "./GenericCard";
 import { FaBookQuran } from "react-icons/fa6";
+import QuranCard from "./QuranCard";
 
 const Quran = () => {
     
@@ -41,7 +41,6 @@ const Quran = () => {
       const response = await fetch(url);
       const data = await response.json();
       if (data.status === "OK") {
-        console.log("Quran Data:", data);
         navigate("/surah-details", { state: { data: data.data } }); // Navigate to the Surah details page with the data
       } else {
         alert("Failed to fetch Quran data.");
@@ -57,8 +56,8 @@ const Quran = () => {
       {/* Section Header */}
       <h2 className="text-2xl font-semibold text-center dark:text-white">
         <div className="flex justify-center items-center font-bold text-xl md:text-2xl space-x-2">
-                  <FaBookQuran className="text-lg mr-2 hover:text-green-500" />
-                  Explore the Quran
+          <FaBookQuran className="text-lg mr-2 text-green-500" />
+          Explore the Quran
         </div>
         <div className="flex justify-center text-center">
           <hr className="text-center w-2/4 md:w-1/5 mt-3 mb-8" />
@@ -73,7 +72,7 @@ const Quran = () => {
       {/* Cards Section */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {quranVersions.map((version) => (
-          <GenericCard
+          <QuranCard
             key={version.id}
             title={version.title}
             description={`${version.description} ${version.bestFor}`}

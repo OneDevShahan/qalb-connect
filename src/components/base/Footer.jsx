@@ -114,6 +114,13 @@ const Footer = () => {
               <span>Quran</span>
             </Link>
             <Link
+              to="/all-dua"
+              className="flex items-center space-x-2 hover:scale-110 transition-transform duration-300 ease-in-out"
+            >
+              <FaPersonPraying className="text-lg text-gray-400" />
+              <span>Dua</span>
+            </Link>
+            <Link
               to="/zakat"
               className="flex items-center space-x-2 hover:scale-110 transition-transform duration-300 ease-in-out"
             >
@@ -147,13 +154,6 @@ const Footer = () => {
             >
               <FaHeart className="text-lg text-red-400" />
               <span>Favorite</span>
-            </Link>
-            <Link
-              to="/all-duas"
-              className="flex items-center space-x-2 hover:scale-110 transition-transform duration-300 ease-in-out"
-            >
-              <FaPersonPraying className="text-lg text-gray-400" />
-              <span>Dua</span>
             </Link>
           </div>
         </div>

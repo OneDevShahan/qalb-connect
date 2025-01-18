@@ -1,19 +1,12 @@
-import React, { useEffect } from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom"; // Import BrowserRouter (or Router) for React Router v6
 import Footer from "./components/base/Footer";
 import Header from "./components/base/Header";
 import Daily from "./components/dua/Daily";
-import DuaCard from "./components/dua/DuaCard";
 import Favorite from "./components/dua/Favorite";
 import Reminder from "./components/dua/Reminder";
 
-import "./index.css"; // Ensure index.css exists in the src folder
 import Dashboard from "./components/base/Dashboard";
-import { sampleDua } from "./components/utility/Contant";
 import { DailyDua } from "./components/utility/Contant";
-import Page1 from "./components/more/path1/Page11";
-import Page2 from "./components/more/path2/Page21";
-import Page3 from "./components/more/Page4";
 import Page4 from "./components/more/Page4";
 import Page31 from "./components/more/path3/Page31";
 import Page32 from "./components/more/path3/Page32";
@@ -29,6 +22,8 @@ import SurahCard from "./components/quran/SurahCard";
 import AyahCard from "./components/quran/AyahCard";
 import Bismillah from "./components/base/Bismillah";
 import AllDua from "./components/dua/AllDua";
+import "./index.css"; // Ensure index.css exists in the src folder
+import NotFound from "./components/base/NotFound";
 
 const App = () => {
   return (
@@ -62,6 +57,7 @@ const App = () => {
           <Route path="/quran" element={<Quran />} />
           <Route path="/surah-details" element={<SurahCard />} />
           <Route path="/ayah-details" element={<AyahCard />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
 
         {/* Main content area */}

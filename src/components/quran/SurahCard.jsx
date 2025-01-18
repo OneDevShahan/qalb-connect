@@ -40,7 +40,7 @@ const SurahCard = () => {
           The following Surahs from the Quran have been carefully selected to
           showcase a variety of themes and teachings. These Surahs are revealed
           at different times and have their own unique context and message. Feel
-          free to explore each Surah's verses and their meanings below.
+          free to explore each Surah&apos;s verses and their meanings below.
         </p>
       </div>
 
