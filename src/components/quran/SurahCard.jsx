@@ -58,7 +58,11 @@ const SurahCard = () => {
       </div>
 
       {/* Search Bar */}
-      <SearchBar searchQuery={searchSurah} setSearchQuery={setSearchSurah} size="medium" />
+      <SearchBar
+        searchQuery={searchSurah}
+        setSearchQuery={setSearchSurah}
+        size="medium"
+      />
 
       {/* Surah Info - Grid layout for Surah Cards */}
       {filteredSurahs.length > 0 ? (
@@ -88,8 +92,8 @@ const SurahCard = () => {
                 <button
                   onClick={() => handleButtonClick(surah)}
                   className={`w-full flex items-center justify-center px-4 py-2 
-                  bg-gradient-to-r from-green-500 to-green-700 text-white rounded-lg shadow-md
-                  hover:from-green-600 hover:to-green-800 
+                  bg-gradient-to-r from-green-600 to-green-800 text-white rounded-lg shadow-md
+                  hover:from-green-500 hover:to-green-700 
                   ${
                     loadingSurah === surah.number
                       ? "bg-gray-400 cursor-not-allowed" // When loading, disable the button
