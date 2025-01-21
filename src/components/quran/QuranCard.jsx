@@ -13,7 +13,7 @@ const QuranCard = ({ title, description, onClick }) => {
 
   return (
     <div
-      className="flex flex-col h-full max-w-xs mx-auto bg-gradient-to-r from-blue-50 via-purple-100 to-indigo-50 
+      className="flex flex-col max-w-xs mx-auto bg-gradient-to-r from-blue-50 via-purple-100 to-indigo-50 
       dark:from-gray-800 dark:via-gray-700 dark:to-gray-800 shadow-xl rounded-xl overflow-hidden"
     >
       <div className="p-6 flex-1">
