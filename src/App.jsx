@@ -24,13 +24,15 @@ import Bismillah from "./components/base/Bismillah";
 import AllDua from "./components/dua/AllDua";
 import "./index.css"; // Ensure index.css exists in the src folder
 import NotFound from "./components/base/NotFound";
+import Header3 from "./components/base/Header3";
 
 const App = () => {
   return (
     <Router basename="/qalb-connect">
       <ScrollToTop />
       <div className="min-h-screen flex flex-col dark:bg-gray-900">
-        <Header />
+        {/* <Header /> */}
+        <Header3/>
         <Bismillah
           size="lg"
           showArabic={true}
