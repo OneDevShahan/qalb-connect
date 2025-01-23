@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { FaTimes } from "react-icons/fa";
+import PropTypes from 'prop-types';
 
 const MobileMenu = ({ dropdownOptions, toggleMenu }) => {
   return (
@@ -22,8 +23,10 @@ const MobileMenu = ({ dropdownOptions, toggleMenu }) => {
                   className="flex flex-col items-center text-lg hover:text-green-400 duration-200"
                   onClick={toggleMenu} // Close menu on click
                 >
-                  <div className="text-2xl mb-2">{link.icon}</div>
-                  {link.label}
+                  <div className="flex items-center">
+                    <p className="mr-2">{link.icon}</p>
+                    {link.label}
+                  </div>
                 </Link>
               ))}
             </div>
@@ -32,6 +35,21 @@ const MobileMenu = ({ dropdownOptions, toggleMenu }) => {
       </nav>
     </div>
   );
+};
+MobileMenu.propTypes = {
+  dropdownOptions: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      links: PropTypes.arrayOf(
+        PropTypes.shape({
+          path: PropTypes.string.isRequired,
+          icon: PropTypes.element,
+          label: PropTypes.string.isRequired,
+        })
+      ).isRequired,
+    })
+  ).isRequired,
+  toggleMenu: PropTypes.func.isRequired,
 };
 
 export default MobileMenu;

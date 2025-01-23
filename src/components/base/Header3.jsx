@@ -13,6 +13,7 @@ import { HiOutlineCalculator } from "react-icons/hi";
 import { RiCompass3Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import MobileMenu from "./MobileMenu";
+import { PiBookBookmark } from "react-icons/pi";
 
 const Header3 = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -45,14 +46,14 @@ const Header3 = () => {
           icon: <FaBookQuran className="text-green-500" />,
         },
         {
-          label: "About",
-          path: "/",
-          icon: <FaBookQuran className="text-green-500" />,
+          label: "Juz",
+          path: "/juz-details",
+          icon: <PiBookBookmark className="text-green-500" />,
         },
         {
-          label: "Surah",
-          path: "/search-surah",
-          icon: <FaBookQuran className="text-green-500" />,
+          label: "Caluculate",
+          path: "/zakat",
+          icon: <HiOutlineCalculator className="text-red-400" />,
         },
       ],
     },
@@ -62,7 +63,7 @@ const Header3 = () => {
         {
           label: "All",
           path: "/all-dua",
-          icon: <FaPersonPraying className="text-lg text-gray-500" />,
+          icon: <FaPersonPraying className="text-gray-500" />,
         },
         {
           label: "Daily",
