@@ -23,10 +23,9 @@ const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [desktopMoreMenuOpen, setDesktopMoreMenuOpen] = useState(false);
   const [mobileMoreMenuOpen, setMobileMoreMenuOpen] = useState(false);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [subMenu, setSubMenu] = useState(null);
   const submenuRef = useRef(null);
-  const dropdownRef = useRef(null);
+  const menuRef = useRef(null);
 
   useEffect(() => {
     const darkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -45,9 +44,20 @@ const Header = () => {
     setSubMenu((current) => (current === menu ? null : menu));
   };
 
-  const toggleDropdown = () => {
-    setIsDropdownOpen((prev) => !prev);
-  };
+  // Close menu on outside click
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setMenuOpen(false);
+        setMobileMoreMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, []);
 
   const renderMoreMenu = (isMobile = false) => (
     <div
@@ -198,108 +208,63 @@ const Header = () => {
           </div>
           {desktopMoreMenuOpen && renderMoreMenu()}
         </div>
-        {/* Dropdown after More option */}
-        {/* <div ref={dropdownRef} className="relative">
-          <button
-            onClick={toggleDropdown}
-            className="flex items-center space-x-2"
-          >
-            <span>Flat</span>
-            <FaChevronDown />
-          </button>
-          {isDropdownOpen && (
-            <div className="absolute top-full left-0 bg-gray-700 dark:bg-gray-700 rounded-lg shadow-lg w-56 z-10 mt-2">
-              <Link
-                to="/find-qibla"
-                className="block px-6 py-3 hover:bg-gray-200 dark:hover:bg-gray-600"
-              >
-                <div className="flex items-center space-x-2">
-                  <RiCompass3Line className="mr-2" />
-                  Find Qibla
-                </div>
-              </Link>
-              <Link
-                to="/zakat"
-                className="block px-6 py-3 hover:bg-gray-200 dark:hover:bg-gray-600"
-              >
-                <div className="flex items-center space-x-2">
-                  <HiOutlineCalculator className="mr-2 text-red-400" />
-                  Calculate Zakat
-                </div>
-              </Link>
-              <Link
-                to="/path1/page11"
-                className="block px-6 py-3 hover:bg-gray-400 dark:hover:bg-gray-600"
-              >
-                Page 11
-              </Link>
-              <Link
-                to="/path2/page22"
-                className="block px-6 py-3 hover:bg-gray-200 dark:hover:bg-gray-600"
-              >
-                Page 22
-              </Link>
-              <Link
-                to="/page4"
-                className="block px-6 py-3 hover:bg-gray-200 dark:hover:bg-gray-600"
-              >
-                Page 4
-              </Link>
-            </div>
-          )}
-        </div> */}
       </nav>
-
-      <div className="flex items-center space-x-6">
-        <button onClick={toggleDarkMode} className="text-xl">
-          {isDarkMode ? <FaSun /> : <FaMoon />}
-        </button>
-        <button
-          className="md:hidden block text-2xl"
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
-          {menuOpen ? <FaTimes /> : <FaBars />}
-        </button>
-      </div>
-
-      {menuOpen && (
-        <div className="absolute right-6 top-16 rounded-lg shadow-md z-10 w-48 bg-gray-700">
-          <Link to="/quran" className="flex items-center px-6 py-3 space-x-2">
-            <FaBookQuran className="text-lg text-green-500" />
-            <span>Quran</span>
-          </Link>
-          <Link to="/all-dua" className="flex items-center px-6 py-3 space-x-2">
-            <FaPersonPraying className="text-lg text-gray-500" />
-            <span>Dua</span>
-          </Link>
-          <Link to="/daily" className="flex items-center px-6 py-3 space-x-2">
-            <FaCalendarAlt className="text-lg text-blue-400" />
-            <span>Daily</span>
-          </Link>
-          <Link
-            to="/favorite"
-            className="flex items-center px-6 py-3 space-x-2"
+        <div className="flex items-center space-x-6">
+          <button onClick={toggleDarkMode} className="text-xl">
+            {isDarkMode ? <FaSun /> : <FaMoon />}
+          </button>
+          <button
+            className="md:hidden block text-2xl"
+            onClick={() => setMenuOpen((prev) => !prev)}
           >
-            <FaHeart className="text-lg text-red-600" />
-            <span>Favorite</span>
-          </Link>
-          <Link
-            to="/reminder"
-            className="flex items-center px-6 py-3 space-x-2"
-          >
-            <FaBell className="text-lg text-yellow-300" />
-            <span>Reminder</span>
-          </Link>
-          <div
-            className="flex items-center px-6 py-3 space-x-2 cursor-pointer"
-            onClick={() => setMobileMoreMenuOpen(!mobileMoreMenuOpen)}
-          >
-            <span>More</span>
-            <FaChevronDown />
-          </div>
-          {mobileMoreMenuOpen && renderMoreMenu(true)}
+            {menuOpen ? <FaTimes /> : <FaBars />}
+          </button>
         </div>
-      )}
+
+        {menuOpen && (
+          <div
+            ref={menuRef}
+            className="absolute right-6 top-16 rounded-lg shadow-md z-10 w-48 bg-gray-700"
+          >
+            <Link to="/quran" className="flex items-center px-6 py-3 space-x-2">
+              <FaBookQuran className="text-lg text-green-500" />
+              <span>Quran</span>
+            </Link>
+            <Link
+              to="/all-dua"
+              className="flex items-center px-6 py-3 space-x-2"
+            >
+              <FaPersonPraying className="text-lg text-gray-500" />
+              <span>Dua</span>
+            </Link>
+            <Link to="/daily" className="flex items-center px-6 py-3 space-x-2">
+              <FaCalendarAlt className="text-lg text-blue-400" />
+              <span>Daily</span>
+            </Link>
+            <Link
+              to="/favorite"
+              className="flex items-center px-6 py-3 space-x-2"
+            >
+              <FaHeart className="text-lg text-red-600" />
+              <span>Favorite</span>
+            </Link>
+            <Link
+              to="/reminder"
+              className="flex items-center px-6 py-3 space-x-2"
+            >
+              <FaBell className="text-lg text-yellow-300" />
+              <span>Reminder</span>
+            </Link>
+            <div
+              className="flex items-center px-6 py-3 space-x-2 cursor-pointer"
+              onClick={() => setMobileMoreMenuOpen((prev) => !prev)}
+            >
+              <span>More</span>
+              <FaChevronDown />
+            </div>
+            {mobileMoreMenuOpen && renderMoreMenu(true)}
+          </div>
+        )}
     </header>
   );
 };

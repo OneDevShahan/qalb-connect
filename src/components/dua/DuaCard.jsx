@@ -29,7 +29,7 @@ const TranslationList = ({ translations }) => (
 );
 
 // Main DuaCard Component
-const DuaCard = ({ name, arabic, translations, benefits, reference }) => {
+const DuaCard = ({ id, name, arabic, translations, benefits, reference }) => {
   // Memoize translations array
   const translationsArray = useMemo(() => {
     return Array.isArray(translations)
@@ -44,9 +44,9 @@ const DuaCard = ({ name, arabic, translations, benefits, reference }) => {
     <div className="max-w-sm md:max-w-md lg:max-w-lg mx-auto bg-gradient-to-r from-blue-50 via-purple-100 to-indigo-50 dark:from-gray-800 dark:via-gray-700 dark:to-gray-800 shadow-2xl rounded-xl overflow-hidden transition-transform transform flex flex-col h-full md:h-auto">
       <div className="p-6 flex-1">
         {/* Title Section */}
-        <h3 className="text-lg md:text-xl font-bold text-center text-gray-800 dark:text-white">
-          {Object.values(name).join(" | ")}
-        </h3>
+        <h2 className="text-lg md:text-xl font-bold text-center text-gray-800 dark:text-white">
+          {id}. {Object.values(name).join(" | ")}
+        </h2>
 
         {/* Arabic Text */}
         <p
@@ -91,6 +91,7 @@ const DuaCard = ({ name, arabic, translations, benefits, reference }) => {
 
 // Prop Types for validation
 DuaCard.propTypes = {
+  id: PropTypes.number.isRequired,
   name: PropTypes.shape({
     urdu: PropTypes.string.isRequired,
     hindi: PropTypes.string.isRequired,

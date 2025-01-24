@@ -42,7 +42,7 @@ function Qibla() {
       </div>
       <div className="dark:text-yellow-300 text-center text-2xl font-bold text-red-500">
         Feature is coming soon...
-        </div>
+      </div>
 
       {/* <div>
         {error && <p className="text-red-500">{error}</p>}

@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { FaBookQuran } from "react-icons/fa6";
 import QuranCard from "./QuranCard";
+import QuranMetaData from "./QuranMetaData";
 
 const Quran = () => {
     
@@ -79,6 +80,9 @@ const Quran = () => {
             onClick={() => handleApiCall(version.apiUrl)}
           />
         ))}
+      </div>
+      <div>
+        <QuranMetaData />
       </div>
     </div>
   );

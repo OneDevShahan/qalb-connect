@@ -24,13 +24,16 @@ import Bismillah from "./components/base/Bismillah";
 import AllDua from "./components/dua/AllDua";
 import "./index.css"; // Ensure index.css exists in the src folder
 import NotFound from "./components/base/NotFound";
+import Header3 from "./components/base/Header3";
+import JuzComponent from "./components/quran/JuzComponent";
 
 const App = () => {
   return (
     <Router basename="/qalb-connect">
       <ScrollToTop />
       <div className="min-h-screen flex flex-col dark:bg-gray-900">
-        <Header />
+        {/* <Header /> */}
+        <Header3 />
         <Bismillah
           size="lg"
           showArabic={true}
@@ -57,6 +60,7 @@ const App = () => {
           <Route path="/quran" element={<Quran />} />
           <Route path="/surah-details" element={<SurahCard />} />
           <Route path="/ayah-details" element={<AyahCard />} />
+          <Route path="/juz-details" element={<JuzComponent />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
 
