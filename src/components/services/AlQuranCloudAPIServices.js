@@ -3,7 +3,18 @@ import { API_FAILURE_MSG } from "../utility/Contant";
 const AL_QURAN_API_BASE_URL = import.meta.env.VITE_API_AL_QURAN_API_BASE_URL;
 
 
-// Function to fetch Coplete Quran Data
+// Function to fetch All Quran available editions
+export const fetchQuranEditionsAvailable = async () => {
+    try {
+    const response = await axios.get(`${AL_QURAN_API_BASE_URL}/edition`);
+    return response.data.data;
+  } catch (error) {
+    console.error(API_FAILURE_MSG, error.message, error.message);
+    throw new Error(API_FAILURE_MSG);
+  }
+};
+
+// Function to fetch Complete Quran Data
 export const fetchQuranData = async (edition) => {
   try {
     const response = await fetch(

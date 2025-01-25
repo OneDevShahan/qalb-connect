@@ -26,8 +26,23 @@ import "./index.css"; // Ensure index.css exists in the src folder
 import NotFound from "./components/base/NotFound";
 import Header3 from "./components/base/Header3";
 import JuzComponent from "./components/quran/JuzComponent";
+import { useState } from "react";
+import Toast from "./components/extras/Toast";
 
 const App = () => {
+
+  const [toast, setToast] = useState({ message: "", type: "" });
+
+  const showToast = (message, type = "success") => {
+    setTimeout(() => {
+      setToast({ message, type });
+    }, 0); // Defers the state update to avoid conflicts
+  };
+
+  const hideToast = () => {
+    setToast({ message: "", type: "" });
+  };
+
   return (
     <Router basename="/qalb-connect">
       <ScrollToTop />
@@ -59,13 +74,22 @@ const App = () => {
           <Route path="/zakat" element={<ZakatCalculator />} />
           <Route path="/quran" element={<Quran />} />
           <Route path="/surah-details" element={<SurahCard />} />
-          <Route path="/ayah-details" element={<AyahCard />} />
+          <Route
+            path="/ayah-details"
+            element={<AyahCard showToast={showToast} />}
+          />
           <Route path="/juz-details" element={<JuzComponent />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
 
         {/* Main content area */}
 
+        <Toast
+          message={toast.message}
+          type={toast.type || "success"} // Default to "success" if type is invalid
+          onClose={hideToast}
+          duration={3000}
+        />
         <Footer />
       </div>
     </Router>
