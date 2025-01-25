@@ -104,8 +104,8 @@ const SurahCard = () => {
                 >
                   {loadingSurah === surah.number ? (
                     <>
-                      <LoadingIcon size="1.25em" />{" "}
                       {/* Show loading icon when loading */}
+                      <LoadingIcon size="1.25em" color="yellow" />{" "}
                     </>
                   ) : (
                     <p className="text-white">View Detailed Ayahs</p> // Text when not loading

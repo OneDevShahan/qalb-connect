@@ -8,6 +8,7 @@ import { SiBookstack } from "react-icons/si";
 import { FaBookReader } from "react-icons/fa";
 import { LuBookKey } from "react-icons/lu";
 import { LuBadgeInfo } from "react-icons/lu";
+import LoadingIcon from "../base/LoadingIcon";
 
 const QuranMetaData = () => {
   const [data, setData] = useState(null);
@@ -28,7 +29,10 @@ const QuranMetaData = () => {
   }, []);
 
   if (loading)
-    return <div className="text-center text-lg font-semibold">Loading...</div>;
+    return <div className="text-center text-lg font-semibold">
+      <LoadingIcon color="yellow" />
+      Loading...
+    </div>;
   if (error)
     return (
       <div className="text-center text-red-600 font-semibold">{error}</div>
@@ -42,7 +46,7 @@ const QuranMetaData = () => {
           More About Quran
         </div>
         <div className="flex justify-center text-center">
-          <hr className="text-center w-2/4 md:w-1/5 mt-3 mb-8" />
+          <hr className="text-center w-4/5 sm:w-1/2 md:w-1/4 mt-3 mb-8" />
         </div>
       </h2>
       <p className="text-lg text-center text-gray-600 dark:text-gray-300 mb-10">

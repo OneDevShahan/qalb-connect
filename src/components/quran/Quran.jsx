@@ -61,7 +61,7 @@ const Quran = () => {
           Explore the Quran
         </div>
         <div className="flex justify-center text-center">
-          <hr className="text-center w-2/4 md:w-1/5 mt-3 mb-8" />
+          <hr className="text-center w-3/5 sm:w-1/2 md:w-1/5 mt-3 mb-8" />
         </div>
       </h2>
       <p className="text-lg text-center text-gray-600 dark:text-gray-300 mb-10">
