@@ -2,8 +2,18 @@ import axios from "axios";
 import { API_FAILURE_MSG } from "../utility/Contant";
 const AL_QURAN_API_BASE_URL = import.meta.env.VITE_API_AL_QURAN_API_BASE_URL;
 
+// Function to fetch All Quran available editions
+export const fetchQuranEditionsAvailable = async () => {
+  try {
+    const response = await axios.get(`${AL_QURAN_API_BASE_URL}/edition`);
+    return response.data.data;
+  } catch (error) {
+    console.error(API_FAILURE_MSG, error.message, error.message);
+    throw new Error(API_FAILURE_MSG);
+  }
+};
 
-// Function to fetch Coplete Quran Data
+// Function to fetch Complete Quran Data
 export const fetchQuranData = async (edition) => {
   try {
     const response = await fetch(
@@ -44,5 +54,29 @@ export const fetchJuzData = async (juz, edition, offset = 0, limit = 0) => {
   } catch (error) {
     console.error(API_FAILURE_MSG, error);
     throw error;
+  }
+};
+
+// Function to fetch Surah data
+export const fetchSurahList = async () => {
+  try {
+    const response = await axios.get(`${AL_QURAN_API_BASE_URL}/surah`);
+    return response.data.data;
+  } catch (error) {
+    console.error(API_FAILURE_MSG, error.message, error.message);
+    throw new Error(API_FAILURE_MSG);
+  }
+};
+
+// Function to fetch Surah's Ayah data
+export const fetchSurahByIdAndEdition = async (surahId, edition = "en.asad") => {
+  try {
+    const response = await axios.get(
+      `${AL_QURAN_API_BASE_URL}/surah/${surahId}/${edition}`
+    );
+    return response.data.data;
+  } catch (error) {
+    console.error(API_FAILURE_MSG, error.message, error.message);
+    throw new Error(API_FAILURE_MSG);
   }
 };

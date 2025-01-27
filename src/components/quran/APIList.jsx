@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import Card from "./Card";
 import DetailsCard from "./DetailsCard";
+import { fetchQuranEditionsAvailable } from "../services/AlQuranCloudAPIServices";
 
 const APIList = () => {
   const [editions, setEditions] = useState([]);
@@ -9,10 +9,11 @@ const APIList = () => {
 
   useEffect(() => {
     // Fetch editions data
-    axios
-      .get("http://api.alquran.cloud/v1/edition")
-      .then((response) => setEditions(response.data.data))
-      .catch((error) => console.error(error));
+    const fetchData = async () => {
+      const data = await fetchQuranEditionsAvailable();
+      setEditions(data);
+    };
+    fetchData();
   }, []);
 
   return (

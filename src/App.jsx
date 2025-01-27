@@ -24,16 +24,31 @@ import Bismillah from "./components/base/Bismillah";
 import AllDua from "./components/dua/AllDua";
 import "./index.css"; // Ensure index.css exists in the src folder
 import NotFound from "./components/base/NotFound";
-import Header3 from "./components/base/Header3";
 import JuzComponent from "./components/quran/JuzComponent";
+import { useState } from "react";
+import Toast from "./components/extras/Toast";
+import SurahList from "./components/quran/in-depth/SurahList";
+import SurahPage from "./components/quran/in-depth/SurahPage";
 
 const App = () => {
+
+  const [toast, setToast] = useState({ message: "", type: "" });
+
+  const showToast = (message, type = "success") => {
+    setTimeout(() => {
+      setToast({ message, type });
+    }, 0); // Defers the state update to avoid conflicts
+  };
+
+  const hideToast = () => {
+    setToast({ message: "", type: "" });
+  };
+
   return (
     <Router basename="/qalb-connect">
       <ScrollToTop />
       <div className="min-h-screen flex flex-col dark:bg-gray-900">
-        {/* <Header /> */}
-        <Header3 />
+        <Header />
         <Bismillah
           size="lg"
           showArabic={true}
@@ -59,13 +74,27 @@ const App = () => {
           <Route path="/zakat" element={<ZakatCalculator />} />
           <Route path="/quran" element={<Quran />} />
           <Route path="/surah-details" element={<SurahCard />} />
-          <Route path="/ayah-details" element={<AyahCard />} />
+          <Route
+            path="/ayah-details"
+            element={<AyahCard showToast={showToast} />}
+          />
           <Route path="/juz-details" element={<JuzComponent />} />
+          <Route
+            path="/surah-list"
+            element={<SurahList showToast={showToast} />}
+          />
+          <Route path="/surah/:id" element={<SurahPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
 
         {/* Main content area */}
 
+        <Toast
+          message={toast.message}
+          type={toast.type || "success"} // Default to "success" if type is invalid
+          onClose={hideToast}
+          duration={3000}
+        />
         <Footer />
       </div>
     </Router>

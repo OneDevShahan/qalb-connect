@@ -206,7 +206,7 @@ function ZakatCalculator() {
             Zakat Calculator {new Date().getFullYear()}
           </div>
           <div className="flex justify-center text-center">
-            <hr className="text-center w-2/4 md:w-1/4 mt-3 mb-8" />
+            <hr className="text-center w-2/3 sm:w-1/3 md:w-1/4 mt-3 mb-8" />
           </div>
         </h2>
         <p className="my-4 text-lg md:my-4 text-gray-600 dark:text-gray-300">

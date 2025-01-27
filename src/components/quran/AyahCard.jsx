@@ -1,11 +1,12 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 import { useLocation } from "react-router-dom";
 import { GiBookAura } from "react-icons/gi";
 import { LuClipboardCopy } from "react-icons/lu";
 import { AiFillAudio } from "react-icons/ai";
 import SearchBar from "../base/SearchBar";
 
-const AyahCard = () => {
+const AyahCard = ({ showToast }) => {
   const location = useLocation();
   const { surah } = location.state || {}; // Get passed Surah data from SurahCard
 
@@ -18,7 +19,11 @@ const AyahCard = () => {
   const handleCopyAyah = (ayah) => {
     const ayahDetails = `Ayah ${ayah.number}: ${ayah.text}\nJuz: ${ayah.juz}, Manzil: ${ayah.manzil}, Page: ${ayah.page}`;
     navigator.clipboard.writeText(ayahDetails);
-    alert("Ayah details copied to clipboard!");
+    // Use a timeout to ensure no state updates occur during another render
+    setTimeout(
+      () => showToast("Ayah details copied to clipboard!", "success"),
+      0
+    );
   };
 
   const handleReadAyahLoud = (ayahText) => {
@@ -118,6 +123,9 @@ const AyahCard = () => {
       </div>
     </div>
   );
+};
+AyahCard.propTypes = {
+  showToast: PropTypes.func.isRequired,
 };
 
 export default AyahCard;
