@@ -27,6 +27,8 @@ import NotFound from "./components/base/NotFound";
 import JuzComponent from "./components/quran/JuzComponent";
 import { useState } from "react";
 import Toast from "./components/extras/Toast";
+import SurahList from "./components/quran/in-depth/SurahList";
+import SurahPage from "./components/quran/in-depth/SurahPage";
 
 const App = () => {
 
@@ -77,6 +79,11 @@ const App = () => {
             element={<AyahCard showToast={showToast} />}
           />
           <Route path="/juz-details" element={<JuzComponent />} />
+          <Route
+            path="/surah-list"
+            element={<SurahList showToast={showToast} />}
+          />
+          <Route path="/surah/:id" element={<SurahPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
 

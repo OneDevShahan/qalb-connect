@@ -27,20 +27,18 @@ const JuzComponent = () => {
     getJuzData();
   }, [juz, edition]);
 
-    
-    const handleCopyAyah = (ayah) => {
+  const handleCopyAyah = (ayah) => {
     const ayahDetails = `Ayah ${ayah.number}: ${ayah.text}\nJuz: ${ayah.juz}, Manzil: ${ayah.manzil}, Page: ${ayah.page}`;
     navigator.clipboard.writeText(ayahDetails);
     alert("Ayah details copied to clipboard!");
-    };
+  };
 
-    const handleReadAyahLoud = (ayahText) => {
+  const handleReadAyahLoud = (ayahText) => {
     const utterance = new SpeechSynthesisUtterance(ayahText);
     speechSynthesis.speak(utterance);
-    };
-    
+  };
+
   return (
-    // <div className="p-6 bg-gradient-to-b from-gray-50 to-gray-100 min-h-screen dark:from-gray-800 dark:to-gray-900">
     <div className="p-6 min-h-screen dark:from-gray-800 dark:to-gray-900">
       <h2 className="m-2 text-2xl font-semibold text-center dark:text-white">
         <div className="flex justify-center items-center font-bold text-xl md:text-2xl space-x-2">
@@ -118,7 +116,6 @@ const JuzComponent = () => {
         )}
       </div>
     </div>
-    // </div>
   );
 };
 

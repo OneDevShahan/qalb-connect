@@ -41,7 +41,7 @@ const DuaCard = ({ id, name, arabic, translations, benefits, reference }) => {
   }, [translations]);
 
   return (
-    <div className="max-w-sm md:max-w-md lg:max-w-lg mx-auto bg-gradient-to-r from-blue-50 via-purple-100 to-indigo-50 dark:from-gray-800 dark:via-gray-700 dark:to-gray-800 shadow-2xl rounded-xl overflow-hidden transition-transform transform flex flex-col h-full md:h-auto">
+    <div className="flex flex-col mx-auto h-full md:h-auto max-w-sm md:max-w-md lg:max-w-lg  rounded-xl overflow-hidden transition-transform transform bg-gradient-to-r from-blue-50 via-purple-100 to-indigo-50 dark:from-gray-800 dark:via-gray-700 dark:to-gray-800">
       <div className="p-6 flex-1">
         {/* Title Section */}
         <h2 className="text-lg md:text-xl font-bold text-center text-gray-800 dark:text-white">

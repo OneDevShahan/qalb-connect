@@ -14,6 +14,7 @@ import { PiBookBookmark } from "react-icons/pi";
 import { RiCompass3Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import MobileMenu from "./MobileMenu";
+import { GiSpellBook } from "react-icons/gi";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -51,9 +52,9 @@ const Header = () => {
           icon: <PiBookBookmark className="text-green-500" />,
         },
         {
-          label: "Caluculate",
-          path: "/zakat",
-          icon: <HiOutlineCalculator className="text-red-400" />,
+          label: "Surahs",
+          path: "/surah-list",
+          icon: <GiSpellBook className="text-green-500" />,
         },
       ],
     },
