@@ -31,7 +31,6 @@ import SurahList from "./components/quran/in-depth/SurahList";
 import SurahPage from "./components/quran/in-depth/SurahPage";
 
 const App = () => {
-
   const [toast, setToast] = useState({ message: "", type: "" });
 
   const showToast = (message, type = "success") => {
@@ -79,11 +78,11 @@ const App = () => {
             element={<AyahCard showToast={showToast} />}
           />
           <Route path="/juz-details" element={<JuzComponent />} />
+          <Route path="/surah-list" element={<SurahList />} />
           <Route
-            path="/surah-list"
-            element={<SurahList showToast={showToast} />}
+            path="/surah/:id"
+            element={<SurahPage showToast={showToast} />}
           />
-          <Route path="/surah/:id" element={<SurahPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
 
