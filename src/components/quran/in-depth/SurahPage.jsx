@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import { useParams } from "react-router-dom";
 import { fetchSurahByIdAndEdition } from "../../services/AlQuranCloudAPIServices";
 import AyahList from "./AyahList";
 
-const SurahPage = () => {
+const SurahPage = ({ showToast }) => {
   const { id } = useParams();
   const [ayahs, setAyahs] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -31,7 +32,10 @@ const SurahPage = () => {
   return (
     <div className="p-6">
       <div className=" flex justify-center items-center mb-4">
-        <label htmlFor="edition" className="block mr-2 text-xl font-medium dark:text-white">
+        <label
+          htmlFor="edition"
+          className="block mr-2 text-xl font-medium dark:text-white"
+        >
           Choose Edition:
         </label>
         <select
@@ -50,9 +54,13 @@ const SurahPage = () => {
           ...ayah,
           translation: ayah.translation,
         }))}
+        showToast={showToast}
       />
     </div>
   );
+};
+SurahPage.propTypes = {
+  showToast: PropTypes.func.isRequired,
 };
 
 export default SurahPage;
