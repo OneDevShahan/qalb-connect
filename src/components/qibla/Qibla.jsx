@@ -32,7 +32,7 @@ function Qibla() {
             Qibla Direction
           </div>
           <div className="flex justify-center text-center">
-            <hr className="text-center w-2/5 md:w-1/5 mt-3 mb-10" />
+            <hr className="text-center w-1/2 sm:w-1/3 md:w-1/5 mt-3 mb-8" />
           </div>
         </h2>
         <p className="mt-4 text-lg md:text-xl text-gray-600 dark:text-gray-300">
@@ -42,7 +42,7 @@ function Qibla() {
       </div>
       <div className="dark:text-yellow-300 text-center text-2xl font-bold text-red-500">
         Feature is coming soon...
-        </div>
+      </div>
 
       {/* <div>
         {error && <p className="text-red-500">{error}</p>}

@@ -1,8 +1,10 @@
-const LoadingIcon = () => (
+import PropTypes from 'prop-types';
+
+const LoadingIcon = ({ height, width, color }) => (
   <svg
-    className="animate-spin h-5 w-5 text-white mx-auto"
+    className={`animate-spin text-white mx-auto ${height ? height : "h-5"} ${width ? width : "w-5"}`}
     xmlns="http://www.w3.org/2000/svg"
-    fill="none"
+    fill={`${color ? color : "none"}`}
     viewBox="0 0 24 24"
   >
     <circle
@@ -19,6 +21,11 @@ const LoadingIcon = () => (
       d="M4 12a8 8 0 018-8v4l2-2-2-2V4a8 8 0 100 16h4v-2l-2 2 2 2v-4a8 8 0 01-8-8z"
     ></path>
   </svg>
-);
+);  
+LoadingIcon.propTypes = {
+  height: PropTypes.string,
+  width: PropTypes.string,
+  color: PropTypes.string.isRequired,
+};
 
 export default LoadingIcon;

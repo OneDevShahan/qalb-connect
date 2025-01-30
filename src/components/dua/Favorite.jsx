@@ -7,14 +7,11 @@ function Favorite() {
     <div className="flex-1 p-4 my-10 mx-5">
       <h2 className="text-2xl font-semibold text-center dark:text-white">
         <div className="flex justify-center items-center font-bold text-xl md:text-2xl space-x-2">
-          <FaHeart
-            size={25}
-            className="mx-2 text-lg text-red-600"
-          />
+          <FaHeart size={25} className="mx-2 text-lg text-red-600" />
           Favorite Duas
         </div>
         <div className="flex justify-center text-center">
-          <hr className="text-center w-2/5 md:w-1/6 mt-3 mb-10" />
+          <hr className="text-center w-3/5 sm:w-1/3 md:w-1/6 mt-3 mb-8" />
         </div>
       </h2>
 

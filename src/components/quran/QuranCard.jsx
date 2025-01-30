@@ -13,9 +13,8 @@ const QuranCard = ({ title, description, onClick }) => {
 
   return (
     <div
-      className="max-w-xs mx-auto bg-gradient-to-r from-blue-50 via-purple-100 to-indigo-50 
-      dark:from-gray-800 dark:via-gray-700 dark:to-gray-800 shadow-xl rounded-xl overflow-hidden 
-      transition-all transform hover:scale-105 flex flex-col h-full duration-300 ease-in-out"
+      className="flex flex-col max-w-xs mx-auto bg-gradient-to-r from-blue-50 via-purple-100 to-indigo-50 
+      dark:from-gray-800 dark:via-gray-700 dark:to-gray-800 shadow-xl rounded-xl overflow-hidden"
     >
       <div className="p-6 flex-1">
         {/* Title */}
@@ -33,10 +32,10 @@ const QuranCard = ({ title, description, onClick }) => {
       <div className="p-4">
         <button
           onClick={handleButtonClick}
-          className={`w-full bg-gradient-to-r from-green-400 to-green-600 text-white px-5 py-2 rounded-lg hover:from-green-500 hover:to-green-700 transition-all duration-300 ease-in-out shadow-md flex items-center justify-center`}
+          className={`flex items-center justify-center w-full bg-gradient-to-r from-green-600 to-green-800 text-white px-5 py-2 rounded-lg hover:from-green-500 hover:to-green-700 `}
           disabled={isLoading}
         >
-          {isLoading ? <LoadingIcon /> : "View Details"}
+          {isLoading ? <LoadingIcon color="white" /> : "View Details"}
         </button>
       </div>
     </div>
