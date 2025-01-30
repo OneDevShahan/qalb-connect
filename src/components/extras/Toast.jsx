@@ -6,32 +6,30 @@ const Toast = ({ message, type = "success", onClose, duration = 3000 }) => {
 
   useEffect(() => {
     if (!message) return;
-
-    const interval = 100; // Update interval for the progress bar
-    const step = 100 / (duration / interval);
+    setProgress(100); // Reset progress for new toast
+    const intervalTime = 50; // Controls smoothness
+    const step = 100 / (duration / intervalTime); // Dynamically calculate step
 
     const timer = setInterval(() => {
       setProgress((prev) => {
         const nextProgress = prev - step;
         if (nextProgress <= 0) {
           clearInterval(timer);
-          // Ensure onClose is called only outside of React's render
-          setTimeout(onClose, 0);
+          setTimeout(onClose, 100); // Delay close for fade-out effect
           return 0;
         }
         return nextProgress;
       });
-    }, interval);
+    }, intervalTime);
 
-    // Cleanup on unmount
-    return () => clearInterval(timer);
-  }, [message, onClose, duration]);
+    return () => clearInterval(timer); // Cleanup on unmount
+  }, [message, onClose, duration]); // Dependency array ensures effect re-runs
 
   if (!message) return null;
 
   return (
     <div
-      className={`fixed top-5 right-5 max-w-xs px-4 py-3 rounded-lg shadow-md text-white ${
+      className={`fixed top-5 right-5 max-w-xs px-4 py-3 rounded-lg shadow-md text-white transition-opacity duration-300 ${
         type === "success" ? "bg-green-500" : "bg-red-500"
       }`}
     >
@@ -46,25 +44,25 @@ const Toast = ({ message, type = "success", onClose, duration = 3000 }) => {
       </div>
       <div
         className="h-1 mt-2 rounded-full bg-opacity-20"
-        style={{
-          backgroundColor: type === "success" ? "green" : "red",
-        }}
+        style={{ backgroundColor: type === "success" ? "green" : "red" }}
       >
         <div
-          className="h-full rounded-full"
+          className="h-full rounded-full transition-all duration-100"
           style={{
             width: `${progress}%`,
-            transition: "width 0.1s linear",
             backgroundColor: type === "success" ? "#34D399" : "#F87171",
           }}
         ></div>
       </div>
     </div>
-)};
+  );
+};
+
 Toast.propTypes = {
   message: PropTypes.string.isRequired,
   type: PropTypes.oneOf(["success", "error"]).isRequired,
   onClose: PropTypes.func.isRequired,
   duration: PropTypes.number,
 };
+
 export default Toast;
