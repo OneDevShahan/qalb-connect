@@ -26,7 +26,6 @@ const SurahList = () => {
 
   const filteredSurahs = surahList.filter(
     (surah) =>
-      //surah.englishName.toLowerCase().includes(searchQuery.toLowerCase())
       surah.name.toLowerCase().includes(searchQuery.toLowerCase()) || // Arabic Name
       surah.englishName.toLowerCase().includes(searchQuery.toLowerCase()) || // English Name
       surah.englishNameTranslation

@@ -16,7 +16,7 @@ const SurahPage = ({ showToast }) => {
       try {
         setLoading(true);
         const data = await fetchSurahByIdAndEdition(id, edition);
-        setAyahs(data.ayahs);
+        setAyahs(data);
       } catch (err) {
         setError("Failed to load Ayahs. Please try again later.", err);
       } finally {
@@ -49,13 +49,7 @@ const SurahPage = ({ showToast }) => {
           <option value="en.pickthall">Marmaduke Pickthall (English)</option>
         </select>
       </div>
-      <AyahList
-        ayahs={ayahs.map((ayah) => ({
-          ...ayah,
-          translation: ayah.translation,
-        }))}
-        showToast={showToast}
-      />
+      <AyahList surah={ayahs} showToast={showToast} />
     </div>
   );
 };

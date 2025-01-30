@@ -35,7 +35,7 @@ const QuranCard = ({ title, description, onClick }) => {
           className={`flex items-center justify-center w-full bg-gradient-to-r from-green-600 to-green-800 text-white px-5 py-2 rounded-lg hover:from-green-500 hover:to-green-700 `}
           disabled={isLoading}
         >
-          {isLoading ? <LoadingIcon /> : "View Details"}
+          {isLoading ? <LoadingIcon color="white" /> : "View Details"}
         </button>
       </div>
     </div>
