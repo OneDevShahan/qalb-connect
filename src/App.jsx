@@ -77,7 +77,10 @@ const App = () => {
             path="/ayah-details"
             element={<AyahCard showToast={showToast} />}
           />
-          <Route path="/juz-details" element={<JuzComponent />} />
+          <Route
+            path="/juz-details"
+            element={<JuzComponent showToast={showToast} />}
+          />
           <Route path="/surah-list" element={<SurahList />} />
           <Route
             path="/surah/:id"
