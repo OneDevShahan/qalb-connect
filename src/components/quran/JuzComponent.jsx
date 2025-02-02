@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
-import { AiFillAudio } from "react-icons/ai";
-import { LuClipboardCopy } from "react-icons/lu";
 import { PiBookBookmark } from "react-icons/pi";
 import LoadingIcon from "../base/LoadingIcon";
 import PropTypes from "prop-types";
 import { fetchJuzData } from "../services/AlQuranCloudAPIServices";
 import SearchBar from "../base/SearchBar";
+import AyahDetails from "./in-depth/AyahDetails";
 
 const JuzComponent = ({ showToast }) => {
   const [juz, setJuz] = useState(30);
@@ -122,36 +121,17 @@ const JuzComponent = ({ showToast }) => {
             {Object.values(juzData.surahs).map((surah) => (
               <div key={surah.number}>
                 {renderSurahInfo(surah)}
-                {juzData.ayahs
-                  .filter((ayah) => ayah.surah.number === surah.number)
-                  .map((ayah) => (
-                    <div
-                      key={ayah.number}
-                      className="p-4 bg-gradient-to-r from-blue-50 via-purple-100 to-indigo-50 dark:from-gray-800 dark:via-gray-700 dark:to-gray-800 rounded-sm"
-                    >
-                      <div className="text-lg font-medium dark:text-white">
-                        <span className="font-bold">{ayah.numberInSurah}</span>.
-                        {"  "}
-                        <span className="ml-2 text-green-500 dark:text-green-400">
-                          {ayah.text}
-                        </span>
-                        <div className="flex items-center space-x-2 my-2">
-                          <LuClipboardCopy
-                            size={20}
-                            className="cursor-pointer hover:text-yellow-400 dark:hover:text-yellow-300"
-                            title="Copy Ayah"
-                            onClick={() => handleCopyAyah(ayah)}
-                          />
-                          <AiFillAudio
-                            size={20}
-                            className="cursor-pointer hover:text-green-500 dark:hover:text-green-400"
-                            title="Read Ayah Loud"
-                            onClick={() => handleReadAyahLoud(ayah.text)}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  ))}
+                <AyahDetails
+                  ayahs={{
+                    ...surah,
+                    ayahs: juzData.ayahs.filter(
+                      (ayah) => ayah.surah.number === surah.number
+                    ),
+                  }}
+                  handleCopyAyah={handleCopyAyah}
+                  handleReadAyahLoud={handleReadAyahLoud}
+                  searchQuery={searchQuery}
+                />
               </div>
             ))}
           </div>
