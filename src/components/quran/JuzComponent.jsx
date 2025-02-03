@@ -128,9 +128,10 @@ const JuzComponent = ({ showToast }) => {
                       (ayah) => ayah.surah.number === surah.number
                     ),
                   }}
-                  handleCopyAyah={handleCopyAyah}
+                  //handleCopyAyah={handleCopyAyah}
                   handleReadAyahLoud={handleReadAyahLoud}
                   searchQuery={searchQuery}
+                  showToast={showToast}
                 />
               </div>
             ))}

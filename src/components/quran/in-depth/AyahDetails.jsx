@@ -7,11 +7,23 @@ const AyahDetails = ({
   handleCopyAyah,
   handleReadAyahLoud,
   searchQuery,
+  showToast,
 }) => {
   // Filter Ayahs based on the search query
   const filteredAyahs = ayahs.ayahs?.filter((ayah) =>
     ayah.text.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  const handleCopyAyahDetails = (ayah) => {
+      console.log("Copying Ayah details to clipboard: ", ayah);
+      const ayahDetails = `Ayah ${ayah.number}: ${ayah.text}\nJuz: ${ayah.juz}, Manzil: ${ayah.manzil}, Page: ${ayah.page}`;
+      navigator.clipboard.writeText(ayahDetails);
+      // setTimeout(
+      //   () => showToast("Ayah details copied to clipboard!", "success"),
+      //   0
+      // );
+    showToast("Ayah details copied to clipboard!", "success", 0);
+    };
 
   return (
     <div className="bg-gradient-to-r from-blue-50 via-purple-100 to-indigo-50 dark:from-gray-800 dark:via-gray-700 dark:to-gray-800 shadow-2xl rounded-xl p-6 mb-6">
@@ -60,7 +72,7 @@ const AyahDetails = ({
                   size={20}
                   className="cursor-pointer hover:text-yellow-300"
                   title="Copy Ayah"
-                  onClick={() => handleCopyAyah(ayah)}
+                  onClick={() => handleCopyAyahDetails(ayah)}
                 />
                 <AiFillAudio
                   size={20}
@@ -99,6 +111,7 @@ AyahDetails.propTypes = {
   handleCopyAyah: PropTypes.func.isRequired,
   handleReadAyahLoud: PropTypes.func.isRequired,
   searchQuery: PropTypes.string.isRequired,
+  showToast: PropTypes.func.isRequired,
 };
 
 export default AyahDetails;
