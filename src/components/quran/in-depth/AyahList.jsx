@@ -32,9 +32,10 @@ const AyahList = ({ surah, showToast }) => {
       {/* Detailed Surah Info */}
       <AyahDetails
         ayahs={surah}
-        handleCopyAyah={handleCopyAyah}
+        //handleCopyAyah={handleCopyAyah}
         handleReadAyahLoud={handleReadAyahLoud}
         searchQuery={searchQuery}
+        showToast={showToast}
       />
     </div>
   );

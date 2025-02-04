@@ -1,14 +1,12 @@
 import { useEffect, useState } from "react";
-import { GiBookAura, GiSpellBook } from "react-icons/gi";
-import { fetchQuranMetaData } from "../services/AlQuranCloudAPIServices";
-import { LuHeartHandshake } from "react-icons/lu";
-import { RiPagesLine } from "react-icons/ri";
-import { PiBookBookmark } from "react-icons/pi";
-import { SiBookstack } from "react-icons/si";
 import { FaBookReader } from "react-icons/fa";
-import { LuBookKey } from "react-icons/lu";
-import { LuBadgeInfo } from "react-icons/lu";
+import { GiBookAura, GiSpellBook } from "react-icons/gi";
+import { LuBadgeInfo, LuBookKey, LuHeartHandshake } from "react-icons/lu";
+import { PiBookBookmark } from "react-icons/pi";
+import { RiPagesLine } from "react-icons/ri";
+import { SiBookstack } from "react-icons/si";
 import LoadingIcon from "../base/LoadingIcon";
+import { fetchQuranMetaData } from "../services/AlQuranCloudAPIServices";
 
 const QuranMetaData = () => {
   const [data, setData] = useState(null);
@@ -29,10 +27,14 @@ const QuranMetaData = () => {
   }, []);
 
   if (loading)
-    return <div className="text-center text-lg font-semibold">
-      <LoadingIcon color="yellow" />
-      Loading...
-    </div>;
+    return (
+      <div className="flex flex-col items-center justify-center text-red-500">
+        <div className="mb-2 text-green-500 dark:text-green-400">
+          Data is loading...
+        </div>
+        <LoadingIcon height="h-20" width="w-20" color="red" />
+      </div>
+    );
   if (error)
     return (
       <div className="text-center text-red-600 font-semibold">{error}</div>
