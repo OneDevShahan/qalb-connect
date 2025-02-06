@@ -1,9 +1,9 @@
+import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { PiBookBookmark } from "react-icons/pi";
 import LoadingIcon from "../base/LoadingIcon";
-import PropTypes from "prop-types";
-import { fetchJuzData } from "../services/AlQuranCloudAPIServices";
 import SearchBar from "../base/SearchBar";
+import { fetchJuzData } from "../services/AlQuranCloudAPIServices";
 import AyahDetails from "./in-depth/AyahDetails";
 
 const JuzComponent = ({ showToast }) => {
@@ -29,12 +29,6 @@ const JuzComponent = ({ showToast }) => {
     };
     getJuzData();
   }, [juz, edition]);
-
-  const handleCopyAyah = (ayah) => {
-    const ayahDetails = `Ayah ${ayah.number}: ${ayah.text}\nJuz: ${ayah.juz}, Manzil: ${ayah.manzil}, Page: ${ayah.page}`;
-    navigator.clipboard.writeText(ayahDetails);
-    setTimeout(() => showToast("Ayah details copied to clipboard!", "success"), 0);
-  };
 
   const handleReadAyahLoud = (ayahText) => {
     const utterance = new SpeechSynthesisUtterance(ayahText);
@@ -62,11 +56,13 @@ const JuzComponent = ({ showToast }) => {
 
     // Check if any Surah detail matches the query.
     const surahMatches =
-      (surah.englishName && surah.englishName.toLowerCase().includes(lowerCaseQuery)) ||
+      (surah.englishName &&
+        surah.englishName.toLowerCase().includes(lowerCaseQuery)) ||
       (surah.name && surah.name.toLowerCase().includes(lowerCaseQuery)) ||
       (surah.englishNameTranslation &&
         surah.englishNameTranslation.toLowerCase().includes(lowerCaseQuery)) ||
-      (surah.revelationType && surah.revelationType.toLowerCase().includes(lowerCaseQuery));
+      (surah.revelationType &&
+        surah.revelationType.toLowerCase().includes(lowerCaseQuery));
 
     if (surahMatches) {
       // If the Surah details match, return all its ayah details.
@@ -74,7 +70,9 @@ const JuzComponent = ({ showToast }) => {
     }
 
     // Otherwise, filter ayahs by their text.
-    return ayahs.filter((ayah) => ayah.text.toLowerCase().includes(lowerCaseQuery));
+    return ayahs.filter((ayah) =>
+      ayah.text.toLowerCase().includes(lowerCaseQuery)
+    );
   };
 
   const renderSurahInfo = (surah) => (
@@ -86,7 +84,8 @@ const JuzComponent = ({ showToast }) => {
         {surah.number}. {surah.englishName} ({surah.name})
       </h3>
       <p className="text-sm dark:text-gray-400 mt-1">
-        {surah.englishNameTranslation} - {surah.revelationType} - {surah.numberOfAyahs} Ayahs
+        {surah.englishNameTranslation} - {surah.revelationType} -{" "}
+        {surah.numberOfAyahs} Ayahs
       </p>
     </div>
   );
@@ -105,10 +104,12 @@ const JuzComponent = ({ showToast }) => {
 
       <div className="mb-6 text-sm text-gray-800 dark:text-white">
         <p>
-          The Quran is divided into 30 sections called Juz. Each Juz is further divided into two halves,
-          making a total of 60 Hizb. This division helps in reciting the Quran in smaller portions, making it
-          easier to complete the entire Quran in a month. The Juz Viewer allows you to select a Juz and view its
-          content. You can search for specific Surahs or Ayahs using the search bar below.
+          The Quran is divided into 30 sections called Juz. Each Juz is further
+          divided into two halves, making a total of 60 Hizb. This division
+          helps in reciting the Quran in smaller portions, making it easier to
+          complete the entire Quran in a month. The Juz Viewer allows you to
+          select a Juz and view its content. You can search for specific Surahs
+          or Ayahs using the search bar below.
         </p>
       </div>
 
@@ -139,7 +140,9 @@ const JuzComponent = ({ showToast }) => {
       <div className="overflow-y-auto max-h-[500px] md:mb-10 md:p-2">
         {loading ? (
           <div className="flex flex-col items-center justify-center text-red-500">
-            <div className="mb-2 text-green-500 dark:text-green-400">Data is loading...</div>
+            <div className="mb-2 text-green-500 dark:text-green-400">
+              Data is loading...
+            </div>
             <LoadingIcon height="h-20" width="w-20" color="red" />
           </div>
         ) : error ? (
@@ -152,7 +155,11 @@ const JuzComponent = ({ showToast }) => {
                 (ayah) => ayah.surah.number === surah.number
               );
               // Apply the filtering for both surah and ayah details.
-              const filteredAyahs = filterSurahAndAyahs(surah, surahAyahs, searchQuery);
+              const filteredAyahs = filterSurahAndAyahs(
+                surah,
+                surahAyahs,
+                searchQuery
+              );
 
               // Render the Surah only if there is at least one matching ayah.
               if (filteredAyahs.length === 0) return null;
@@ -165,8 +172,6 @@ const JuzComponent = ({ showToast }) => {
                       ...surah,
                       ayahs: filteredAyahs,
                     }}
-                    // Uncomment the line below to enable the copy functionality.
-                    // handleCopyAyah={handleCopyAyah}
                     handleReadAyahLoud={handleReadAyahLoud}
                     searchQuery={searchQuery}
                     showToast={showToast}
