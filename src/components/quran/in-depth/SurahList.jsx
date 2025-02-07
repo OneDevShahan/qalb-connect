@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
+import { GiSpellBook } from "react-icons/gi";
 import { Link } from "react-router-dom";
 import LoadingIcon from "../../base/LoadingIcon";
-import { fetchSurahList } from "../../services/AlQuranCloudAPIServices";
-import { GiSpellBook } from "react-icons/gi";
 import SearchBar from "../../base/SearchBar";
+import { fetchSurahList } from "../../services/AlQuranCloudAPIServices";
+import { API_FAILURE_MSG } from "../../utility/Contant";
 const SurahList = () => {
   const [surahList, setSurahList] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -16,7 +17,7 @@ const SurahList = () => {
         const data = await fetchSurahList();
         setSurahList(data);
       } catch (err) {
-        setError("Failed to load Surah list. Please try again later.", err);
+        setError(API_FAILURE_MSG, err);
       } finally {
         setLoading(false);
       }
@@ -37,7 +38,12 @@ const SurahList = () => {
   if (loading)
     return (
       <div>
-        <LoadingIcon color="yellow" /> Loading...
+        <div className="flex flex-col items-center justify-center text-red-500">
+          <div className="mb-2 text-green-500 dark:text-green-400">
+            Data is loading...
+          </div>
+          <LoadingIcon height="h-20" width="w-20" color="yellow" />
+        </div>
       </div>
     );
   if (error) return <div className="font-bold text-red-500">{error}</div>;
