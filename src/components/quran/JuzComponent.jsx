@@ -5,6 +5,7 @@ import LoadingIcon from "../base/LoadingIcon";
 import SearchBar from "../base/SearchBar";
 import { fetchJuzData } from "../services/AlQuranCloudAPIServices";
 import AyahDetails from "./in-depth/AyahDetails";
+import { API_FAILURE_MSG } from "../utility/Contant";
 
 const JuzComponent = ({ showToast }) => {
   const [juz, setJuz] = useState(30);
@@ -21,8 +22,7 @@ const JuzComponent = ({ showToast }) => {
         const data = await fetchJuzData(juz, edition);
         setJuzData(data);
       } catch (err) {
-        console.error("Error fetching Juz data: ", err);
-        setError("Failed to fetch data.");
+        setError(API_FAILURE_MSG, err);
       } finally {
         setLoading(false);
       }
