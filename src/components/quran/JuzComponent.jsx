@@ -1,10 +1,11 @@
+import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { PiBookBookmark } from "react-icons/pi";
 import LoadingIcon from "../base/LoadingIcon";
-import PropTypes from "prop-types";
-import { fetchJuzData } from "../services/AlQuranCloudAPIServices";
 import SearchBar from "../base/SearchBar";
+import { fetchJuzData } from "../services/AlQuranCloudAPIServices";
 import AyahDetails from "./in-depth/AyahDetails";
+import { API_FAILURE_MSG } from "../utility/Contant";
 
 const JuzComponent = ({ showToast }) => {
   const [juz, setJuz] = useState(30);
@@ -21,8 +22,7 @@ const JuzComponent = ({ showToast }) => {
         const data = await fetchJuzData(juz, edition);
         setJuzData(data);
       } catch (err) {
-        console.error("Error fetching Juz data: ", err);
-        setError("Failed to fetch data.");
+        setError(API_FAILURE_MSG, err);
       } finally {
         setLoading(false);
       }
@@ -30,18 +30,49 @@ const JuzComponent = ({ showToast }) => {
     getJuzData();
   }, [juz, edition]);
 
-  const handleCopyAyah = (ayah) => {
-    const ayahDetails = `Ayah ${ayah.number}: ${ayah.text}\nJuz: ${ayah.juz}, Manzil: ${ayah.manzil}, Page: ${ayah.page}`;
-    navigator.clipboard.writeText(ayahDetails);
-    setTimeout(
-      () => showToast("Ayah details copied to clipboard!", "success"),
-      0
-    );
-  };
-
   const handleReadAyahLoud = (ayahText) => {
     const utterance = new SpeechSynthesisUtterance(ayahText);
     speechSynthesis.speak(utterance);
+  };
+
+  /**
+   * Filters a given Surah's ayahs based on the search query.
+   *
+   * If the search query matches any of the Surah's details (for example:
+   * englishName, name, englishNameTranslation, or revelationType), then all
+   * of that Surah's ayah details are returned.
+   *
+   * Otherwise, only the ayahs whose text includes the query are returned.
+   *
+   * @param {Object} surah - The Surah object containing details about the Surah.
+   * @param {Array} ayahs - An array of ayah objects for the given Surah.
+   * @param {string} query - The search query.
+   * @returns {Array} - The filtered array of ayah objects.
+   */
+  const filterSurahAndAyahs = (surah, ayahs, query) => {
+    if (!query.trim()) return ayahs;
+
+    const lowerCaseQuery = query.toLowerCase();
+
+    // Check if any Surah detail matches the query.
+    const surahMatches =
+      (surah.englishName &&
+        surah.englishName.toLowerCase().includes(lowerCaseQuery)) ||
+      (surah.name && surah.name.toLowerCase().includes(lowerCaseQuery)) ||
+      (surah.englishNameTranslation &&
+        surah.englishNameTranslation.toLowerCase().includes(lowerCaseQuery)) ||
+      (surah.revelationType &&
+        surah.revelationType.toLowerCase().includes(lowerCaseQuery));
+
+    if (surahMatches) {
+      // If the Surah details match, return all its ayah details.
+      return ayahs;
+    }
+
+    // Otherwise, filter ayahs by their text.
+    return ayahs.filter((ayah) =>
+      ayah.text.toLowerCase().includes(lowerCaseQuery)
+    );
   };
 
   const renderSurahInfo = (surah) => (
@@ -77,8 +108,8 @@ const JuzComponent = ({ showToast }) => {
           divided into two halves, making a total of 60 Hizb. This division
           helps in reciting the Quran in smaller portions, making it easier to
           complete the entire Quran in a month. The Juz Viewer allows you to
-          select a Juz and view its content. You can also search for specific
-          Ayahs within the Juz.
+          select a Juz and view its content. You can search for specific Surahs
+          or Ayahs using the search bar below.
         </p>
       </div>
 
@@ -118,23 +149,36 @@ const JuzComponent = ({ showToast }) => {
           <p className="text-center text-red-500 dark:text-red-400">{error}</p>
         ) : juzData ? (
           <div className="space-y-4">
-            {Object.values(juzData.surahs).map((surah) => (
-              <div key={surah.number}>
-                {renderSurahInfo(surah)}
-                <AyahDetails
-                  ayahs={{
-                    ...surah,
-                    ayahs: juzData.ayahs.filter(
-                      (ayah) => ayah.surah.number === surah.number
-                    ),
-                  }}
-                  //handleCopyAyah={handleCopyAyah}
-                  handleReadAyahLoud={handleReadAyahLoud}
-                  searchQuery={searchQuery}
-                  showToast={showToast}
-                />
-              </div>
-            ))}
+            {Object.values(juzData.surahs).map((surah) => {
+              // Get all ayahs for the current surah.
+              const surahAyahs = juzData.ayahs.filter(
+                (ayah) => ayah.surah.number === surah.number
+              );
+              // Apply the filtering for both surah and ayah details.
+              const filteredAyahs = filterSurahAndAyahs(
+                surah,
+                surahAyahs,
+                searchQuery
+              );
+
+              // Render the Surah only if there is at least one matching ayah.
+              if (filteredAyahs.length === 0) return null;
+
+              return (
+                <div key={surah.number}>
+                  {renderSurahInfo(surah)}
+                  <AyahDetails
+                    ayahs={{
+                      ...surah,
+                      ayahs: filteredAyahs,
+                    }}
+                    handleReadAyahLoud={handleReadAyahLoud}
+                    searchQuery={searchQuery}
+                    showToast={showToast}
+                  />
+                </div>
+              );
+            })}
           </div>
         ) : (
           <p className="font-bold text-center text-red-500 dark:text-red-400">

@@ -10,7 +10,6 @@ export const sampleDua = {
 };
 
 export const API_FAILURE_MSG = "Failed to fetch data from the server";
-
 export const DailyDua = [
   {
     id: 1,
