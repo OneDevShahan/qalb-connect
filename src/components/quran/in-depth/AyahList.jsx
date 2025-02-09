@@ -10,16 +10,6 @@ const AyahList = ({ surah, showToast }) => {
     speechSynthesis.speak(utterance);
   };
 
-  const handleCopyAyah = (ayah) => {
-    const ayahDetails = `Ayah ${ayah.number}: ${ayah.text}\nJuz: ${ayah.juz}, Manzil: ${ayah.manzil}, Page: ${ayah.page}`;
-    navigator.clipboard.writeText(ayahDetails);
-    // Use a timeout to ensure no state updates occur during another render
-    setTimeout(
-      () => showToast("Ayah details copied to clipboard!", "success"),
-      0
-    );
-  };
-
   return (
     <div className="p-4">
       {/* Search Bar */}
@@ -32,7 +22,6 @@ const AyahList = ({ surah, showToast }) => {
       {/* Detailed Surah Info */}
       <AyahDetails
         ayahs={surah}
-        //handleCopyAyah={handleCopyAyah}
         handleReadAyahLoud={handleReadAyahLoud}
         searchQuery={searchQuery}
         showToast={showToast}
