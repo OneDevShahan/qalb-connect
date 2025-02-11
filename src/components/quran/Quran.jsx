@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { FaBookQuran } from "react-icons/fa6";
 import QuranCard from "./QuranCard";
 import QuranMetaData from "./QuranMetaData";
+import { API_FAILURE_MSG } from "../utility/Contant";
 
 const Quran = () => {
     
@@ -47,7 +48,7 @@ const Quran = () => {
         alert("Failed to fetch Quran data.");
       }
     } catch (error) {
-      console.error("Error fetching Quran data:", error);
+      console.error(API_FAILURE_MSG, error);
       alert("An error occurred. Please try again later.");
     }
   };
