@@ -7,6 +7,7 @@ import { RiPagesLine } from "react-icons/ri";
 import { SiBookstack } from "react-icons/si";
 import LoadingIcon from "../base/LoadingIcon";
 import { fetchQuranMetaData } from "../services/AlQuranCloudAPIServices";
+import { API_FAILURE_MSG } from "../utility/Contant";
 
 const QuranMetaData = () => {
   const [data, setData] = useState(null);
@@ -20,8 +21,8 @@ const QuranMetaData = () => {
         setLoading(false);
       })
       .catch((err) => {
-        console.error("Error fetching data:", err);
-        setError("Failed to fetch data");
+        console.error(API_FAILURE_MSG, err);
+        setError(API_FAILURE_MSG);
         setLoading(false);
       });
   }, []);
