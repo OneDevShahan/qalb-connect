@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 
 const AyahDetails = ({
   ayahs,
-  handleCopyAyah,
   handleReadAyahLoud,
   searchQuery,
   showToast,
@@ -18,11 +17,7 @@ const AyahDetails = ({
       console.log("Copying Ayah details to clipboard: ", ayah);
       const ayahDetails = `Ayah ${ayah.number}: ${ayah.text}\nJuz: ${ayah.juz}, Manzil: ${ayah.manzil}, Page: ${ayah.page}`;
       navigator.clipboard.writeText(ayahDetails);
-      // setTimeout(
-      //   () => showToast("Ayah details copied to clipboard!", "success"),
-      //   0
-      // );
-    showToast("Ayah details copied to clipboard!", "success", 0);
+      showToast("Ayah details copied to clipboard!", "success", 0);
     };
 
   return (
