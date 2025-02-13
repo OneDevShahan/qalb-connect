@@ -1,24 +1,18 @@
 import { AiFillAudio } from "react-icons/ai";
 import { LuClipboardCopy } from "react-icons/lu";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-const AyahDetails = ({
-  ayahs,
-  handleReadAyahLoud,
-  searchQuery,
-  showToast,
-}) => {
+const AyahDetails = ({ ayahs, handleReadAyahLoud, searchQuery, showToast }) => {
   // Filter Ayahs based on the search query
   const filteredAyahs = ayahs.ayahs?.filter((ayah) =>
     ayah.text.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   const handleCopyAyahDetails = (ayah) => {
-      console.log("Copying Ayah details to clipboard: ", ayah);
-      const ayahDetails = `Ayah ${ayah.number}: ${ayah.text}\nJuz: ${ayah.juz}, Manzil: ${ayah.manzil}, Page: ${ayah.page}`;
-      navigator.clipboard.writeText(ayahDetails);
-      showToast("Ayah details copied to clipboard!", "success", 0);
-    };
+    const ayahDetails = `Ayah ${ayah.number}: ${ayah.text}\nJuz: ${ayah.juz}, Manzil: ${ayah.manzil}, Page: ${ayah.page}`;
+    navigator.clipboard.writeText(ayahDetails);
+    showToast("Ayah details copied to clipboard!", "success", 0);
+  };
 
   return (
     <div className="bg-gradient-to-r from-blue-50 via-purple-100 to-indigo-50 dark:from-gray-800 dark:via-gray-700 dark:to-gray-800 shadow-2xl rounded-xl p-6 mb-6">
