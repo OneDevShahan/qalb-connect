@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import { useParams } from "react-router-dom";
 import { fetchSurahByIdAndEdition } from "../../services/AlQuranCloudAPIServices";
 import AyahList from "./AyahList";
+import LoadingIcon from "../../base/LoadingIcon";
+import { API_FAILURE_MSG } from "../../utility/Contant";
 
 const SurahPage = ({ showToast }) => {
   const { id } = useParams();
@@ -18,7 +20,7 @@ const SurahPage = ({ showToast }) => {
         const data = await fetchSurahByIdAndEdition(id, edition);
         setAyahs(data);
       } catch (err) {
-        setError("Failed to load Ayahs. Please try again later.", err);
+        setError(API_FAILURE_MSG, err);
       } finally {
         setLoading(false);
       }
@@ -26,8 +28,18 @@ const SurahPage = ({ showToast }) => {
     fetchData();
   }, [id, edition]);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p className="text-red-500">{error}</p>;
+  if (loading)
+    return (
+      <div>
+        <div className="flex flex-col items-center justify-center text-red-500">
+          <div className="mb-2 text-green-500 dark:text-green-400">
+            Data is loading...
+          </div>
+          <LoadingIcon height="h-20" width="w-20" color="yellow" />
+        </div>
+      </div>
+    );
+  if (error) return <div className="font-bold text-red-500">{error}</div>;
 
   return (
     <div className="p-6">
