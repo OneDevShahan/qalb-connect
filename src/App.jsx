@@ -29,6 +29,11 @@ import { useState } from "react";
 import Toast from "./components/extras/Toast";
 import SurahList from "./components/quran/in-depth/SurahList";
 import SurahPage from "./components/quran/in-depth/SurahPage";
+import CountdownTimer from "./components/ramadhan/CountdownTimer";
+import PrayerTimes from "./components/ramadhan/PrayerTimes";
+import DailyAyah from "./components/ramadhan/DailyAyah";
+import TasbeehCounter from "./components/ramadhan/TasbeehCounter";
+import RamadhanDashboard from "./components/ramadhan/RamadhanDashboard";
 
 const App = () => {
   const [toast, setToast] = useState({ message: "", type: "" });
@@ -87,6 +92,12 @@ const App = () => {
             element={<SurahPage showToast={showToast} />}
           />
           <Route path="*" element={<NotFound />} />
+          {/* Ramadhaan Starts*/}
+          <Route
+            path="/ramadhan"
+            element={<RamadhanDashboard showToast={showToast} />}
+          />
+          {/* Ramadhaan Ends*/}
         </Routes>
 
         {/* Main content area */}
