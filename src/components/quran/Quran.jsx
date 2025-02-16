@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 import { FaBookQuran } from "react-icons/fa6";
 import QuranCard from "./QuranCard";
 import QuranMetaData from "./QuranMetaData";
 import { API_FAILURE_MSG } from "../utility/Contant";
 
-const Quran = () => {
-    
+const Quran = ({ showToast }) => {
   const navigate = useNavigate();
 
   const quranVersions = [
@@ -45,11 +45,11 @@ const Quran = () => {
       if (data.status === "OK") {
         navigate("/surah-details", { state: { data: data.data } }); // Navigate to the Surah details page with the data
       } else {
-        alert("Failed to fetch Quran data.");
+        showToast(API_FAILURE_MSG, "error", 0);
       }
     } catch (error) {
       console.error(API_FAILURE_MSG, error);
-      alert("An error occurred. Please try again later.");
+      showToast(API_FAILURE_MSG, "error", 0);
     }
   };
 
@@ -87,6 +87,9 @@ const Quran = () => {
       </div>
     </div>
   );
+};
+Quran.propTypes = {
+  showToast: PropTypes.func.isRequired,
 };
 
 export default Quran;

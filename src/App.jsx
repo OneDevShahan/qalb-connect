@@ -71,7 +71,7 @@ const App = () => {
           <Route path="/page4" element={<Page4 />} />
           <Route path="/find-qibla" element={<Qibla />} />
           <Route path="/zakat" element={<ZakatCalculator />} />
-          <Route path="/quran" element={<Quran />} />
+          <Route path="/quran" element={<Quran showToast={showToast} />} />
           <Route path="/surah-details" element={<SurahCard />} />
           <Route
             path="/ayah-details"
