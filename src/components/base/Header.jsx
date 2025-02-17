@@ -98,7 +98,7 @@ const Header = () => {
       links: [
         {
           label: "All",
-          path: "/all-dua",
+          path: "/ramadhan",
           icon: <FaPersonPraying className="text-gray-500" />,
         },
         {

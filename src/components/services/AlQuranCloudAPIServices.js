@@ -80,3 +80,13 @@ export const fetchSurahByIdAndEdition = async (surahId, edition = "en.asad") => 
     throw new Error(API_FAILURE_MSG);
   }
 };
+
+export const fetchDailyAyah = async () => {
+  try {
+    const response = await axios.get(`${AL_QURAN_API_BASE_URL}/ayah/random`);
+    return response.data.data;
+  } catch (error) {
+    console.error(API_FAILURE_MSG, error.message, error.message);
+    throw new Error(API_FAILURE_MSG);
+  }
+};
