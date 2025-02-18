@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { getFromStorage, saveToStorage } from "../utility/Utils";
+import { getFromStorage, saveToStorage } from "../../utility/Utils";
 
 const TasbeehCounter = () => {
   const [count, setCount] = useState(getFromStorage("tasbeehCount", 0));

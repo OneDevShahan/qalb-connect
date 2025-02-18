@@ -1,10 +1,22 @@
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
-const CountdownTimer = ({ targetTime, label }) => {
+const CountdownTimer = ({ targetTime, label = "" }) => {
   const calculateTimeLeft = () => {
     const now = new Date();
-    const target = new Date(targetTime);
+    let target;
+
+    if (targetTime.includes(":")) {
+      // Case for Suhoor/Iftar countdown (HH:MM)
+      const [hours, minutes] = targetTime.split(":").map(Number);
+      target = new Date();
+      target.setHours(hours, minutes, 0, 0);
+      if (target < now) target.setDate(target.getDate() + 1);
+    } else {
+      // Case for Ramadhan countdown (Full Date)
+      target = new Date(targetTime);
+    }
+
     let difference = target - now;
 
     if (difference < 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
@@ -27,10 +39,10 @@ const CountdownTimer = ({ targetTime, label }) => {
   }, [targetTime]);
 
   return (
-    <div className="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg shadow text-center">
-      <h2 className="text-lg font-semibold">{label} Countdown</h2>
+    <div className="p-4">
+      <h2 className="text-lg font-semibold">{label}</h2>
       <p className="text-xl font-bold">
-        {String(timeLeft.days).padStart(2, "0")}d{" "}
+        {timeLeft.days > 0 && `${String(timeLeft.days).padStart(2, "0")}d `}
         {String(timeLeft.hours).padStart(2, "0")}h{" "}
         {String(timeLeft.minutes).padStart(2, "0")}m{" "}
         {String(timeLeft.seconds).padStart(2, "0")}s
@@ -40,8 +52,8 @@ const CountdownTimer = ({ targetTime, label }) => {
 };
 
 CountdownTimer.propTypes = {
-  targetTime: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
+    targetTime: PropTypes.string.isRequired,
+    label: PropTypes.string,
 };
 
 export default CountdownTimer;
