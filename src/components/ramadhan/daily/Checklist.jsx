@@ -1,3 +1,5 @@
+import { FaUndoAlt } from "react-icons/fa";
+
 const Checklist = ({
   checklistItems,
   checklist,
@@ -7,7 +9,7 @@ const Checklist = ({
 }) => {
   return (
     <div>
-      <h2 className="text-lg font-semibold mb-2">
+      <h2 className="text-lg font-semibold mb-2 text-center">
         📋 Ramadhan Daily Checklist
       </h2>
       <div className="w-full bg-gray-300 dark:bg-gray-700 rounded-full h-4 mb-3">
@@ -16,7 +18,9 @@ const Checklist = ({
           style={{ width: `${completion}%` }}
         ></div>
       </div>
-      <p className="text-sm font-semibold mb-3">✅ Completed: {completion}%</p>
+      <p className="text-sm font-semibold mb-3 text-center">
+        ✅ Completed: {completion}%
+      </p>
 
       <ul className="text-left">
         {checklistItems.map(({ text, icon }) => (
@@ -34,12 +38,14 @@ const Checklist = ({
         ))}
       </ul>
 
-      <button
-        onClick={resetChecklist}
-        className="mt-3 px-3 py-1 bg-red-500 text-white rounded-lg"
-      >
-        Reset Checklist
-      </button>
+      <div className="flex justify-center mt-4">
+        <button
+          onClick={resetChecklist}
+          className="flex items-center gap-2 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg shadow-md transition-all"
+        >
+          <FaUndoAlt /> Reset Checklist
+        </button>
+      </div>
     </div>
   );
 };
