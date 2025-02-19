@@ -5,35 +5,31 @@ import Daily from "./components/dua/Daily";
 import Favorite from "./components/dua/Favorite";
 import Reminder from "./components/dua/Reminder";
 
+import { useState } from "react";
+import Bismillah from "./components/base/Bismillah";
 import Dashboard from "./components/base/Dashboard";
-import { DailyDua } from "./components/utility/Contant";
+import NotFound from "./components/base/NotFound";
+import ScrollToTop from "./components/base/ScrollToTop";
+import AllDua from "./components/dua/AllDua";
+import Toast from "./components/extras/Toast";
 import Page4 from "./components/more/Page4";
+import Page11 from "./components/more/path1/Page11";
+import Page21 from "./components/more/path2/Page21";
+import Page22 from "./components/more/path2/Page22";
 import Page31 from "./components/more/path3/Page31";
 import Page32 from "./components/more/path3/Page32";
 import Page33 from "./components/more/path3/Page33";
-import Page21 from "./components/more/path2/Page21";
-import Page22 from "./components/more/path2/Page22";
-import Page11 from "./components/more/path1/Page11";
-import ScrollToTop from "./components/base/ScrollToTop";
 import Qibla from "./components/qibla/Qibla";
-import ZakatCalculator from "./components/zakat/ZakatCalculator";
-import Quran from "./components/quran/Quran";
-import SurahCard from "./components/quran/SurahCard";
 import AyahCard from "./components/quran/AyahCard";
-import Bismillah from "./components/base/Bismillah";
-import AllDua from "./components/dua/AllDua";
-import "./index.css"; // Ensure index.css exists in the src folder
-import NotFound from "./components/base/NotFound";
-import JuzComponent from "./components/quran/JuzComponent";
-import { useState } from "react";
-import Toast from "./components/extras/Toast";
 import SurahList from "./components/quran/in-depth/SurahList";
 import SurahPage from "./components/quran/in-depth/SurahPage";
-import CountdownTimer from "./components/ramadhan/CountdownTimer";
-import PrayerTimes from "./components/ramadhan/PrayerTimes";
-import DailyAyah from "./components/ramadhan/DailyAyah";
-import TasbeehCounter from "./components/ramadhan/TasbeehCounter";
+import JuzComponent from "./components/quran/JuzComponent";
+import Quran from "./components/quran/Quran";
+import SurahCard from "./components/quran/SurahCard";
 import RamadhanDashboard from "./components/ramadhan/RamadhanDashboard";
+import { DailyDua } from "./components/utility/Contant";
+import ZakatCalculator from "./components/zakat/ZakatCalculator";
+import "./index.css"; // Ensure index.css exists in the src folder
 
 const App = () => {
   const [toast, setToast] = useState({ message: "", type: "" });
