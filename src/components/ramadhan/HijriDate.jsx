@@ -22,7 +22,7 @@ const HijriDate = () => {
         // Check for special Ramadhan days
         const specialDays = ["21", "23", "25", "27", "29"]; // Laylatul Qadr (27th Night)
         if (specialDays.includes(hijri.day)) {
-          setIsSpecialDay(true);
+          //setIsSpecialDay(true);
         }
       } catch (error) {
         console.error("Error fetching Hijri date:", error);
