@@ -7,6 +7,14 @@ const DailyReminder = () => {
   useEffect(() => {
     const savedTime = localStorage.getItem("reminderTime");
     if (savedTime) setReminderTime(savedTime);
+
+    // Request notification permission on load
+    if (
+      Notification.permission !== "granted" &&
+      Notification.permission !== "denied"
+    ) {
+      Notification.requestPermission();
+    }
   }, []);
 
   const handleReminderSet = () => {
@@ -30,12 +38,32 @@ const DailyReminder = () => {
     if (timeoutId) clearTimeout(timeoutId);
 
     const newTimeoutId = setTimeout(() => {
+      // 🔔 Play audio when reminder triggers
+      const audio = new Audio(`${import.meta.env.BASE_URL}ashaduallaha.mp3`);
+      audio.play().catch((err) => console.log("Audio play error:", err));
+
+      // 🔔 Show notification if permission is granted
       if (Notification.permission === "granted") {
         new Notification("⏰ Daily Reminder", {
           body: `It's time for your task!`,
         });
+      } else if (Notification.permission === "default") {
+        Notification.requestPermission().then((perm) => {
+          if (perm === "granted") {
+            new Notification("⏰ Daily Reminder", {
+              body: `It's time for your task!`,
+            });
+          } else {
+            alert("🔔 Reminder Alert: It's time for your task!");
+          }
+        });
       } else {
         alert("🔔 Reminder Alert: It's time for your task!");
+      }
+
+      // 📳 Vibrate on mobile devices
+      if (navigator.vibrate) {
+        navigator.vibrate([300, 100, 300]); // Vibrate pattern
       }
     }, timeout);
 
