@@ -1,7 +1,5 @@
 import CountdownTimer from "../utility/CountdownTimer";
 import DailyAyah from "./daily/DailyAyah";
-import DailyContent from "./daily/DailyContent";
-import DailyReminder from "./daily/DailyReminder";
 import PrayerTimes from "./daily/PrayerTimes";
 import RamadhanChecklist from "./daily/RamadhanChecklist";
 import SuhoorIftarCountdown from "./daily/SuhoorIftarCountdown";
@@ -38,7 +36,6 @@ function RamadhanDashboard() {
           <RamadhanChecklist />
           <RamadhanGoals />
           <TasbeehCounter />
-          <DailyReminder />
         </div>
       </div>
     </>
