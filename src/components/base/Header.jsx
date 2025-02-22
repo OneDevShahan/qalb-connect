@@ -4,7 +4,9 @@ import {
   FaBell,
   FaCalendarAlt,
   FaHeart,
+  FaKaaba,
   FaMoon,
+  FaMosque,
   FaSun,
   FaTimes,
 } from "react-icons/fa"; // Icons for dark mode
@@ -14,7 +16,7 @@ import { PiBookBookmark } from "react-icons/pi";
 import { RiCompass3Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import MobileMenu from "./MobileMenu";
-import { GiSpellBook } from "react-icons/gi";
+import { GiPrayer, GiSpellBook } from "react-icons/gi";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -64,7 +66,7 @@ const Header = () => {
         {
           label: "All",
           path: "/all-dua",
-          icon: <FaPersonPraying className="text-gray-500" />,
+          icon: <GiPrayer className="text-gray-500" />,
         },
         {
           label: "Daily",
@@ -81,16 +83,6 @@ const Header = () => {
           path: "/reminder",
           icon: <FaBell className="text-yellow-300" />,
         },
-        {
-          label: "Reminder",
-          path: "/reminder",
-          icon: <FaBell className="text-yellow-300" />,
-        },
-        {
-          label: "Reminder",
-          path: "/reminder",
-          icon: <FaBell className="text-yellow-300" />,
-        },
       ],
     },
     {
@@ -99,10 +91,10 @@ const Header = () => {
         {
           label: "All",
           path: "/ramadhan",
-          icon: <FaPersonPraying className="text-gray-500" />,
+          icon: <FaMosque className="text-gray-500" />,
         },
         {
-          label: "Caluculate",
+          label: "Calculate",
           path: "/zakat",
           icon: <HiOutlineCalculator className="text-red-400" />,
         },
@@ -117,7 +109,7 @@ const Header = () => {
       title: "Zakah",
       links: [
         {
-          label: "Caluculate",
+          label: "Calculate",
           path: "/zakat",
           icon: <HiOutlineCalculator className="text-red-400" />,
         },
@@ -139,10 +131,10 @@ const Header = () => {
         {
           label: "All",
           path: "/all-dua",
-          icon: <FaPersonPraying className="text-gray-500" />,
+          icon: <FaKaaba className="text-gray-500" />,
         },
         {
-          label: "Caluculate",
+          label: "Calculate",
           path: "/zakat",
           icon: <HiOutlineCalculator className="text-red-400" />,
         },
@@ -167,7 +159,7 @@ const Header = () => {
           icon: <FaPersonPraying className="text-gray-500" />,
         },
         {
-          label: "Caluculate",
+          label: "Calculate",
           path: "/zakat",
           icon: <HiOutlineCalculator className="text-red-400" />,
         },
