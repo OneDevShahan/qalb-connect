@@ -3,7 +3,6 @@ import { BiBell } from "react-icons/bi";
 import Toast from "../../extras/Toast";
 
 const DailyReminder = ({ time }) => {
-  const [timeoutId, setTimeoutId] = useState(null);
   const [isReminderSet, setIsReminderSet] = useState(false);
   const [toast, setToast] = useState({ message: "", type: "success" });
 
@@ -18,9 +17,48 @@ const DailyReminder = ({ time }) => {
     }
   }, [time]);
 
+  useEffect(() => {
+    if (!isReminderSet) return;
+
+    const checkAlarm = setInterval(() => {
+      const now = new Date();
+      const [hours, minutes] = time.split(":").map(Number);
+      const alarmTime = new Date();
+      alarmTime.setHours(hours, minutes, 0, 0);
+
+      if (now >= alarmTime) {
+        playAlarm();
+        clearInterval(checkAlarm);
+        localStorage.removeItem("reminderTime");
+        setIsReminderSet(false);
+      }
+    }, 1000); // Check every second
+
+    return () => clearInterval(checkAlarm);
+  }, [isReminderSet, time]);
+
+  const playAlarm = () => {
+    const audio = new Audio(`${import.meta.env.BASE_URL}ashaduallaha.mp3`);
+    audio.play().catch((err) => console.log("Audio play error:", err));
+
+    if (Notification.permission === "granted") {
+      new Notification("⏰ Prayer Time Reminder", {
+        body: `It's time for ${time} prayer!`,
+      });
+    } else {
+      setToast({
+        message: `🔔 Prayer Reminder: It's time for ${time} prayer!`,
+        type: "success",
+      });
+    }
+
+    if (navigator.vibrate) {
+      navigator.vibrate([300, 100, 300]);
+    }
+  };
+
   const handleToggleReminder = () => {
     if (isReminderSet) {
-      clearTimeout(timeoutId);
       localStorage.removeItem("reminderTime");
       setIsReminderSet(false);
       setToast({ message: "🔕 Reminder canceled!", type: "error" });
@@ -29,46 +67,10 @@ const DailyReminder = ({ time }) => {
         setToast({ message: "⏳ No prayer time found!", type: "error" });
         return;
       }
-
-      const [hours, minutes] = time.split(":").map(Number);
-      const now = new Date();
-      const reminderDate = new Date();
-      reminderDate.setHours(hours, minutes, 0, 0);
-
-      if (reminderDate <= now) {
-        reminderDate.setDate(reminderDate.getDate() + 1);
-      }
-
-      const timeout = reminderDate.getTime() - now.getTime();
-
-      const newTimeoutId = setTimeout(() => {
-        const audio = new Audio(`${import.meta.env.BASE_URL}ashaduallaha.mp3`);
-        audio.play().catch((err) => console.log("Audio play error:", err));
-
-        if (Notification.permission === "granted") {
-          new Notification("⏰ Prayer Time Reminder", {
-            body: `It's time for ${time} prayer!`,
-          });
-        } else {
-          setToast({
-            message: `🔔 Prayer Reminder: It's time for ${time} prayer!`,
-            type: "success",
-          });
-        }
-
-        if (navigator.vibrate) {
-          navigator.vibrate([300, 100, 300]);
-        }
-
-        setIsReminderSet(false);
-        localStorage.removeItem("reminderTime");
-      }, timeout);
-
-      setTimeoutId(newTimeoutId);
       localStorage.setItem("reminderTime", time);
       setIsReminderSet(true);
       setToast({
-        message: `⏰ Reminder set for ${reminderDate.toLocaleTimeString()}`,
+        message: `⏰ Reminder set for ${time}`,
         type: "success",
       });
     }
