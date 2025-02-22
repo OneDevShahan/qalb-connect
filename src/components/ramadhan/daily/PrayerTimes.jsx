@@ -71,7 +71,7 @@ const PrayerTimes = () => {
             type="time"
             value={testTime}
             onChange={(e) => setTestTime(e.target.value)}
-            className="text-lg font-medium text-gray-900 dark:text-gray-100 bg-transparent border border-gray-400 dark:border-gray-600 rounded p-1 focus:outline-none"
+            className="m-2 text-lg font-medium text-gray-900 dark:text-gray-100 bg-transparent border border-green-400 rounded focus:outline-none"
           />
           <DailyReminder time={testTime} />
         </div>
