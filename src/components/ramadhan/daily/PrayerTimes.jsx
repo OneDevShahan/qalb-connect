@@ -1,21 +1,26 @@
 import { useEffect, useState } from "react";
 import { fetchPrayerTimes } from "../../services/AlAdhaanServices";
 import DailyReminder from "./DailyReminder";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
+import { getCurrentTime } from "../../utility/Utils";
 
 const PrayerTimes = () => {
   const [timings, setTimings] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [testTime, setTestTime] = useState("15:10"); // Default test time
+  const [testTime, setTestTime] = useState(getCurrentTime);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
-      (position) => {
-        const { latitude, longitude } = position.coords;
-        fetchPrayerTimes(latitude, longitude).then((data) => {
+      async (position) => {
+        try {
+          const { latitude, longitude } = position.coords;
+          const data = await fetchPrayerTimes(latitude, longitude);
           setTimings(data);
+        } catch (error) {
+          console.error("Failed to fetch prayer times:", error);
+        } finally {
           setLoading(false);
-        });
+        }
       },
       (error) => {
         console.error("Geolocation error:", error);
@@ -64,7 +69,7 @@ const PrayerTimes = () => {
           <PrayerTime key={label} label={label} time={time} />
         ))}
 
-        {/* Test Time with input field */}
+        {/* Test Time Input */}
         <div className="flex flex-col items-center p-3 bg-gray-200 dark:bg-gray-900 rounded-lg shadow-sm relative">
           <span className="font-semibold text-sm">Test Time</span>
           <input
@@ -80,22 +85,19 @@ const PrayerTimes = () => {
   );
 };
 
+const PrayerTime = ({ label, time }) => (
+  <div className="flex flex-col items-center p-3 bg-gray-200 dark:bg-gray-900 rounded-lg shadow-sm relative">
+    <span className="font-semibold text-sm">{label}</span>
+    <span className="text-lg font-medium text-gray-900 dark:text-gray-100">
+      {time}
+    </span>
+    <DailyReminder time={time} />
+  </div>
+);
 
-const PrayerTime = ({ label, time }) => {
-  return (
-    <div className="flex flex-col items-center p-3 bg-gray-200 dark:bg-gray-900 rounded-lg shadow-sm relative">
-      <span className="font-semibold text-sm">{label}</span>
-      <span className="text-lg font-medium text-gray-900 dark:text-gray-100">
-        {time}
-      </span>
-      {/* Bell Icon for setting reminder */}
-      <DailyReminder time={time} />
-    </div>
-  );
-
-};
 PrayerTime.propTypes = {
   label: PropTypes.string.isRequired,
   time: PropTypes.string.isRequired,
 };
+
 export default PrayerTimes;
