@@ -1,97 +1,105 @@
 import { useState, useEffect } from "react";
+import { BiBell } from "react-icons/bi";
+import Toast from "../../extras/Toast";
 
-const DailyReminder = () => {
-  const [reminderTime, setReminderTime] = useState("");
+const DailyReminder = ({ time }) => {
   const [timeoutId, setTimeoutId] = useState(null);
+  const [isReminderSet, setIsReminderSet] = useState(false);
+  const [toast, setToast] = useState({ message: "", type: "success" });
 
   useEffect(() => {
-    const savedTime = localStorage.getItem("reminderTime");
-    if (savedTime) setReminderTime(savedTime);
-
-    // Request notification permission on load
-    if (
-      Notification.permission !== "granted" &&
-      Notification.permission !== "denied"
-    ) {
+    if (Notification.permission === "default") {
       Notification.requestPermission();
     }
-  }, []);
 
-  const handleReminderSet = () => {
-    if (!reminderTime) {
-      alert("⏳ Please select a time for the reminder!");
-      return;
+    const storedReminder = localStorage.getItem("reminderTime");
+    if (storedReminder === time) {
+      setIsReminderSet(true);
     }
+  }, [time]);
 
-    const [hours, minutes] = reminderTime.split(":").map(Number);
-    const now = new Date();
-    const reminderDate = new Date();
-    reminderDate.setHours(hours, minutes, 0, 0);
-
-    if (reminderDate <= now) {
-      reminderDate.setDate(reminderDate.getDate() + 1); // Schedule for next day if time has passed
-    }
-
-    const timeout = reminderDate.getTime() - now.getTime();
-
-    // Clear any existing timeout to prevent multiple alerts
-    if (timeoutId) clearTimeout(timeoutId);
-
-    const newTimeoutId = setTimeout(() => {
-      // 🔔 Play audio when reminder triggers
-      const audio = new Audio(`${import.meta.env.BASE_URL}ashaduallaha.mp3`);
-      audio.play().catch((err) => console.log("Audio play error:", err));
-
-      // 🔔 Show notification if permission is granted
-      if (Notification.permission === "granted") {
-        new Notification("⏰ Daily Reminder", {
-          body: `It's time for your task!`,
-        });
-      } else if (Notification.permission === "default") {
-        Notification.requestPermission().then((perm) => {
-          if (perm === "granted") {
-            new Notification("⏰ Daily Reminder", {
-              body: `It's time for your task!`,
-            });
-          } else {
-            alert("🔔 Reminder Alert: It's time for your task!");
-          }
-        });
-      } else {
-        alert("🔔 Reminder Alert: It's time for your task!");
+  const handleToggleReminder = () => {
+    if (isReminderSet) {
+      clearTimeout(timeoutId);
+      localStorage.removeItem("reminderTime");
+      setIsReminderSet(false);
+      setToast({ message: "🔕 Reminder canceled!", type: "error" });
+    } else {
+      if (!time) {
+        setToast({ message: "⏳ No prayer time found!", type: "error" });
+        return;
       }
 
-      // 📳 Vibrate on mobile devices
-      if (navigator.vibrate) {
-        navigator.vibrate([300, 100, 300]); // Vibrate pattern
-      }
-    }, timeout);
+      const [hours, minutes] = time.split(":").map(Number);
+      const now = new Date();
+      const reminderDate = new Date();
+      reminderDate.setHours(hours, minutes, 0, 0);
 
-    setTimeoutId(newTimeoutId);
-    localStorage.setItem("reminderTime", reminderTime);
-    alert(`✅ Reminder set for ${reminderDate.toLocaleTimeString()}`);
+      if (reminderDate <= now) {
+        reminderDate.setDate(reminderDate.getDate() + 1);
+      }
+
+      const timeout = reminderDate.getTime() - now.getTime();
+
+      const newTimeoutId = setTimeout(() => {
+        const audio = new Audio(`${import.meta.env.BASE_URL}ashaduallaha.mp3`);
+        audio.play().catch((err) => console.log("Audio play error:", err));
+
+        if (Notification.permission === "granted") {
+          new Notification("⏰ Prayer Time Reminder", {
+            body: `It's time for ${time} prayer!`,
+          });
+        } else {
+          setToast({
+            message: `🔔 Prayer Reminder: It's time for ${time} prayer!`,
+            type: "success",
+          });
+        }
+
+        if (navigator.vibrate) {
+          navigator.vibrate([300, 100, 300]);
+        }
+
+        setIsReminderSet(false);
+        localStorage.removeItem("reminderTime");
+      }, timeout);
+
+      setTimeoutId(newTimeoutId);
+      localStorage.setItem("reminderTime", time);
+      setIsReminderSet(true);
+      setToast({
+        message: `⏰ Reminder set for ${reminderDate.toLocaleTimeString()}`,
+        type: "success",
+      });
+    }
   };
 
   return (
-    <div className="p-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md">
-      <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-4 text-center">
-        ⏰ Set Daily Reminder
-      </h3>
-      <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-        <input
-          type="time"
-          value={reminderTime}
-          onChange={(e) => setReminderTime(e.target.value)}
-          className="p-2 bg-gray-200 dark:bg-gray-700 rounded-md w-full sm:w-auto text-gray-900 dark:text-white"
+    <>
+      <button
+        onClick={handleToggleReminder}
+        className="absolute top-1 right-1 p-1 rounded-full transition"
+        style={{
+          backgroundColor: isReminderSet ? "yellow" : "transparent",
+        }}
+      >
+        <BiBell
+          className={`w-5 h-5 ${
+            isReminderSet
+              ? "text-yellow-600"
+              : "text-gray-700 dark:text-gray-300"
+          }`}
         />
-        <button
-          onClick={handleReminderSet}
-          className="px-4 py-2 bg-green-500 hover:bg-green-600 text-white font-medium rounded-lg transition-all"
-        >
-          Set Reminder
-        </button>
-      </div>
-    </div>
+      </button>
+
+      {toast.message && (
+        <Toast
+          message={toast.message}
+          type={toast.type}
+          onClose={() => setToast({ message: "", type: "success" })}
+        />
+      )}
+    </>
   );
 };
 
