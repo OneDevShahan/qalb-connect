@@ -1,33 +1,28 @@
 import { useEffect, useState } from "react";
-import { fetchPrayerTimes } from "../../services/AlAdhaanServices";
+import { fetchDailyData } from "../../services/AlAdhaanServices"; // Import the Hijri Date fetch function
 import DailyReminder from "./DailyReminder";
 import PropTypes from "prop-types";
 import { getCurrentTime } from "../../utility/Utils";
 
 const PrayerTimes = () => {
   const [timings, setTimings] = useState(null);
+  const [hijriDate, setHijriDate] = useState(null);
   const [loading, setLoading] = useState(true);
   const [testTime, setTestTime] = useState(getCurrentTime);
 
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition(
-      async (position) => {
-        try {
-          const { latitude, longitude } = position.coords;
-          const data = await fetchPrayerTimes(latitude, longitude);
-          setTimings(data);
-        } catch (error) {
-          console.error("Failed to fetch prayer times:", error);
-        } finally {
-          setLoading(false);
-        }
-      },
-      (error) => {
-        console.error("Geolocation error:", error);
-        setLoading(false);
+    useEffect(() => {
+    navigator.geolocation.getCurrentPosition(async (position) => {
+      const { latitude, longitude } = position.coords;
+      const data = await fetchDailyData(latitude, longitude); // Fetch data with caching
+      if (data) {
+        const prayerTimings = data.data.timings;
+        const hijri = data.data.date.hijri;
+        setHijriDate(hijri);
+        setTimings(prayerTimings);
       }
-    );
-  }, []);
+      setLoading(false);
+    });
+    }, []);
 
   if (loading) {
     return (
@@ -52,6 +47,13 @@ const PrayerTimes = () => {
       <h2 className="text-xl font-semibold text-center mb-4 text-gray-800 dark:text-white">
         🕌 Prayer Timings
       </h2>
+
+      {hijriDate && (
+        <p className="text-center text-gray-700 dark:text-gray-300 mb-4">
+          📅 Hijri Date: {hijriDate.day} {hijriDate.month.en} {hijriDate.year}
+        </p>
+      )}
+
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-gray-700 dark:text-gray-300">
         {Object.entries({
           Fajr: timings.Fajr,
