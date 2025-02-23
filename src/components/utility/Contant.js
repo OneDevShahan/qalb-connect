@@ -9,6 +9,55 @@ export const sampleDua = {
   benefits: "This dua brings blessings and peace...",
 };
 
+export const DashboardCardData = [
+  {
+    id: 1,
+    title: "Quran Dashboard",
+    desc: "Everything about the Quran, including recitations, translations, and tafsir.",
+    link: "/quran-dashboard",
+    icon: "📖",
+    fact: "The Quran has 114 chapters and over 6,000 verses.",
+    tagline: "Explore the divine message",
+  },
+  {
+    id: 2,
+    title: "Ramadan Dashboard",
+    desc: "Track fasting schedules, dua, and spiritual goals for Ramadan.",
+    link: "/ramadhan-dashboard",
+    icon: "🌙",
+    fact: "Ramadan is the 9th month of the Islamic calendar and lasts 29-30 days.",
+    tagline: "Experience the holy month",
+  },
+  {
+    id: 3,
+    title: "Hajj Dashboard",
+    desc: "Learn about the rituals, history, and importance of Hajj.",
+    link: "/hajj-dashboard",
+    icon: "🕋",
+    fact: "Hajj is one of the five pillars of Islam, mandatory once in a lifetime.",
+    tagline: "Journey of a lifetime",
+  },
+  {
+    id: 4,
+    title: "Dua Dashboard",
+    desc: "Daily duas, supplications, and reminders to connect with Allah.",
+    link: "/dua-dashboard",
+    icon: "🙏",
+    fact: "The Prophet Muhammad (PBUH) encouraged making dua for everything.",
+    tagline: "Supplications for every moment",
+  },
+  {
+    id: 5,
+    title: "Miscellaneous Dashboard",
+    desc: "Everything else from Islamic knowledge, stories, and more.",
+    link: "/miscellaneous-dashboard",
+    icon: "✨",
+    fact: "Islamic knowledge covers history, science, ethics, and spirituality.",
+    tagline: "Discover more insights",
+  },
+];
+
+
 export const API_FAILURE_MSG = "Failed to fetch data from the server";
 export const DailyDua = [
   {
