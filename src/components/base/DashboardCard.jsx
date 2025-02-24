@@ -31,18 +31,19 @@ const DashboardCard = ({ title, desc, link, icon, fact, tagline }) => {
 
         {/* Tooltip for Fact */}
         {fact && (
-          <div
-            className="relative"
-            onMouseEnter={() => setShowTooltip(true)}
-            onMouseLeave={() => setShowTooltip(false)}
-          >
-            <span className="text-xs text-blue-600 dark:text-blue-400 cursor-pointer underline">
+          <div className="relative inline-block">
+            <button
+              className="text-xs text-blue-600 dark:text-blue-400 cursor-pointer underline focus:outline-none"
+              onClick={() => setShowTooltip(!showTooltip)}
+              onMouseEnter={() => setShowTooltip(true)}
+              onMouseLeave={() => setShowTooltip(false)}
+            >
               Did You Know?
-            </span>
+            </button>
             {showTooltip && (
               <div
-                className="absolute top-10 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-xs rounded-lg 
-                px-3 py-2 opacity-0 animate-fadeIn transition-opacity duration-500 shadow-md"
+                className="absolute top-full left-1/2 -translate-x-1/2 bg-gray-800 text-white text-xs rounded-lg 
+                px-3 py-2 shadow-md mt-1 w-56 z-10 transition-opacity duration-300"
               >
                 {fact}
               </div>
