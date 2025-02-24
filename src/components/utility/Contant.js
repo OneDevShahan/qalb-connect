@@ -12,7 +12,7 @@ export const sampleDua = {
 export const DashboardCardData = [
   {
     id: 1,
-    title: "Quran Dashboard",
+    title: "Quran",
     desc: "Everything about the Quran, including recitations, translations, and tafsir.",
     link: "/quran-dashboard",
     icon: "📖",
@@ -21,7 +21,7 @@ export const DashboardCardData = [
   },
   {
     id: 2,
-    title: "Ramadan Dashboard",
+    title: "Ramadan",
     desc: "Track fasting schedules, dua, and spiritual goals for Ramadan.",
     link: "/ramadhan-dashboard",
     icon: "🌙",
@@ -30,7 +30,7 @@ export const DashboardCardData = [
   },
   {
     id: 3,
-    title: "Hajj Dashboard",
+    title: "Hajj",
     desc: "Learn about the rituals, history, and importance of Hajj.",
     link: "/hajj-dashboard",
     icon: "🕋",
@@ -39,7 +39,7 @@ export const DashboardCardData = [
   },
   {
     id: 4,
-    title: "Dua Dashboard",
+    title: "Dua",
     desc: "Daily duas, supplications, and reminders to connect with Allah.",
     link: "/dua-dashboard",
     icon: "🙏",
@@ -48,7 +48,7 @@ export const DashboardCardData = [
   },
   {
     id: 5,
-    title: "Miscellaneous Dashboard",
+    title: "Miscellaneous",
     desc: "Everything else from Islamic knowledge, stories, and more.",
     link: "/miscellaneous-dashboard",
     icon: "✨",
