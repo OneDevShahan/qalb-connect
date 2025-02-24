@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import PropTypes from "prop-types";
 import LoadingIcon from "../base/LoadingIcon";
 
 const DashboardCard = ({ title, desc, link, icon, fact, tagline }) => {
@@ -96,6 +97,14 @@ const DashboardCard = ({ title, desc, link, icon, fact, tagline }) => {
       </div>
     </div>
   );
+};
+DashboardCard.propTypes = {
+  title: PropTypes.string.isRequired,
+  desc: PropTypes.string.isRequired,
+  link: PropTypes.string.isRequired,
+  icon: PropTypes.node.isRequired,
+  fact: PropTypes.string,
+  tagline: PropTypes.string,
 };
 
 export default DashboardCard;

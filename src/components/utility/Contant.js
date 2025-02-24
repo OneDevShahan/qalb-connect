@@ -42,7 +42,7 @@ export const DashboardCardData = [
     title: "Dua",
     desc: "Daily duas, supplications, and reminders to connect with Allah.",
     link: "/dua-dashboard",
-    icon: "🙏",
+    icon: "🤲",
     fact: "The Prophet Muhammad (PBUH) encouraged making dua for everything.",
     tagline: "Supplications for every moment",
   },
