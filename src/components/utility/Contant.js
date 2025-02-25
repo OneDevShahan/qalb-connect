@@ -57,6 +57,55 @@ export const DashboardCardData = [
   },
 ];
 
+export const ZAKAT_EXPLANATIONS = [
+  {
+    title: "Nisab Value (₹)",
+    content: [
+      "Unit: The local currency of the user (e.g., USD, EUR, INR).",
+      "Purpose: Represents the threshold above which Zakat is obligatory. The Nisab value is calculated based on the current market value of 87.48 grams of gold or 612.36 grams of silver, whichever is lower.",
+      "Source: Users should check reliable sources or Islamic organizations for the updated Nisab value in their local currency.",
+    ],
+  },
+  {
+    title: "Gold Value (₹)",
+    content: [
+      "Unit: The local currency of the user.",
+      "Purpose: Enter the total value of the gold owned by the user.",
+      "How to Calculate: Multiply the weight of the gold (grams) by the current market price of gold per gram.",
+    ],
+  },
+  {
+    title: "Silver Value (₹)",
+    content: [
+      "Unit: The local currency of the user.",
+      "Purpose: Enter the total value of the silver owned by the user.",
+      "How to Calculate: Multiply the weight of the silver (grams) by the current market price of silver per gram.",
+    ],
+  },
+  {
+    title: "Cash Value (₹)",
+    content: [
+      "Unit: The local currency of the user.",
+      "Purpose: Enter the total cash savings, including bank savings and liquid cash.",
+    ],
+  },
+  {
+    title: "Property Value (₹)",
+    content: [
+      "Unit: The local currency of the user.",
+      "Purpose: Represents properties, stocks, or other investments held for over a year.",
+      "Exclusions: Personal items like houses for residence, furniture, or cars for personal use are excluded.",
+    ],
+  },
+  {
+    title: "Debts and Liabilities (₹)",
+    content: [
+      "Unit: The local currency of the user.",
+      "Purpose: Enter the total outstanding debts that the user needs to repay within the year.",
+      "Examples: Personal loans, credit card dues, or any liabilities.",
+    ],
+  },
+];
 
 export const API_FAILURE_MSG = "Failed to fetch data from the server";
 export const DailyDua = [

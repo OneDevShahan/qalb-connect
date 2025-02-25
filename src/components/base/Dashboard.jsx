@@ -1,8 +1,6 @@
-import PropTypes from "prop-types";
 import DashboardCard from "./DashboardCard";
-import { DashboardCardData } from "../utility/Contant";
-
-function Dashboard() {
+import PropTypes from 'prop-types';
+function Dashboard({ dashboardData }) {
   return (
     <div className="p-6 bg-gradient-to-b from-gray-50 to-gray-100 min-h-screen dark:from-gray-800 dark:to-gray-900">
       {/* Dashboard Title and Write-up */}
@@ -41,7 +39,7 @@ function Dashboard() {
 
       {/* Cards Grid (Better Spacing & Alignment) */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full px-6 sm:px-8 md:px-10 mt-8">
-        {DashboardCardData.map((data, index) => (
+        {dashboardData.map((data, index) => (
           <DashboardCard
             key={index}
             title={data.title}
@@ -56,18 +54,15 @@ function Dashboard() {
     </div>
   );
 }
-
 Dashboard.propTypes = {
-  data: PropTypes.arrayOf(
+  dashboardData: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      category: PropTypes.string.isRequired,
-      name: PropTypes.shape({
-        urdu: PropTypes.string.isRequired,
-        hindi: PropTypes.string.isRequired,
-        english: PropTypes.string.isRequired,
-      }).isRequired,
-      arabic: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      desc: PropTypes.string.isRequired,
+      link: PropTypes.string.isRequired,
+      icon: PropTypes.string.isRequired,
+      fact: PropTypes.string,
+      tagline: PropTypes.string,
     })
   ).isRequired,
 };

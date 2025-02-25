@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
 import PropTypes from 'prop-types';
-import { DailyDua } from "../utility/Contant";
 
-function DuaDashboard() {
+function DuaDashboard({duaData}) {
   return (
     <div className="p-6 bg-gradient-to-b from-gray-50 to-gray-100 min-h-screen dark:from-gray-800 dark:to-gray-900">
       {/* DuaDashboard Title and Write-up */}
@@ -21,7 +20,7 @@ function DuaDashboard() {
 
       {/* Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {DailyDua.slice(0, 3).map((dua) => {
+        {duaData.slice(0, 3).map((dua) => {
           // Determine the gradient based on the category
           let buttonClassName =
             "text-center py-3 px-6 text-white font-medium rounded-lg shadow-md";
@@ -86,7 +85,7 @@ function DuaDashboard() {
   );
 }
 DuaDashboard.propTypes = {
-  data: PropTypes.arrayOf(
+  duaData: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       category: PropTypes.string.isRequired,
