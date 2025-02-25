@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 import DashboardCard from "./DashboardCard";
 import { DashboardCardData } from "../utility/Contant";
-import { FaPersonPraying } from "react-icons/fa6";
 
 function Dashboard() {
   return (
@@ -9,7 +8,20 @@ function Dashboard() {
       {/* Dashboard Title and Write-up */}
       <div className="text-center">
         <div className="flex justify-center items-center font-bold text-2xl md:text-3xl space-x-2 mt-5">
-          <FaPersonPraying size={30} className="text-gray-400" />
+          <div className="flex items-center">
+            {/* Light Mode SVG */}
+            <img
+              src="QalbConnect_Light.svg"
+              alt="QalbConnect Logo"
+              className="h-10 w-10 block dark:hidden"
+            />
+            {/* Dark Mode SVG */}
+            <img
+              src="QalbConnect_Dark.svg"
+              alt="QalbConnect Logo"
+              className="h-10 w-10 hidden dark:block"
+            />
+          </div>
           <span className="text-gray-800 dark:text-white">
             Welcome to QalbConnect
           </span>
