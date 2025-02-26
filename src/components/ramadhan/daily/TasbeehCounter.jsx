@@ -3,11 +3,12 @@ import { FaPlus, FaUndoAlt, FaTrash, FaPrayingHands } from "react-icons/fa";
 
 // Default tasbeehs that cannot be deleted
 const defaultTasbeehs = [
-  "SubhanAllah",
-  "Alhamdulillah",
-  "AllahuAkbar",
-  "La ilaha illallah",
-  "Astaghfirullah",
+  "لَا إِلَٰهَ إِلَّا ٱللَّٰهُ مُحَمَّدٌ رَّسُولُ ٱللَّٰهِ",
+  "أَشْهَدُ أَنْ لَا إِلَٰهَ إِلَّا ٱللَّٰهُ وَحْدَهُ لَا شَرِيكَ لَهُ وأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ",
+  "سُبْحَانَ ٱللَّٰهِ وَٱلْحَمْدُ لِلَّٰهِ وَلَا إِلَٰهَ إِلَّا ٱللَّٰهُ وَٱللَّٰهُ أَكْبَرُ وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِٱللَّٰهِ ٱلْعَلِيِّ ٱلْعَظِيمِ",
+  "لَا إِلَٰهَ إِلَّا ٱللَّٰهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ ٱلْمُلْكُ وَلَهُ ٱلْحَمْدُ، يُحْيِي وَيُمِيتُ وَهُوَ حَيٌّ لَا يَمُوتُ أَبَدًا أَبَدًا، ذُو ٱلْجَلَالِ وَٱلْإِكْرَامِ بِيَدِهِ ٱلْخَيْرُ وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ",
+  "سُبْحَانَ ٱللَّٰهِ وَٱلْحَمْدُ لِلَّٰهِ وَلَا إِلَٰهَ إِلَّا ٱللَّٰهُ وَٱللَّٰهُ أَكْبَرُ وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِٱللَّٰهِ ٱلْعَلِيِّ ٱلْعَظِيمِ",
+  "SubhanAllah Wa Bihamdihi, SubhanAllahil Azim",
 ];
 
 // Utility functions for local storage
@@ -64,7 +65,7 @@ const TasbeehCounter = () => {
   return (
     <div className="p-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-lg flex flex-col items-center gap-6 w-full max-w-3xl mx-auto">
       <h2 className="text-2xl font-semibold flex items-center gap-2 text-gray-900 dark:text-white">
-        <FaPrayingHands className="text-green-500" /> Tasbeeh Counter
+        <FaPrayingHands className="text-green-500" /> Tasbeeh
       </h2>
 
       {/* Add new tasbeeh input */}
