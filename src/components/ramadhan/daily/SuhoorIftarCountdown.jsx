@@ -30,7 +30,7 @@ const SuhoorIftarCountdown = () => {
     <div className="p-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md text-center">
       {/* Centered Heading */}
       <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
-        ⏳ Suhoor & Iftar Countdown
+        ⏳ Suhoor & Iftar Timings
       </h2>
 
       {loading ? (

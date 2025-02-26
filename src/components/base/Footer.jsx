@@ -9,6 +9,7 @@ import {
 import { FaBookQuran, FaKaaba, FaPersonPraying } from "react-icons/fa6";
 import { HiOutlineCalculator } from "react-icons/hi";
 import { RiCompass3Line } from "react-icons/ri";
+import { SiBuymeacoffee } from "react-icons/si";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
@@ -44,6 +45,12 @@ const Footer = () => {
       icon: <FaInstagram size={15} />,
       url: "https://www.instagram.com/shahanahmad321/",
       bgColor: "bg-pink-500 hover:bg-pink-600",
+    },
+    {
+      name: "BuyMeaCoffee",
+      icon: <SiBuymeacoffee  size={15}/>,
+      url: "https://www.buymeacoffee.com/onedevshahan",
+      bgColor: "bg-yellow-400 hover:bg-yellow-500",
     },
   ];
 
