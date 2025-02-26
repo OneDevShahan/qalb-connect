@@ -24,10 +24,9 @@ import AyahCard from "./components/quran/AyahCard";
 import SurahList from "./components/quran/in-depth/SurahList";
 import SurahPage from "./components/quran/in-depth/SurahPage";
 import JuzComponent from "./components/quran/JuzComponent";
-import Quran from "./components/quran/QuranDashboard";
 import SurahCard from "./components/quran/SurahCard";
 import RamadhanDashboard from "./components/ramadhan/RamadhanDashboard";
-import { DailyDua } from "./components/utility/Contant";
+import { DailyDua, DashboardCardData } from "./components/utility/Contant";
 import ZakatCalculator from "./components/zakat/ZakatCalculator";
 import "./index.css"; // Ensure index.css exists in the src folder
 import DuaDashboard from "./components/dua/DuaDashboard";
@@ -61,15 +60,24 @@ const App = () => {
         />
         {/* Routes setup */}
         <Routes>
-          <Route path="/" element={<Dashboard />} />
+          <Route
+            path="/"
+            element={<Dashboard dashboardData={DashboardCardData} />}
+          />
           <Route
             path="/quran-dashboard"
             element={<QuranDashboard showToast={showToast} />}
           />
           <Route path="/ramadhan-dashboard" element={<RamadhanDashboard />} />
-          <Route path="/dua-dashboard" element={<DuaDashboard />} />
+          <Route
+            path="/dua-dashboard"
+            element={<DuaDashboard duaData={DailyDua} />}
+          />
           <Route path="/hajj-dashboard" element={<HajjDashboard />} />
-          <Route path="/miscellaneous-dashboard" element={<MiscellaneousDashboard />} />
+          <Route
+            path="/miscellaneous-dashboard"
+            element={<MiscellaneousDashboard />}
+          />
           <Route path="/all-dua" element={<AllDua data={DailyDua} />} />
           <Route path="/daily" element={<Daily />} />{" "}
           {/* Adjust the path to match the basename */}
