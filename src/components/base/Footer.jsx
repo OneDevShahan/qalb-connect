@@ -1,29 +1,18 @@
-"use client"; // Mark this component as a Client Component
-
-import { useEffect, useState } from "react";
 import {
   FaArrowUp,
-  FaBell,
-  FaCalendarAlt,
   FaEnvelope,
   FaGithub,
-  FaHeart,
   FaInstagram,
   FaLinkedinIn,
   FaTwitter,
 } from "react-icons/fa";
-import { FaBookQuran } from "react-icons/fa6";
+import { FaBookQuran, FaKaaba, FaPersonPraying } from "react-icons/fa6";
 import { HiOutlineCalculator } from "react-icons/hi";
 import { RiCompass3Line } from "react-icons/ri";
-import { FaPersonPraying } from "react-icons/fa6";
-
 import { Link } from "react-router-dom";
 
 const Footer = () => {
-  const [date, setDate] = useState(null);
-  useEffect(() => {
-    setDate(new Date().getFullYear());
-  }, []);
+  const date = new Date().getFullYear(); // Directly get the year
 
   const socialLinks = [
     {
@@ -58,9 +47,7 @@ const Footer = () => {
     },
   ];
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
   return (
     <footer className="bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 dark:from-gray-800 dark:via-gray-900 dark:to-black text-white py-8">
@@ -105,81 +92,73 @@ const Footer = () => {
         {/* Footer Categories Section */}
         <div className="flex flex-col space-y-4">
           <h3 className="text-lg font-bold">Categories</h3>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             <Link
-              to="/quran"
-              className="flex items-center space-x-2 hover:scale-110 transition-transform duration-300 ease-in-out"
+              to="/quran-dashboard"
+              className="flex items-center space-x-2 hover:scale-110 transition-transform"
             >
               <FaBookQuran className="text-lg text-green-500" />
               <span>Quran</span>
             </Link>
             <Link
-              to="/all-dua"
-              className="flex items-center space-x-2 hover:scale-110 transition-transform duration-300 ease-in-out"
+              to="/ramadhan-dashboard"
+              className="flex items-center space-x-2 hover:scale-110 transition-transform"
+            >
+              🌙 <span>Ramadhan</span>
+            </Link>
+            <Link
+              to="/dua-dashboard"
+              className="flex items-center space-x-2 hover:scale-110 transition-transform"
             >
               <FaPersonPraying className="text-lg text-gray-400" />
               <span>Dua</span>
             </Link>
             <Link
+              to="/hajj-dashboard"
+              className="flex items-center space-x-2 hover:scale-110 transition-transform"
+            >
+              <FaKaaba className="text-gray-600 dark:text-gray-300" />
+              <span>Hajj</span>
+            </Link>
+            <Link
               to="/zakat"
-              className="flex items-center space-x-2 hover:scale-110 transition-transform duration-300 ease-in-out"
+              className="flex items-center space-x-2 hover:scale-110 transition-transform"
             >
               <HiOutlineCalculator className="text-lg text-red-400" />
               <span>Zakat</span>
             </Link>
             <Link
               to="/find-qibla"
-              className="flex items-center space-x-2 hover:scale-110 transition-transform duration-300 ease-in-out"
+              className="flex items-center space-x-2 hover:scale-110 transition-transform"
             >
               <RiCompass3Line className="mr-1 text-lg text-green-500" />
-              Qibla
-            </Link>
-            <Link
-              to="/daily"
-              className="flex items-center space-x-2 hover:scale-110 transition-transform duration-300 ease-in-out"
-            >
-              <FaCalendarAlt className="text-lg text-blue-200" />
-              <span>Daily</span>
-            </Link>
-            <Link
-              to="/reminder"
-              className="flex items-center space-x-2 hover:scale-110 transition-transform duration-300 ease-in-out"
-            >
-              <FaBell className="text-lg text-yellow-300" />
-              <span>Reminder</span>
-            </Link>
-            <Link
-              to="/favorite"
-              className="flex items-center space-x-2 hover:scale-110 transition-transform duration-300 ease-in-out"
-            >
-              <FaHeart className="text-lg text-red-400" />
-              <span>Favorite</span>
+              <span>Qibla</span>
             </Link>
           </div>
         </div>
       </div>
 
       {/* Social Media Links */}
-      <div className="container mx-auto flex justify-center gap-6 mt-8">
-        {socialLinks.map((link) => (
+      <div className="container mx-auto flex justify-center gap-4 mt-8">
+        {socialLinks.map(({ name, icon, url, bgColor }) => (
           <a
-            key={link.name}
-            href={link.url}
+            key={name}
+            href={url}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label={link.name}
-            className={`text-white ${link.bgColor} p-3 rounded-full transition-all hover:scale-110`}
+            aria-label={name}
+            className={`inline-flex items-center justify-center text-white ${bgColor} p-3 rounded-full transition hover:scale-110`}
           >
-            {link.icon}
+            {icon}
           </a>
         ))}
       </div>
 
       {/* Back to Top Button */}
-      <div>
+      <div className="flex justify-end fixed bottom-6 right-6">
         <button
           onClick={scrollToTop}
-          className="fixed bottom-6 right-6 bg-blue-600 text-white p-4 rounded-full shadow-lg hover:bg-blue-700 transition duration-200"
+          className="bg-blue-600 text-white p-4 rounded-full shadow-lg hover:bg-blue-700 transition duration-200"
           aria-label="Back to Top"
         >
           <FaArrowUp className="text-lg" />
@@ -195,4 +174,5 @@ const Footer = () => {
     </footer>
   );
 };
+
 export default Footer;

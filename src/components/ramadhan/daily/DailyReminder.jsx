@@ -1,11 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { BiBell } from "react-icons/bi";
 import Toast from "../../extras/Toast";
+import PropTypes from "prop-types";
 
 const DailyReminder = ({ time }) => {
-  const [timeoutId, setTimeoutId] = useState(null);
   const [isReminderSet, setIsReminderSet] = useState(false);
   const [toast, setToast] = useState({ message: "", type: "success" });
+  const timeoutRef = useRef(null);
 
   useEffect(() => {
     if (Notification.permission === "default") {
@@ -18,9 +19,15 @@ const DailyReminder = ({ time }) => {
     }
   }, [time]);
 
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, []);
+
   const handleToggleReminder = () => {
     if (isReminderSet) {
-      clearTimeout(timeoutId);
+      clearTimeout(timeoutRef.current);
       localStorage.removeItem("reminderTime");
       setIsReminderSet(false);
       setToast({ message: "🔕 Reminder canceled!", type: "error" });
@@ -41,7 +48,7 @@ const DailyReminder = ({ time }) => {
 
       const timeout = reminderDate.getTime() - now.getTime();
 
-      const newTimeoutId = setTimeout(() => {
+      timeoutRef.current = setTimeout(() => {
         const audio = new Audio(`${import.meta.env.BASE_URL}ashaduallaha.mp3`);
         audio.play().catch((err) => console.log("Audio play error:", err));
 
@@ -64,7 +71,6 @@ const DailyReminder = ({ time }) => {
         localStorage.removeItem("reminderTime");
       }, timeout);
 
-      setTimeoutId(newTimeoutId);
       localStorage.setItem("reminderTime", time);
       setIsReminderSet(true);
       setToast({
@@ -101,6 +107,10 @@ const DailyReminder = ({ time }) => {
       )}
     </>
   );
+};
+
+DailyReminder.propTypes = {
+  time: PropTypes.string.isRequired,
 };
 
 export default DailyReminder;

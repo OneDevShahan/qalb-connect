@@ -104,7 +104,7 @@ const TasbeehCounter = () => {
                 onClick={() => increment(key)}
                 className="flex items-center gap-1 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg shadow-md transition-all"
               >
-                <FaPlus /> +1
+                <FaPlus /> <span className="font-bold text-lg">1</span>
               </button>
               <button
                 onClick={() => resetCount(key)}

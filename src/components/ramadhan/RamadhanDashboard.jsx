@@ -26,7 +26,7 @@ function RamadhanDashboard() {
           community.
         </p>
         <div className="text-center">
-          <CountdownTimer targetTime="2025-02-28" label="Ramadhan in" />
+          <CountdownTimer targetTime="2025-03-01" label="Ramadhan in" />
         </div>
         <div className="grid md:grid-cols-2 gap-6 mx-auto p-4">
           <HijriDate />

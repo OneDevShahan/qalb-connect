@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
-
-const AL_ADHAAN_API_BASE_URL = import.meta.env.VITE_API_AL_ADHAAN_BASE_URL;
+import { fetchDailyData } from "../services/AlAdhaanServices";
 
 const HijriDate = () => {
   const [dateData, setDateData] = useState(null);
@@ -11,26 +9,18 @@ const HijriDate = () => {
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(async (position) => {
       const { latitude, longitude } = position.coords;
+      const data = await fetchDailyData(latitude, longitude); // Fetch data with caching
 
-      try {
-        const response = await axios.get(
-          `${AL_ADHAAN_API_BASE_URL}/timings?latitude=${latitude}&longitude=${longitude}&method=2`
-        );
-        const data = response.data.data;
-        setDateData(data);
-
+      if (data) {
+        setDateData(data.data); // Ensure correct data structure
         // Check if it's Laylatul Qadr (Only in Ramadan)
-        const hijri = data.date.hijri;
+        const hijri = data.data.date.hijri;
         const specialDays = ["21", "23", "25", "27", "29"];
-
         if (hijri.month.en === "Ramadan" && specialDays.includes(hijri.day)) {
           setIsLaylatulQadr(true);
         }
-      } catch (error) {
-        console.error("Error fetching Hijri date:", error);
-      } finally {
-        setLoading(false);
       }
+      setLoading(false);
     });
   }, []);
 

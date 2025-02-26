@@ -30,3 +30,8 @@ export const getFromStorage = (key, defaultValue) => {
   const storedValue = localStorage.getItem(key);
   return storedValue ? JSON.parse(storedValue) : defaultValue;
 };
+
+export const getCurrentTime = () => {
+  const now = new Date();
+  return now.toTimeString().slice(0, 5); // Extract "HH:MM" format
+};

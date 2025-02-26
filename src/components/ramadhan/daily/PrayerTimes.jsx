@@ -1,28 +1,28 @@
 import { useEffect, useState } from "react";
-import { fetchPrayerTimes } from "../../services/AlAdhaanServices";
+import { fetchDailyData } from "../../services/AlAdhaanServices"; // Import the Hijri Date fetch function
 import DailyReminder from "./DailyReminder";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
+import { getCurrentTime } from "../../utility/Utils";
 
 const PrayerTimes = () => {
   const [timings, setTimings] = useState(null);
+  const [hijriDate, setHijriDate] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [testTime, setTestTime] = useState("15:10"); // Default test time
+  const [testTime, setTestTime] = useState(getCurrentTime);
 
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        const { latitude, longitude } = position.coords;
-        fetchPrayerTimes(latitude, longitude).then((data) => {
-          setTimings(data);
-          setLoading(false);
-        });
-      },
-      (error) => {
-        console.error("Geolocation error:", error);
-        setLoading(false);
+    useEffect(() => {
+    navigator.geolocation.getCurrentPosition(async (position) => {
+      const { latitude, longitude } = position.coords;
+      const data = await fetchDailyData(latitude, longitude); // Fetch data with caching
+      if (data) {
+        const prayerTimings = data.data.timings;
+        const hijri = data.data.date.hijri;
+        setHijriDate(hijri);
+        setTimings(prayerTimings);
       }
-    );
-  }, []);
+      setLoading(false);
+    });
+    }, []);
 
   if (loading) {
     return (
@@ -47,6 +47,13 @@ const PrayerTimes = () => {
       <h2 className="text-xl font-semibold text-center mb-4 text-gray-800 dark:text-white">
         🕌 Prayer Timings
       </h2>
+
+      {hijriDate && (
+        <p className="text-center text-gray-700 dark:text-gray-300 mb-4">
+          📅 Hijri Date: {hijriDate.day} {hijriDate.month.en} {hijriDate.year}
+        </p>
+      )}
+
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-gray-700 dark:text-gray-300">
         {Object.entries({
           Fajr: timings.Fajr,
@@ -64,14 +71,14 @@ const PrayerTimes = () => {
           <PrayerTime key={label} label={label} time={time} />
         ))}
 
-        {/* Test Time with input field */}
+        {/* Test Time Input */}
         <div className="flex flex-col items-center p-3 bg-gray-200 dark:bg-gray-900 rounded-lg shadow-sm relative">
           <span className="font-semibold text-sm">Test Time</span>
           <input
             type="time"
             value={testTime}
             onChange={(e) => setTestTime(e.target.value)}
-            className="text-lg font-medium text-gray-900 dark:text-gray-100 bg-transparent border border-gray-400 dark:border-gray-600 rounded p-1 focus:outline-none"
+            className="m-2 text-lg font-medium text-gray-900 dark:text-gray-100 bg-transparent border border-green-400 rounded focus:outline-none"
           />
           <DailyReminder time={testTime} />
         </div>
@@ -80,22 +87,19 @@ const PrayerTimes = () => {
   );
 };
 
+const PrayerTime = ({ label, time }) => (
+  <div className="flex flex-col items-center p-3 bg-gray-200 dark:bg-gray-900 rounded-lg shadow-sm relative">
+    <span className="font-semibold text-sm">{label}</span>
+    <span className="text-lg font-medium text-gray-900 dark:text-gray-100">
+      {time}
+    </span>
+    <DailyReminder time={time} />
+  </div>
+);
 
-const PrayerTime = ({ label, time }) => {
-  return (
-    <div className="flex flex-col items-center p-3 bg-gray-200 dark:bg-gray-900 rounded-lg shadow-sm relative">
-      <span className="font-semibold text-sm">{label}</span>
-      <span className="text-lg font-medium text-gray-900 dark:text-gray-100">
-        {time}
-      </span>
-      {/* Bell Icon for setting reminder */}
-      <DailyReminder time={time} />
-    </div>
-  );
-
-};
 PrayerTime.propTypes = {
   label: PropTypes.string.isRequired,
   time: PropTypes.string.isRequired,
 };
+
 export default PrayerTimes;

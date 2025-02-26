@@ -5,7 +5,7 @@ import QuranCard from "./QuranCard";
 import QuranMetaData from "./QuranMetaData";
 import { API_FAILURE_MSG } from "../utility/Contant";
 
-const Quran = ({ showToast }) => {
+const QuranDashboard = ({ showToast }) => {
   const navigate = useNavigate();
 
   const quranVersions = [
@@ -88,8 +88,8 @@ const Quran = ({ showToast }) => {
     </div>
   );
 };
-Quran.propTypes = {
+QuranDashboard.propTypes = {
   showToast: PropTypes.func.isRequired,
 };
 
-export default Quran;
+export default QuranDashboard;

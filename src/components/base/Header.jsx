@@ -45,7 +45,7 @@ const Header = () => {
       links: [
         {
           label: "All",
-          path: "/quran",
+          path: "/quran-dashboard",
           icon: <FaBookQuran className="text-green-500" />,
         },
         {

@@ -1,10 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <meta http-equiv="refresh" content="0; URL=./index.html" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+    <script>
+        var path = window.location.pathname;
+        var basePath = "/qalb-connect"; // Your GitHub Pages repository name
+
+        // Ensure the path is correctly formatted
+        var newPath = basePath + "/#" + path.replace(basePath, "");
+
+        // Redirect to the new path
+        window.location.replace(newPath);
+    </script>
 </head>
 
-<body></body>
+<body>
+    <h1>Redirecting...</h1>
+</body>
 
 </html>
