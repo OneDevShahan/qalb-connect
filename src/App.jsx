@@ -24,7 +24,6 @@ import AyahCard from "./components/quran/AyahCard";
 import SurahList from "./components/quran/in-depth/SurahList";
 import SurahPage from "./components/quran/in-depth/SurahPage";
 import JuzComponent from "./components/quran/JuzComponent";
-import Quran from "./components/quran/QuranDashboard";
 import SurahCard from "./components/quran/SurahCard";
 import RamadhanDashboard from "./components/ramadhan/RamadhanDashboard";
 import { DailyDua, DashboardCardData } from "./components/utility/Contant";
@@ -61,7 +60,10 @@ const App = () => {
         />
         {/* Routes setup */}
         <Routes>
-          <Route path="/" element={<Dashboard dashboardData={DashboardCardData} />} />
+          <Route
+            path="/"
+            element={<Dashboard dashboardData={DashboardCardData} />}
+          />
           <Route
             path="/quran-dashboard"
             element={<QuranDashboard showToast={showToast} />}

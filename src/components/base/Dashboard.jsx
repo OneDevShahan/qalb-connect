@@ -1,3 +1,4 @@
+import VisitorCount from "../users/VisitorCount";
 import DashboardCard from "./DashboardCard";
 import PropTypes from 'prop-types';
 function Dashboard({ dashboardData }) {
@@ -50,6 +51,7 @@ function Dashboard({ dashboardData }) {
             tagline={data.tagline}
           />
         ))}
+        <VisitorCount />
       </div>
     </div>
   );
