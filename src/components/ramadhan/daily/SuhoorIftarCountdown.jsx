@@ -13,8 +13,8 @@ const SuhoorIftarCountdown = () => {
         const data = await fetchDailyData(latitude, longitude);
         if (data) {
           setPrayerTimes({
-            suhoor: data.timings.Fajr,
-            iftar: data.timings.Maghrib,
+            suhoor: data.data.timings.Fajr,
+            iftar: data.data.timings.Maghrib,
           });
         }
         setLoading(false);
