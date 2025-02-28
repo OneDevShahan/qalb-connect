@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { FaPrayingHands, FaUndoAlt } from "react-icons/fa";
+import { FaUndoAlt } from "react-icons/fa";
 import TasbeehInput from "./TasbeehInput";
 import TasbeehList from "./TasbeehList";
+import { GiPrayerBeads } from "react-icons/gi";
 
 // Default tasbeehs that cannot be deleted
 const defaultTasbeehs = [
@@ -65,7 +66,7 @@ const TasbeehDetails = () => {
   return (
     <div className="p-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-lg flex flex-col items-center gap-6 w-full max-w-3xl mx-auto">
       <h2 className="text-2xl font-semibold flex items-center gap-2 text-gray-900 dark:text-white">
-        <FaPrayingHands className="text-green-500" /> Tasbeeh
+        <GiPrayerBeads className="text-green-500" /> Tasbeeh
       </h2>
 
       <TasbeehInput
@@ -83,9 +84,9 @@ const TasbeehDetails = () => {
 
       <button
         onClick={resetAll}
-        className="mt-4 bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded-lg shadow-md transition-all"
+        className="mt-4 bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded-lg shadow-md transition-all flex items-center gap-2"
       >
-        <FaUndoAlt /> Reset All
+        <FaUndoAlt /> <span>Reset All</span>
       </button>
     </div>
   );

@@ -1,4 +1,5 @@
 import { FaPlus, FaUndoAlt, FaTrash } from "react-icons/fa";
+import PropTypes from 'prop-types';
 
 const TasbeehItem = ({
   tasbeeh,
@@ -42,6 +43,14 @@ const TasbeehItem = ({
       )}
     </div>
   );
+};
+TasbeehItem.propTypes = {
+  tasbeeh: PropTypes.string.isRequired,
+  count: PropTypes.number.isRequired,
+  increment: PropTypes.func.isRequired,
+  resetCount: PropTypes.func.isRequired,
+  deleteTasbeeh: PropTypes.func.isRequired,
+  isDefault: PropTypes.bool.isRequired,
 };
 
 export default TasbeehItem;
