@@ -1,4 +1,5 @@
 import TasbeehItem from "./TasbeehItem";
+import PropTypes from 'prop-types';
 
 const TasbeehList = ({
   tasbeehs,
@@ -22,6 +23,13 @@ const TasbeehList = ({
       ))}
     </div>
   );
+};
+TasbeehList.propTypes = {
+  tasbeehs: PropTypes.object.isRequired,
+  increment: PropTypes.func.isRequired,
+  resetCount: PropTypes.func.isRequired,
+  deleteTasbeeh: PropTypes.func.isRequired,
+  defaultTasbeehs: PropTypes.array.isRequired,
 };
 
 export default TasbeehList;

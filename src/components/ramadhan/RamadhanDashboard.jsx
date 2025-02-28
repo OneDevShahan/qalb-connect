@@ -3,9 +3,9 @@ import DailyAyah from "./daily/DailyAyah";
 import PrayerTimes from "./daily/PrayerTimes";
 import RamadhanChecklist from "./daily/RamadhanChecklist";
 import SuhoorIftarCountdown from "./daily/SuhoorIftarCountdown";
-import TasbeehCounter from "./daily/TasbeehCounter";
 import HijriDate from "./HijriDate";
 import RamadhanGoals from "./RamadhanGoals";
+import TasbeehDetails from "./zikr/TasbeehDetails";
 
 function RamadhanDashboard() {
   return (
@@ -35,7 +35,7 @@ function RamadhanDashboard() {
           <SuhoorIftarCountdown />
           <RamadhanChecklist />
           <RamadhanGoals />
-          <TasbeehCounter />
+          <TasbeehDetails/>
         </div>
       </div>
     </>
