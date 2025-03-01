@@ -6,10 +6,10 @@ const TasbeehInput = ({ newTasbeeh, setNewTasbeeh, addTasbeeh }) => {
     <div className="flex items-center gap-2 w-full max-w-lg">
       <input
         type="text"
-        placeholder="Add new Tasbeeh..."
+        placeholder=" Add new Tasbeeh..."
         value={newTasbeeh}
         onChange={(e) => setNewTasbeeh(e.target.value)}
-        className="flex-1 py-2 px-3 border rounded-lg dark:bg-gray-900 dark:text-white focus:ring-2 focus:ring-green-500"
+        className="flex-1 py-2 border rounded-lg dark:bg-gray-900 dark:text-white focus:ring-2 focus:ring-green-500"
       />
       <button
         onClick={addTasbeeh}

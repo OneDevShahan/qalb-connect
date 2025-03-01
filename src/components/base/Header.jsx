@@ -159,8 +159,8 @@ const Header = () => {
           icon: <FaPersonPraying className="text-gray-500" />,
         },
         {
-          label: "Calculate",
-          path: "/zakat",
+          label: "Support Us",
+          path: "/support-us",
           icon: <HiOutlineCalculator className="text-red-400" />,
         },
       ],

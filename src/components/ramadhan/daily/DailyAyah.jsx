@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { fetchDailyAyah } from "../../services/AlQuranCloudAPIServices";
 import { FaBookOpen } from "react-icons/fa";
 import { LuClipboardCopy } from "react-icons/lu";
-import { AiFillAudio, AiOutlineStop } from "react-icons/ai";
+import { AiFillAudio } from "react-icons/ai";
 import Toast from "../../extras/Toast";
 import { FaCircleStop } from "react-icons/fa6";
 

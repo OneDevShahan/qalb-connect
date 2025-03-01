@@ -47,8 +47,8 @@ const RamadhanGoals = () => {
           type="text"
           value={newGoal}
           onChange={(e) => setNewGoal(e.target.value)}
-          placeholder="Add a goal..."
-          className="flex-1 w-full py-2 px-3 border rounded-lg dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-green-500"
+          placeholder=" Add a goal..."
+          className="flex-1 w-full py-2 border rounded-lg dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-green-500"
         />
         <button
           onClick={addGoal}
