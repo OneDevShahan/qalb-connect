@@ -4,10 +4,12 @@ import { FaBookOpen } from "react-icons/fa";
 import { LuClipboardCopy } from "react-icons/lu";
 import { AiFillAudio } from "react-icons/ai";
 import Toast from "../../extras/Toast";
+import { FaCircleStop } from "react-icons/fa6";
 
 const DailyAyah = () => {
   const [ayah, setAyah] = useState(null);
   const [toastMessage, setToastMessage] = useState(null);
+  const [isSpeaking, setIsSpeaking] = useState(false);
 
   const handleCopyAyahDetails = () => {
     if (!ayah) return;
@@ -17,6 +19,7 @@ const DailyAyah = () => {
   };
 
   const handleReadAyahLoud = (ayahText) => {
+    if (isSpeaking) return;
     const utterance = new SpeechSynthesisUtterance(ayahText);
     utterance.lang = "ar-SA"; // Ensure Arabic pronunciation
 
@@ -24,7 +27,15 @@ const DailyAyah = () => {
     const arabicVoice = voices.find((voice) => voice.lang.startsWith("ar"));
     if (arabicVoice) utterance.voice = arabicVoice;
 
+    utterance.onstart = () => setIsSpeaking(true);
+    utterance.onend = () => setIsSpeaking(false);
+
     speechSynthesis.speak(utterance);
+  };
+
+  const handleStopSpeech = () => {
+    speechSynthesis.cancel();
+    setIsSpeaking(false);
   };
 
   useEffect(() => {
@@ -71,9 +82,17 @@ const DailyAyah = () => {
           />
           <AiFillAudio
             size={20}
-            className="cursor-pointer hover:text-green-500"
+            className={`cursor-pointer hover:text-green-500 ${
+              isSpeaking ? "text-green-500" : ""
+            }`}
             title="Read Ayah Loud"
             onClick={() => handleReadAyahLoud(ayah.text)}
+          />
+          <FaCircleStop
+            size={20}
+            className="cursor-pointer hover:text-red-500"
+            title="Stop Reading"
+            onClick={handleStopSpeech}
           />
         </div>
         <div className="text-center sm:text-right">

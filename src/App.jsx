@@ -33,6 +33,7 @@ import DuaDashboard from "./components/dua/DuaDashboard";
 import QuranDashboard from "./components/quran/QuranDashboard";
 import HajjDashboard from "./components/hajj/HajjDashboard";
 import MiscellaneousDashboard from "./components/miscellaneous/MiscellaneousDashboard";
+import SupportUs from "./components/support/SupportUs";
 
 const App = () => {
   const [toast, setToast] = useState({ message: "", type: "" });
@@ -113,6 +114,7 @@ const App = () => {
             element={<RamadhanDashboard showToast={showToast} />}
           />
           {/* Ramadhaan Ends*/}
+          <Route path="/support-us" element={<SupportUs />} />
         </Routes>
 
         {/* Main content area */}
