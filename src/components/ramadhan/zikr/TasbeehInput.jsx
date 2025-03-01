@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const TasbeehInput = ({ newTasbeeh, setNewTasbeeh, addTasbeeh }) => {
   return (
-    <div className="flex items-center gap-2 w-full max-w-lg">
+    <div className="flex items-center gap-2 w-full max-w-lg mb-4">
       <input
         type="text"
         placeholder=" Add new Tasbeeh..."

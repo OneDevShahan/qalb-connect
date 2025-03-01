@@ -64,8 +64,8 @@ const TasbeehDetails = () => {
   };
 
   return (
-    <div className="p-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-lg flex flex-col items-center gap-6 w-full max-w-3xl mx-auto">
-      <h2 className="text-2xl font-semibold flex items-center gap-2 text-gray-900 dark:text-white">
+    <div className="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg shadow flex flex-col items-center justify-center min-h-[150px]">
+      <h2 className="text-2xl mb-4 font-semibold flex items-center gap-2 text-gray-900 dark:text-white">
         <GiPrayerBeads className="text-green-500" /> Tasbeeh
       </h2>
 
