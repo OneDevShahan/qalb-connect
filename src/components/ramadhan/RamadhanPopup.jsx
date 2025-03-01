@@ -44,7 +44,7 @@ const RamadhanPopup = ({ onClose }) => {
         </h2>
         <p className="mt-2 text-gray-700 dark:text-gray-300">
           May this holy month bring peace, blessings, and joy to you and your
-          family.
+          family. Rememer us in your Duas!
         </p>
       </div>
     </div>
