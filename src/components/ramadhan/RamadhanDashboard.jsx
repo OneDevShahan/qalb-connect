@@ -5,6 +5,7 @@ import RamadhanChecklist from "./daily/RamadhanChecklist";
 import SuhoorIftarCountdown from "./daily/SuhoorIftarCountdown";
 import HijriDate from "./HijriDate";
 import RamadhanGoals from "./RamadhanGoals";
+import RamadhanPopup from "./RamadhanPopup";
 import TasbeehDetails from "./zikr/TasbeehDetails";
 
 function RamadhanDashboard() {
@@ -35,7 +36,8 @@ function RamadhanDashboard() {
           <SuhoorIftarCountdown />
           <RamadhanChecklist />
           <RamadhanGoals />
-          <TasbeehDetails/>
+          <TasbeehDetails />
+          <RamadhanPopup />
         </div>
       </div>
     </>
