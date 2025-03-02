@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://onedevshahan.github.io/qalb-connect/sitemap.xml
