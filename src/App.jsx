@@ -11,7 +11,10 @@ import Dashboard from "./components/base/Dashboard";
 import NotFound from "./components/base/NotFound";
 import ScrollToTop from "./components/base/ScrollToTop";
 import AllDua from "./components/dua/AllDua";
+import DuaDashboard from "./components/dua/DuaDashboard";
 import Toast from "./components/extras/Toast";
+import HajjDashboard from "./components/hajj/HajjDashboard";
+import MiscellaneousDashboard from "./components/miscellaneous/MiscellaneousDashboard";
 import Page4 from "./components/more/Page4";
 import Page11 from "./components/more/path1/Page11";
 import Page21 from "./components/more/path2/Page21";
@@ -24,16 +27,14 @@ import AyahCard from "./components/quran/AyahCard";
 import SurahList from "./components/quran/in-depth/SurahList";
 import SurahPage from "./components/quran/in-depth/SurahPage";
 import JuzComponent from "./components/quran/JuzComponent";
+import QuranDashboard from "./components/quran/QuranDashboard";
 import SurahCard from "./components/quran/SurahCard";
 import RamadhanDashboard from "./components/ramadhan/RamadhanDashboard";
+import SupportUs from "./components/support/SupportUs";
+import CityDashbaord from "./components/users/city/CityDashbaord";
 import { DailyDua, DashboardCardData } from "./components/utility/Contant";
 import ZakatCalculator from "./components/zakat/ZakatCalculator";
 import "./index.css"; // Ensure index.css exists in the src folder
-import DuaDashboard from "./components/dua/DuaDashboard";
-import QuranDashboard from "./components/quran/QuranDashboard";
-import HajjDashboard from "./components/hajj/HajjDashboard";
-import MiscellaneousDashboard from "./components/miscellaneous/MiscellaneousDashboard";
-import SupportUs from "./components/support/SupportUs";
 
 const App = () => {
   const [toast, setToast] = useState({ message: "", type: "" });
@@ -115,6 +116,7 @@ const App = () => {
           />
           {/* Ramadhaan Ends*/}
           <Route path="/support-us" element={<SupportUs />} />
+          <Route path="/city-visitors" element={<CityDashbaord />} />
         </Routes>
 
         {/* Main content area */}

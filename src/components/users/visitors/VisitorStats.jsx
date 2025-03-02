@@ -1,4 +1,5 @@
 import { FaUsers } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import VisitorTooltip from "./VisitorTooltip";
 
 const VisitorStats = ({ visitorCount, currentLocation, lastLocation }) => {
@@ -45,6 +46,14 @@ const VisitorStats = ({ visitorCount, currentLocation, lastLocation }) => {
           {lastLocation}
         </p>
       </div>
+      <Link to="/city-visitors">
+        <button
+          className="flex items-center justify-center w-full bg-gradient-to-r from-green-600 to-green-800 
+          text-white px-4 py-2 rounded-lg hover:from-green-500 hover:to-green-700 active:scale-95 transition-all duration-300"
+        >
+          View City Visitors
+        </button>
+      </Link>
     </div>
   );
 };

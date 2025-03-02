@@ -10,25 +10,6 @@ import RamadhanGoals from "./RamadhanGoals";
 import TasbeehDetails from "./zikr/TasbeehDetails";
 
 function RamadhanDashboard() {
-  const targetDate = new Date("2025-03-01").getTime();
-  const endDate = new Date("2025-03-30").getTime();
-  const [currentTime, setCurrentTime] = useState(Date.now());
-  const [showConfetti, setShowConfetti] = useState(false);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentTime(Date.now());
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
-    if (currentTime >= targetDate && currentTime <= endDate) {
-      setShowConfetti(true);
-    }
-  }, [currentTime, targetDate, endDate]);
-
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 p-6 space-y-6">
       <h2 className="text-2xl font-semibold text-center dark:text-white">
@@ -43,20 +24,6 @@ function RamadhanDashboard() {
         Ramadhan is the ninth month of the Islamic calendar, observed by Muslims
         worldwide as a month of fasting, prayer, reflection, and community.
       </p>
-
-      {/* Show countdown if Ramadhan hasn't started yet */}
-      {currentTime < targetDate && (
-        <div className="text-center">
-          <CountdownTimer targetTime="2025-03-01" label="Ramadhan in" />
-        </div>
-      )}
-
-      {/* Show celebration popup if Ramadhan has started */}
-      {showConfetti && (
-        <div className="text-center">
-            <ConfettiEffect numberOfPieces={200} />
-        </div>
-      )}
 
       {/* Dashboard Sections */}
       <div className="grid md:grid-cols-2 gap-6 mx-auto p-4">
