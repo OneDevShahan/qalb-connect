@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+import ConfettiEffect from "../extras/ConfettiEffect";
 import CountdownTimer from "../utility/CountdownTimer";
 import DailyAyah from "./daily/DailyAyah";
 import PrayerTimes from "./daily/PrayerTimes";
@@ -5,42 +7,68 @@ import RamadhanChecklist from "./daily/RamadhanChecklist";
 import SuhoorIftarCountdown from "./daily/SuhoorIftarCountdown";
 import HijriDate from "./HijriDate";
 import RamadhanGoals from "./RamadhanGoals";
-import RamadhanPopup from "./RamadhanPopup";
 import TasbeehDetails from "./zikr/TasbeehDetails";
 
 function RamadhanDashboard() {
+  const targetDate = new Date("2025-03-01").getTime();
+  const endDate = new Date("2025-03-30").getTime();
+  const [currentTime, setCurrentTime] = useState(Date.now());
+  const [showConfetti, setShowConfetti] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTime(Date.now());
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    if (currentTime >= targetDate && currentTime <= endDate) {
+      setShowConfetti(true);
+    }
+  }, [currentTime, targetDate, endDate]);
+
   return (
-    <>
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 p-6 space-y-6">
-        {/* Section Header */}
-        <h2 className="text-2xl font-semibold text-center dark:text-white">
-          <div className="flex justify-center items-center font-bold text-xl md:text-2xl space-x-2">
-            🌙 Ramadhan Dashboard
-          </div>
-          <div className="flex justify-center text-center">
-            <hr className="text-center w-3/5 sm:w-1/2 md:w-1/4 mt-3 mb-8" />
-          </div>
-        </h2>
-        <p className="text-lg text-center text-gray-600 dark:text-gray-300 mb-10">
-          Ramadhan is the ninth month of the Islamic calendar, observed by
-          Muslims worldwide as a month of fasting, prayer, reflection, and
-          community.
-        </p>
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 p-6 space-y-6">
+      <h2 className="text-2xl font-semibold text-center dark:text-white">
+        <div className="flex justify-center items-center font-bold text-xl md:text-2xl space-x-2">
+          🌙 Ramadhan Dashboard
+        </div>
+        <div className="flex justify-center text-center">
+          <hr className="text-center w-3/5 sm:w-1/2 md:w-1/4 mt-3 mb-8" />
+        </div>
+      </h2>
+      <p className="text-lg text-center text-gray-600 dark:text-gray-300 mb-10">
+        Ramadhan is the ninth month of the Islamic calendar, observed by Muslims
+        worldwide as a month of fasting, prayer, reflection, and community.
+      </p>
+
+      {/* Show countdown if Ramadhan hasn't started yet */}
+      {currentTime < targetDate && (
         <div className="text-center">
           <CountdownTimer targetTime="2025-03-01" label="Ramadhan in" />
         </div>
-        <div className="grid md:grid-cols-2 gap-6 mx-auto p-4">
-          <HijriDate />
-          <DailyAyah />
-          <PrayerTimes />
-          <SuhoorIftarCountdown />
-          <RamadhanChecklist />
-          <RamadhanGoals />
-          <TasbeehDetails />
-          <RamadhanPopup />
+      )}
+
+      {/* Show celebration popup if Ramadhan has started */}
+      {showConfetti && (
+        <div className="text-center">
+            <ConfettiEffect numberOfPieces={200} />
         </div>
+      )}
+
+      {/* Dashboard Sections */}
+      <div className="grid md:grid-cols-2 gap-6 mx-auto p-4">
+        <HijriDate />
+        <DailyAyah />
+        <PrayerTimes />
+        <SuhoorIftarCountdown />
+        <RamadhanChecklist />
+        <RamadhanGoals />
+        <TasbeehDetails />
       </div>
-    </>
+    </div>
   );
 }
 
