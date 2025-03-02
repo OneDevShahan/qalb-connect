@@ -2,12 +2,42 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" href="QalbConnect_Dark.svg" type="image/svg+xml" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>QalbConnect</title>
+    
+    <!-- ✅ SEO Meta Tags -->
+    <title>QalbConnect - Ramadhan Daily Checklist</title>
+    <meta name="description" content="Track your Ramadhan daily progress with QalbConnect. Stay consistent with prayers, fasting, and spiritual goals using our interactive checklist.">
+    <meta name="keywords" content="Ramadhan, Ramadan checklist, Islamic habits, fasting tracker, QalbConnect">
+    <meta name="author" content="OneDevShahan">
+
+    <!-- ✅ Open Graph (for better social media previews) -->
+    <meta property="og:title" content="QalbConnect - Ramadhan Daily Checklist">
+    <meta property="og:description" content="Track your Ramadhan daily progress and stay motivated!">
+    <meta property="og:image" content="https://onedevshahan.github.io/qalb-connect/QalbConnect_Dark.svg">
+    <meta property="og:url" content="https://onedevshahan.github.io/qalb-connect/">
+    <meta property="og:type" content="website">
+
+    <!-- ✅ Robots for Google Indexing -->
+    <meta name="robots" content="index, follow">
+
+    <!-- ✅ Canonical URL (prevents duplicate content issues) -->
+    <link rel="canonical" href="https://onedevshahan.github.io/qalb-connect/">
+
+    <!-- ✅ Favicon -->
+    <link rel="icon" href="QalbConnect_Dark.svg" type="image/svg+xml" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L55B3EKYGE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+
+      gtag('config', 'G-L55B3EKYGE');
+    </script>
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    <script type="module" src="/qalb-connect/src/main.jsx"></script>
   </body>
 </html>
