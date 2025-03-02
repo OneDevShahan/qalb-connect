@@ -35,6 +35,7 @@ import CityDashbaord from "./components/users/city/CityDashbaord";
 import { DailyDua, DashboardCardData } from "./components/utility/Contant";
 import ZakatCalculator from "./components/zakat/ZakatCalculator";
 import "./index.css"; // Ensure index.css exists in the src folder
+import ChecklistProgress from "./components/ramadhan/checklist/ChecklistProgress";
 
 const App = () => {
   const [toast, setToast] = useState({ message: "", type: "" });
@@ -114,6 +115,7 @@ const App = () => {
             path="/ramadhan"
             element={<RamadhanDashboard showToast={showToast} />}
           />
+          <Route path="/checklist-progress" element={<ChecklistProgress />} />
           {/* Ramadhaan Ends*/}
           <Route path="/support-us" element={<SupportUs />} />
           <Route path="/city-visitors" element={<CityDashbaord />} />

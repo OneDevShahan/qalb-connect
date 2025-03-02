@@ -1,9 +1,6 @@
-import { useEffect, useState } from "react";
-import ConfettiEffect from "../extras/ConfettiEffect";
-import CountdownTimer from "../utility/CountdownTimer";
+import RamadhanChecklistBoard from "./checklist/RamadhanChecklistBoard";
 import DailyAyah from "./daily/DailyAyah";
 import PrayerTimes from "./daily/PrayerTimes";
-import RamadhanChecklist from "./daily/RamadhanChecklist";
 import SuhoorIftarCountdown from "./daily/SuhoorIftarCountdown";
 import HijriDate from "./HijriDate";
 import RamadhanGoals from "./RamadhanGoals";
@@ -31,7 +28,7 @@ function RamadhanDashboard() {
         <DailyAyah />
         <PrayerTimes />
         <SuhoorIftarCountdown />
-        <RamadhanChecklist />
+        <RamadhanChecklistBoard />
         <RamadhanGoals />
         <TasbeehDetails />
       </div>
