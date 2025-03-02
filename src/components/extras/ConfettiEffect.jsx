@@ -2,7 +2,7 @@ import { useRef, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import Confetti from "react-confetti";
 
-const ConfettiEffect = ({ numberOfPieces = 100 }) => {
+const RamadhanMubarakConfetti = ({ numberOfPieces = 100 }) => {
   const confettiRef = useRef(null);
   const [dimensions, setDimensions] = useState({ width: 300, height: 150 });
 
@@ -35,8 +35,8 @@ const ConfettiEffect = ({ numberOfPieces = 100 }) => {
   );
 };
 
-ConfettiEffect.propTypes = {
+RamadhanMubarakConfetti.propTypes = {
   numberOfPieces: PropTypes.number,
 };
 
-export default ConfettiEffect;
+export default RamadhanMubarakConfetti;

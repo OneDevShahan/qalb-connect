@@ -107,21 +107,6 @@ export const ZAKAT_EXPLANATIONS = [
   },
 ];
 
-export const CHECK_LIST_ITEMS = [
-  "Tahajjud",
-  "Suhoor (Pre-dawn Meal)",
-  "Fajr Prayer",
-  "Quran Reading",
-  "Dhuhr Prayer",
-  "Asr Prayer",
-  "Iftar (Breaking Fast)",
-  "Maghrib Prayer",
-  "Isha Prayer",
-  "Taraweeh Prayer",
-  "Giving Charity",
-  "Making Dua",
-];
-
 export const CHECK_LIST_ITEMS_WITH_ICONS = [
   { text: "Tahajjud", icon: "🙏" },
   { text: "Suhoor (Pre-dawn Meal)", icon: "🌅" },

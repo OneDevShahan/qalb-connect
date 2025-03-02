@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { CHECK_LIST_ITEMS } from "../../utility/Contant";
+import { CHECK_LIST_ITEMS_WITH_ICONS } from "../../utility/Contant";
 
 const DailyProgressRow = ({ data, todayRamadhanDay }) => {
   const { day, percentage, checklist } = data;
@@ -13,21 +13,25 @@ const DailyProgressRow = ({ data, todayRamadhanDay }) => {
             : ""
         }`}
       >
-        {day}
+        {parseInt(todayRamadhanDay, 10) === day
+          ? `🔥 Today (${day})`
+          : `📅 Day ${day}`}
       </td>
-      <td className="p-2 text-green-600 dark:text-green-400">{percentage}%</td>
+      <td className="p-2 font-semibold">
+        {percentage === 100 ? "🌟 Completed!" : `📈 ${percentage}%`}
+      </td>
       <td className="p-2">
         <div className="grid grid-cols-2 gap-2">
-          {CHECK_LIST_ITEMS.map((item) => (
+          {CHECK_LIST_ITEMS_WITH_ICONS.map(({ text, icon }) => (
             <span
-              key={item}
+              key={text}
               className={
-                checklist[item]
+                checklist[text]
                   ? "text-green-600 dark:text-green-400"
                   : "text-red-600 dark:text-red-400"
               }
             >
-              {item}
+              {icon} {text}
             </span>
           ))}
         </div>
