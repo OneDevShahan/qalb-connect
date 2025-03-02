@@ -1,4 +1,5 @@
 import { FaUndoAlt } from "react-icons/fa";
+import PropTypes from 'prop-types';
 
 const Checklist = ({
   checklistItems,
@@ -48,6 +49,18 @@ const Checklist = ({
       </div>
     </div>
   );
+};
+Checklist.propTypes = {
+  checklistItems: PropTypes.arrayOf(
+    PropTypes.shape({
+      text: PropTypes.string.isRequired,
+      icon: PropTypes.element,
+    })
+  ).isRequired,
+  checklist: PropTypes.object.isRequired,
+  toggleItem: PropTypes.func.isRequired,
+  completion: PropTypes.number.isRequired,
+  resetChecklist: PropTypes.func.isRequired,
 };
 
 export default Checklist;

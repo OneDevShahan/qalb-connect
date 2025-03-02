@@ -107,6 +107,21 @@ export const ZAKAT_EXPLANATIONS = [
   },
 ];
 
+export const CHECK_LIST_ITEMS_WITH_ICONS = [
+  { text: "Tahajjud", icon: "🙏" },
+  { text: "Suhoor (Pre-dawn Meal)", icon: "🌅" },
+  { text: "Fajr Prayer", icon: "🙏" },
+  { text: "Quran Reading", icon: "📖" },
+  { text: "Dhuhr Prayer", icon: "🙏" },
+  { text: "Asr Prayer", icon: "🙏" },
+  { text: "Iftar (Breaking Fast)", icon: "🌙" },
+  { text: "Maghrib Prayer", icon: "🙏" },
+  { text: "Isha Prayer", icon: "🙏" },
+  { text: "Taraweeh Prayer", icon: "🤲" },
+  { text: "Giving Charity", icon: "💰" },
+  { text: "Making Dua", icon: "🤲" },
+];
+
 export const API_FAILURE_MSG = "Failed to fetch data from the server";
 export const DailyDua = [
   {

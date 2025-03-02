@@ -1,7 +1,28 @@
-import VisitorCount from "../users/VisitorCount";
+import PropTypes from "prop-types";
+import VisitorCount from "../users/visitors/VisitorDashboard";
 import DashboardCard from "./DashboardCard";
-import PropTypes from 'prop-types';
+import { useEffect, useState } from "react";
+import CountdownTimer from "../utility/CountdownTimer";
+import RamadhanMubarakConfetti from "../extras/RamadhanMubarakConfetti";
 function Dashboard({ dashboardData }) {
+  const targetDate = new Date("2025-03-01").getTime();
+  const endDate = new Date("2025-03-30").getTime();
+  const [currentTime, setCurrentTime] = useState(Date.now());
+  const [showConfetti, setShowConfetti] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTime(Date.now());
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    if (currentTime >= targetDate && currentTime <= endDate) {
+      setShowConfetti(true);
+    }
+  }, [currentTime, targetDate, endDate]);
   return (
     <div className="p-6 bg-gradient-to-b from-gray-50 to-gray-100 min-h-screen dark:from-gray-800 dark:to-gray-900">
       {/* Dashboard Title and Write-up */}
@@ -38,6 +59,19 @@ function Dashboard({ dashboardData }) {
         journey. May you find peace and tranquility in your daily practice.
       </p>
 
+      {/* Show countdown if Ramadhan hasn't started yet */}
+      {currentTime < targetDate && (
+        <div className="text-center">
+          <CountdownTimer targetTime="2025-03-01" label="Ramadhan in" />
+        </div>
+      )}
+
+      {/* Show celebration popup if Ramadhan has started */}
+      {showConfetti && (
+        <div className="text-center">
+          <RamadhanMubarakConfetti numberOfPieces={200} />
+        </div>
+      )}
       {/* Cards Grid (Better Spacing & Alignment) */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full px-6 sm:px-8 md:px-10 mt-8">
         {dashboardData.map((data, index) => (

@@ -1,18 +1,18 @@
-import { useState, useEffect } from "react";
 import {
+  arrayUnion,
+  doc,
   getDoc,
-  setDoc,
-  updateDoc,
   increment,
   onSnapshot,
-  doc,
-  arrayUnion,
+  setDoc,
+  updateDoc,
 } from "firebase/firestore";
-import { db } from "../services/firebaseConfig";
+import { useEffect, useState } from "react";
+import fetchLocation from "../../services/AllOtherAPIs";
+import { db } from "../../services/firebaseConfig";
 import VisitorStats from "./VisitorStats";
-import fetchLocation from "../services/AllOtherAPIs";
 
-const VisitorCount = () => {
+const VisitorDashboard = () => {
   const [visitorCount, setVisitorCount] = useState(0);
   const [currentLocation, setCurrentLocation] = useState("Fetching...");
   const [lastLocation, setLastLocation] = useState("Unknown");
@@ -93,4 +93,4 @@ const VisitorCount = () => {
   );
 };
 
-export default VisitorCount;
+export default VisitorDashboard;

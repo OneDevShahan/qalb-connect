@@ -13,7 +13,7 @@ export const fetchDailyData = async (latitude, longitude) => {
 
   try {
     const { data } = await axios.get(
-      `${AL_ADHAAN_API_BASE_URL}/timings?latitude=${latitude}&longitude=${longitude}&method=2`
+      `${AL_ADHAAN_API_BASE_URL}/timings?latitude=${latitude}&longitude=${longitude}&method=1`
     );
 
     const dailyData = { data, timestamp: Date.now() };
