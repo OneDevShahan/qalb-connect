@@ -2,8 +2,8 @@ import PropTypes from "prop-types";
 import VisitorCount from "../users/visitors/VisitorDashboard";
 import DashboardCard from "./DashboardCard";
 import { useEffect, useState } from "react";
-import ConfettiEffect from "../extras/ConfettiEffect";
 import CountdownTimer from "../utility/CountdownTimer";
+import RamadhanMubarakConfetti from "../extras/RamadhanMubarakConfetti";
 function Dashboard({ dashboardData }) {
   const targetDate = new Date("2025-03-01").getTime();
   const endDate = new Date("2025-03-30").getTime();
@@ -69,7 +69,7 @@ function Dashboard({ dashboardData }) {
       {/* Show celebration popup if Ramadhan has started */}
       {showConfetti && (
         <div className="text-center">
-          <ConfettiEffect numberOfPieces={200} />
+          <RamadhanMubarakConfetti numberOfPieces={200} />
         </div>
       )}
       {/* Cards Grid (Better Spacing & Alignment) */}
