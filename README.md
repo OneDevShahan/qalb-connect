@@ -1,4 +1,4 @@
-# QalbConnect 
+# QalbConnect ->   [We're live🔥](https://onedevshahan.github.io/qalb-connect) 
 ![React](https://img.shields.io/badge/React-18.3.1-blue)
 ![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-3.4.17-blueviolet)
 ![GitHub Pages](https://img.shields.io/badge/Deployed-GitHub%20Pages-brightgreen)
