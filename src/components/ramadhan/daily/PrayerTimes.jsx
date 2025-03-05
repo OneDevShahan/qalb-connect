@@ -1,28 +1,21 @@
 import { useEffect, useState } from "react";
-import { fetchDailyData } from "../../services/AlAdhaanServices"; // Import the Hijri Date fetch function
 import DailyReminder from "./DailyReminder";
 import PropTypes from "prop-types";
 import { getCurrentTime } from "../../utility/Utils";
 
-const PrayerTimes = () => {
+const PrayerTimes = ({ data }) => {
   const [timings, setTimings] = useState(null);
   const [hijriDate, setHijriDate] = useState(null);
   const [loading, setLoading] = useState(true);
   const [testTime, setTestTime] = useState(getCurrentTime);
 
-    useEffect(() => {
-    navigator.geolocation.getCurrentPosition(async (position) => {
-      const { latitude, longitude } = position.coords;
-      const data = await fetchDailyData(latitude, longitude); // Fetch data with caching
-      if (data) {
-        const prayerTimings = data.data.timings;
-        const hijri = data.data.date.hijri;
-        setHijriDate(hijri);
-        setTimings(prayerTimings);
-      }
+  useEffect(() => {
+    if (data && data.data) {
+      setTimings(data.data.timings);
+      setHijriDate(data.data.date.hijri);
       setLoading(false);
-    });
-    }, []);
+    }
+  }, [data]);
 
   if (loading) {
     return (
@@ -49,29 +42,31 @@ const PrayerTimes = () => {
       </h2>
 
       {hijriDate && (
+        // -1 as the Ramadhan started on 1st March but actually it started on2nd March {hijriDate.day - 1}{" "}
         <p className="text-center text-gray-700 dark:text-gray-300 mb-4">
-          📅 Hijri Date: {hijriDate.day} {hijriDate.month.en} {hijriDate.year}
+          📅 Hijri Date: {hijriDate.day - 1} {hijriDate.month.en}{" "}
+          {hijriDate.year}
         </p>
       )}
 
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-gray-700 dark:text-gray-300">
-        {Object.entries({
-          Fajr: timings.Fajr,
-          Sunrise: timings.Sunrise,
-          Dhuhr: timings.Dhuhr,
-          Asr: timings.Asr,
-          Sunset: timings.Sunset,
-          Maghrib: timings.Maghrib,
-          Isha: timings.Isha,
-          Imsak: timings.Imsak,
-          Midnight: timings.Midnight,
-          "First Third": timings.Firstthird,
-          "Last Third": timings.Lastthird,
-        }).map(([label, time]) => (
-          <PrayerTime key={label} label={label} time={time} />
-        ))}
+        {timings &&
+          Object.entries({
+            Fajr: timings.Fajr,
+            Sunrise: timings.Sunrise,
+            Dhuhr: timings.Dhuhr,
+            Asr: timings.Asr,
+            Sunset: timings.Sunset,
+            Maghrib: timings.Maghrib,
+            Isha: timings.Isha,
+            Imsak: timings.Imsak,
+            Midnight: timings.Midnight,
+            "First Third": timings.Firstthird,
+            "Last Third": timings.Lastthird,
+          }).map(([label, time]) => (
+            <PrayerTime key={label} label={label} time={time} />
+          ))}
 
-        {/* Test Time Input */}
         <div className="flex flex-col items-center p-3 bg-gray-200 dark:bg-gray-900 rounded-lg shadow-sm relative">
           <span className="font-semibold text-sm">Test Time</span>
           <input
@@ -100,6 +95,23 @@ const PrayerTime = ({ label, time }) => (
 PrayerTime.propTypes = {
   label: PropTypes.string.isRequired,
   time: PropTypes.string.isRequired,
+};
+
+PrayerTimes.propTypes = {
+  data: PropTypes.shape({
+    data: PropTypes.shape({
+      timings: PropTypes.object.isRequired,
+      date: PropTypes.shape({
+        hijri: PropTypes.shape({
+          day: PropTypes.string.isRequired,
+          month: PropTypes.shape({
+            en: PropTypes.string.isRequired,
+          }).isRequired,
+          year: PropTypes.string.isRequired,
+        }).isRequired,
+      }).isRequired,
+    }),
+  }),
 };
 
 export default PrayerTimes;

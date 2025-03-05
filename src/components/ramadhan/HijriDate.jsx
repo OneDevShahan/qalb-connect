@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { fetchDailyData } from "../services/AlAdhaanServices";
 
 const HijriDate = () => {
   const [dateData, setDateData] = useState(null);
@@ -7,21 +6,21 @@ const HijriDate = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition(async (position) => {
-      const { latitude, longitude } = position.coords;
-      const data = await fetchDailyData(latitude, longitude); // Fetch data with caching
-
-      if (data) {
-        setDateData(data.data); // Ensure correct data structure
-        // Check if it's Laylatul Qadr (Only in Ramadan)
-        const hijri = data.data.date.hijri;
-        const specialDays = ["21", "23", "25", "27", "29"];
-        if (hijri.month.en === "Ramadan" && specialDays.includes(hijri.day)) {
-          setIsLaylatulQadr(true);
-        }
+    let data = localStorage.getItem("dailyData");
+    let parsedData = JSON.parse(data);
+    if (parsedData) {
+      data = parsedData.data;
+    }
+    if (data) {
+      setDateData(data.data); // Ensure correct data structure
+      // Check if it's Laylatul Qadr (Only in Ramadan)
+      const hijri = data.data.date.hijri;
+      const specialDays = ["21", "23", "25", "27", "29"];
+      if (hijri.month.en === "Ramadan" && specialDays.includes(hijri.day - 1)) {
+        setIsLaylatulQadr(true);
       }
-      setLoading(false);
-    });
+    }
+    setLoading(false);
   }, []);
 
   if (loading)
@@ -35,6 +34,7 @@ const HijriDate = () => {
 
   if (!dateData) return <p>Failed to load Hijri Date</p>;
 
+  // -1 as the Ramadhan started on 1st March but actually it started on 2nd March (hijri.day-1)
   const { hijri, gregorian } = dateData.date;
   const { weekday, month, year, holidays } = hijri;
 
@@ -52,10 +52,11 @@ const HijriDate = () => {
 
       {/* Hijri Date */}
       <div className="mt-2 text-lg font-semibold text-gray-800 dark:text-gray-200">
-        {weekday.en}, {hijri.day} {month.en} {year} AH
+        {weekday.en}, {hijri.day - 1} {month.en} {year} AH
       </div>
       <p className="text-sm text-gray-600 dark:text-gray-400">
-        ({hijri.date} - {hijri.designation.expanded})
+        ({hijri.day - 1}-{hijri.month.number}-{hijri.year}-{" "}
+        {hijri.designation.expanded})
       </p>
 
       {/* Gregorian Date */}

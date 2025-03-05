@@ -7,7 +7,10 @@ import useHijriDate from "../../services/useHijriDate";
 const ChecklistProgress = () => {
   const [dailyProgress, setDailyProgress] = useState([]);
   const [overallCompletion, setOverallCompletion] = useState(0);
-  const todayRamadhanDay = useHijriDate();
+  //const todayRamadhanDay = useHijriDate();
+  let todayRamadhanDay = useHijriDate();
+  // -1 as the Ramadhan started on 1st March but actually it started on 2nd March (hijri.day-1)
+  todayRamadhanDay = todayRamadhanDay - 1; // Fix the value of todayRamadhanDay to 1
 
   useEffect(() => {
     let totalPercentage = 0;
