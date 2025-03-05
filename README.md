@@ -7,6 +7,7 @@
 ![QalbConnect Version](https://img.shields.io/badge/QalbConnect-%201.0.0-green)
 ![Open Source](https://img.shields.io/badge/Open%20Source-%E2%9D%A4-red?style=flat)
 ![JSPDF](https://img.shields.io/badge/JSPDF-2.5.2-blueviolet)
+![FireBase](https://img.shields.io/badge/Firebase-11.3.1-yellow)
 
 
 QalbConnect is a modern, responsive web application designed to help users manage their daily activities, favorite items, reminders, and more. Built with React, Tailwind CSS, and optimized for both desktop and mobile use, this application also supports dark mode and various dynamic features.
