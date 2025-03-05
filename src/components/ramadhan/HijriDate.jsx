@@ -1,27 +1,34 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 
 const HijriDate = () => {
   const [dateData, setDateData] = useState(null);
-  const [isLaylatulQadr, setIsLaylatulQadr] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    let data = localStorage.getItem("dailyData");
-    let parsedData = JSON.parse(data);
-    if (parsedData) {
-      data = parsedData.data;
-    }
-    if (data) {
-      setDateData(data.data); // Ensure correct data structure
-      // Check if it's Laylatul Qadr (Only in Ramadan)
-      const hijri = data.data.date.hijri;
-      const specialDays = ["21", "23", "25", "27", "29"];
-      if (hijri.month.en === "Ramadan" && specialDays.includes(hijri.day - 1)) {
-        setIsLaylatulQadr(true);
+    try {
+      const storedData = localStorage.getItem("dailyData");
+      if (storedData) {
+        const parsedData = JSON.parse(storedData);
+        if (parsedData?.data?.data) {
+          setDateData(parsedData.data.data);
+        }
       }
+    } catch (error) {
+      console.error("Error parsing localStorage data:", error);
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   }, []);
+
+  const isLaylatulQadr = useMemo(() => {
+    if (!dateData) return false;
+    const { hijri } = dateData.date;
+    const specialDays = ["21", "23", "25", "27", "29"];
+    return (
+      hijri.month.en === "Ramadan" &&
+      specialDays.includes((hijri.day - 1).toString())
+    );
+  }, [dateData]);
 
   if (loading)
     return (
@@ -32,15 +39,19 @@ const HijriDate = () => {
       </div>
     );
 
-  if (!dateData) return <p>Failed to load Hijri Date</p>;
+  if (!dateData)
+    return (
+      <p className="text-red-500 text-center font-semibold">
+        ⚠️ Failed to load Hijri Date
+      </p>
+    );
 
-  // -1 as the Ramadhan started on 1st March but actually it started on 2nd March (hijri.day-1)
   const { hijri, gregorian } = dateData.date;
   const { weekday, month, year, holidays } = hijri;
 
   return (
     <div
-      className={`p-6 rounded-lg shadow-lg text-center ${
+      className={`p-6 rounded-lg shadow-lg text-center transition ${
         isLaylatulQadr
           ? "bg-yellow-300 text-black"
           : "bg-gray-100 dark:bg-gray-800"
@@ -55,7 +66,7 @@ const HijriDate = () => {
         {weekday.en}, {hijri.day - 1} {month.en} {year} AH
       </div>
       <p className="text-sm text-gray-600 dark:text-gray-400">
-        ({hijri.day - 1}-{hijri.month.number}-{hijri.year}-{" "}
+        ({hijri.day - 1}-{hijri.month.number}-{hijri.year} -{" "}
         {hijri.designation.expanded})
       </p>
 

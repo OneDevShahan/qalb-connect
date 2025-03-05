@@ -15,7 +15,7 @@ function RamadhanDashboard() {
 
   useEffect(() => {
     if (!navigator.geolocation) {
-      setLocationError("Geolocation is not supported by your browser.");
+      setLocationError("Your browser does not support location services.");
       setLoading(false);
       return;
     }
@@ -26,9 +26,15 @@ function RamadhanDashboard() {
         try {
           const data = await fetchDailyData(latitude, longitude);
           setPrayerData(data);
+          localStorage.setItem("prayerData", JSON.stringify(data)); // Store backup
         } catch (error) {
           console.error("Failed to fetch prayer times:", error);
-          setLocationError("Could not fetch prayer times. Try again later.");
+          const cachedData = localStorage.getItem("prayerData");
+          if (cachedData) {
+            setPrayerData(JSON.parse(cachedData)); // Fallback to stored data
+          } else {
+            setLocationError("Could not fetch prayer times. Try again later.");
+          }
         } finally {
           setLoading(false);
         }
@@ -36,7 +42,7 @@ function RamadhanDashboard() {
       (error) => {
         console.warn("Geolocation error:", error.message);
         setLocationError(
-          "Location access denied. Please enable location services."
+          "Location access denied. Please enable location services in your browser settings."
         );
         setLoading(false);
       }
