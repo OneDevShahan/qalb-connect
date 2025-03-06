@@ -26,7 +26,7 @@ const HijriDate = () => {
     const specialDays = ["21", "23", "25", "27", "29"];
     return (
       hijri.month.en === "Ramadan" &&
-      specialDays.includes((hijri.day - 1).toString())
+      specialDays.includes((hijri.day).toString())
     );
   }, [dateData]);
 
@@ -63,10 +63,10 @@ const HijriDate = () => {
 
       {/* Hijri Date */}
       <div className="mt-2 text-lg font-semibold text-gray-800 dark:text-gray-200">
-        {weekday.en}, {hijri.day - 1} {month.en} {year} AH
+        {weekday.en}, {hijri.day} {month.en} {year} AH
       </div>
       <p className="text-sm text-gray-600 dark:text-gray-400">
-        ({hijri.day - 1}-{hijri.month.number}-{hijri.year} -{" "}
+        ({hijri.day}-{hijri.month.number}-{hijri.year} -{" "}
         {hijri.designation.expanded})
       </p>
 

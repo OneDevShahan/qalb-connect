@@ -65,7 +65,7 @@ const PrayerTimes = ({ data }) => {
 
       {prayerData.hijriDate && (
         <p className="text-center text-gray-700 dark:text-gray-300 mb-4">
-          📅 Hijri Date: {prayerData.hijriDate.day - 1}{" "}
+          📅 Hijri Date: {prayerData.hijriDate.day}{" "}
           {prayerData.hijriDate.month.en} {prayerData.hijriDate.year}
         </p>
       )}

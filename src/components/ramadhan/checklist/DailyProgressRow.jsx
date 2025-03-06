@@ -4,18 +4,15 @@ import { CHECK_LIST_ITEMS_WITH_ICONS } from "../../utility/Contant";
 const DailyProgressRow = ({ data, todayRamadhanDay }) => {
   const { day, percentage, checklist } = data;
 
+  console.log("📅 Day:", day, "📈 Ramdhan Day:",todayRamadhanDay);
   return (
     <tr className="border-b border-gray-300 dark:border-gray-600 text-center text-sm md:text-base">
       <td
         className={`p-2 font-bold dark:text-white ${
-          parseInt(todayRamadhanDay, 10) === day
-            ? "text-blue-600 dark:text-blue-400"
-            : ""
+          todayRamadhanDay === day ? "text-blue-600 dark:text-blue-400" : ""
         }`}
       >
-        {parseInt(todayRamadhanDay, 10) === day
-          ? `🔥 Today (${day})`
-          : `📅 Day ${day}`}
+        {todayRamadhanDay === day ? `🔥 Today (${day})` : `📅 Day ${day}`}
       </td>
       <td className="p-2 font-semibold dark:text-white">
         {percentage === 100 ? "🌟 Completed!" : `📈 ${percentage}%`}
@@ -25,7 +22,15 @@ const DailyProgressRow = ({ data, todayRamadhanDay }) => {
           {CHECK_LIST_ITEMS_WITH_ICONS.map(({ text, icon }) => (
             <span
               key={text}
-              className={`${
+              // onClick={() => {
+              //   console.log(
+              //     `Updating Day: ${day}, Item: ${text}, New Value: ${!checklist[
+              //       text
+              //     ]}`
+              //   );
+              //   updateChecklist(day, text, !checklist[text]);
+              // }}
+              className={`cursor-pointer ${
                 checklist[text]
                   ? "text-green-600 dark:text-green-400"
                   : "text-red-600 dark:text-red-400"
@@ -50,6 +55,7 @@ DailyProgressRow.propTypes = {
     checklist: PropTypes.object.isRequired,
   }).isRequired,
   todayRamadhanDay: PropTypes.number.isRequired,
+  updateChecklist: PropTypes.func.isRequired,
 };
 
 export default DailyProgressRow;
