@@ -91,7 +91,7 @@ const PrayerTimes = ({ data }) => {
 };
 
 const PrayerTime = ({ label, time }) => (
-  <div className="flex flex-col items-center p-3 bg-gray-200 dark:bg-gray-900 rounded-lg shadow-sm relative">
+  <div className="flex flex-col items-center p-3 bg-white dark:bg-gray-900 rounded-lg shadow-sm relative">
     <span className="font-semibold text-sm">{label}</span>
     <span className="text-lg font-medium text-gray-900 dark:text-gray-100">
       {time}
