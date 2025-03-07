@@ -60,18 +60,18 @@ function Dashboard({ dashboardData }) {
       </p>
 
       {/* Show countdown if Ramadhan hasn't started yet */}
-      {currentTime < targetDate && (
+      {/* {currentTime < targetDate && (
         <div className="text-center">
           <CountdownTimer targetTime="2025-03-01" label="Ramadhan in" />
         </div>
-      )}
+      )} */}
 
       {/* Show celebration popup if Ramadhan has started */}
-      {showConfetti && (
+      {/* {showConfetti && (
         <div className="text-center">
           <RamadhanMubarakConfetti numberOfPieces={200} />
         </div>
-      )}
+      )} */}
       {/* Cards Grid (Better Spacing & Alignment) */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full px-6 sm:px-8 md:px-10 mt-8">
         {dashboardData.map((data, index) => (
