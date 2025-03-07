@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { FaUndoAlt } from "react-icons/fa";
 import PropTypes from "prop-types";
 
@@ -9,15 +8,6 @@ const Checklist = ({
   completion,
   resetChecklist,
 }) => {
-  useEffect(() => {
-    const lastUpdatedDate = localStorage.getItem("lastUpdatedDate");
-    const today = new Date().toISOString().split("T")[0]; // Get current date (YYYY-MM-DD)
-
-    if (lastUpdatedDate !== today) {
-      resetChecklist(); // Reset checkboxes if it's a new day
-      localStorage.setItem("lastUpdatedDate", today); // Update last reset date
-    }
-  }, [resetChecklist]);
 
   return (
     <div>
@@ -64,9 +54,7 @@ const Checklist = ({
 
 Checklist.propTypes = {
   checklistItems: PropTypes.arrayOf(
-    PropTypes.shape({
-      text: PropTypes.string.isRequired,
-    })
+    PropTypes.shape({ text: PropTypes.string.isRequired })
   ).isRequired,
   checklist: PropTypes.object.isRequired,
   toggleItem: PropTypes.func.isRequired,

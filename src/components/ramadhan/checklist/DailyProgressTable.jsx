@@ -1,40 +1,57 @@
-import DailyProgressRow from "./DailyProgressRow";
 import PropTypes from "prop-types";
+import DailyProgressRow from "./DailyProgressRow";
 
-const DailyProgressTable = ({ dailyProgress, todayRamadhanDay }) => {
+const DailyProgressTable = ({
+  dailyProgress,
+  todayRamadhanDay,
+}) => {
   return (
     <div className="overflow-x-auto mt-6">
-      <div className="w-full max-w-full overflow-hidden rounded-xl shadow-lg">
-        <table className="w-full bg-white dark:bg-gray-800 text-sm md:text-base">
-          <thead>
-            <tr className="bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100">
-              <th className="p-2 text-xs md:text-sm lg:text-base">
-                Ramadhan Day
-              </th>
-              <th className="p-2 text-xs md:text-sm lg:text-base">
-                Completion (%)
-              </th>
-              <th className="p-2 text-xs md:text-sm lg:text-base">Checklist</th>
+      <table className="w-full border-collapse shadow-lg">
+        <thead>
+          <tr className="bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100">
+            <th className="p-2 border-b dark:border-gray-600">Day</th>
+            <th className="p-2 border-b dark:border-gray-600">Progress</th>
+            <th className="p-2 border-b dark:border-gray-600">Checklist</th>
+          </tr>
+        </thead>
+        <tbody>
+          {dailyProgress.length > 0 ? (
+            dailyProgress.map((data) =>
+              data ? ( // Ensure data is not null
+                <DailyProgressRow
+                  key={data.day}
+                  data={data}
+                  todayRamadhanDay={todayRamadhanDay}
+                />
+              ) : null
+            )
+          ) : (
+            <tr>
+              <td
+                colSpan="3"
+                className="text-center text-gray-500 dark:text-gray-300 p-4"
+              >
+                No progress data available
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            {dailyProgress.map((dayData) => (
-              <DailyProgressRow
-                key={dayData.day}
-                data={dayData}
-                todayRamadhanDay={todayRamadhanDay}
-              />
-            ))}
-          </tbody>
-        </table>
-      </div>
+          )}
+        </tbody>
+      </table>
     </div>
   );
 };
 
 DailyProgressTable.propTypes = {
-  dailyProgress: PropTypes.arrayOf(PropTypes.object).isRequired,
+  dailyProgress: PropTypes.arrayOf(
+    PropTypes.shape({
+      day: PropTypes.number.isRequired,
+      percentage: PropTypes.number.isRequired,
+      checklist: PropTypes.object.isRequired,
+    })
+  ).isRequired,
   todayRamadhanDay: PropTypes.number.isRequired,
+  updateChecklist: PropTypes.func.isRequired,
 };
 
 export default DailyProgressTable;

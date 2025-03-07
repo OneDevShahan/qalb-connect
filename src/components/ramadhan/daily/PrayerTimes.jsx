@@ -1,28 +1,43 @@
-import { useEffect, useState } from "react";
-import { fetchDailyData } from "../../services/AlAdhaanServices"; // Import the Hijri Date fetch function
+import React from "react";
+import { useEffect, useState, useMemo } from "react";
 import DailyReminder from "./DailyReminder";
 import PropTypes from "prop-types";
 import { getCurrentTime } from "../../utility/Utils";
 
-const PrayerTimes = () => {
-  const [timings, setTimings] = useState(null);
-  const [hijriDate, setHijriDate] = useState(null);
+const PrayerTimes = ({ data }) => {
+  const [prayerData, setPrayerData] = useState(() => ({
+    timings: null,
+    hijriDate: null,
+  }));
   const [loading, setLoading] = useState(true);
   const [testTime, setTestTime] = useState(getCurrentTime);
 
-    useEffect(() => {
-    navigator.geolocation.getCurrentPosition(async (position) => {
-      const { latitude, longitude } = position.coords;
-      const data = await fetchDailyData(latitude, longitude); // Fetch data with caching
-      if (data) {
-        const prayerTimings = data.data.timings;
-        const hijri = data.data.date.hijri;
-        setHijriDate(hijri);
-        setTimings(prayerTimings);
-      }
+  useEffect(() => {
+    if (data?.data) {
+      setPrayerData({
+        timings: data.data.timings,
+        hijriDate: data.data.date.hijri,
+      });
       setLoading(false);
+    }
+  }, [data]);
+
+  const prayerEntries = useMemo(() => {
+    if (!prayerData.timings) return [];
+    return Object.entries({
+      Fajr: prayerData.timings.Fajr,
+      Sunrise: prayerData.timings.Sunrise,
+      Dhuhr: prayerData.timings.Dhuhr,
+      Asr: prayerData.timings.Asr,
+      Sunset: prayerData.timings.Sunset,
+      Maghrib: prayerData.timings.Maghrib,
+      Isha: prayerData.timings.Isha,
+      Imsak: prayerData.timings.Imsak,
+      Midnight: prayerData.timings.Midnight,
+      "First Third": prayerData.timings.Firstthird,
+      "Last Third": prayerData.timings.Lastthird,
     });
-    }, []);
+  }, [prayerData.timings]);
 
   if (loading) {
     return (
@@ -34,7 +49,7 @@ const PrayerTimes = () => {
     );
   }
 
-  if (!timings) {
+  if (!prayerData.timings) {
     return (
       <div className="text-center text-red-500 dark:text-red-400">
         Failed to fetch prayer times.
@@ -48,30 +63,18 @@ const PrayerTimes = () => {
         🕌 Prayer Timings
       </h2>
 
-      {hijriDate && (
+      {prayerData.hijriDate && (
         <p className="text-center text-gray-700 dark:text-gray-300 mb-4">
-          📅 Hijri Date: {hijriDate.day} {hijriDate.month.en} {hijriDate.year}
+          📅 Hijri Date: {prayerData.hijriDate.day}{" "}
+          {prayerData.hijriDate.month.en} {prayerData.hijriDate.year}
         </p>
       )}
 
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-gray-700 dark:text-gray-300">
-        {Object.entries({
-          Fajr: timings.Fajr,
-          Sunrise: timings.Sunrise,
-          Dhuhr: timings.Dhuhr,
-          Asr: timings.Asr,
-          Sunset: timings.Sunset,
-          Maghrib: timings.Maghrib,
-          Isha: timings.Isha,
-          Imsak: timings.Imsak,
-          Midnight: timings.Midnight,
-          "First Third": timings.Firstthird,
-          "Last Third": timings.Lastthird,
-        }).map(([label, time]) => (
-          <PrayerTime key={label} label={label} time={time} />
+        {prayerEntries.map(([label, time]) => (
+          <MemoizedPrayerTime key={label} label={label} time={time} />
         ))}
 
-        {/* Test Time Input */}
         <div className="flex flex-col items-center p-3 bg-gray-200 dark:bg-gray-900 rounded-lg shadow-sm relative">
           <span className="font-semibold text-sm">Test Time</span>
           <input
@@ -88,7 +91,7 @@ const PrayerTimes = () => {
 };
 
 const PrayerTime = ({ label, time }) => (
-  <div className="flex flex-col items-center p-3 bg-gray-200 dark:bg-gray-900 rounded-lg shadow-sm relative">
+  <div className="flex flex-col items-center p-3 bg-white dark:bg-gray-900 rounded-lg shadow-sm relative">
     <span className="font-semibold text-sm">{label}</span>
     <span className="text-lg font-medium text-gray-900 dark:text-gray-100">
       {time}
@@ -97,9 +100,28 @@ const PrayerTime = ({ label, time }) => (
   </div>
 );
 
+const MemoizedPrayerTime = React.memo(PrayerTime);
+
 PrayerTime.propTypes = {
   label: PropTypes.string.isRequired,
   time: PropTypes.string.isRequired,
+};
+
+PrayerTimes.propTypes = {
+  data: PropTypes.shape({
+    data: PropTypes.shape({
+      timings: PropTypes.object.isRequired,
+      date: PropTypes.shape({
+        hijri: PropTypes.shape({
+          day: PropTypes.string.isRequired,
+          month: PropTypes.shape({
+            en: PropTypes.string.isRequired,
+          }).isRequired,
+          year: PropTypes.string.isRequired,
+        }).isRequired,
+      }).isRequired,
+    }),
+  }),
 };
 
 export default PrayerTimes;
