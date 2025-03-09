@@ -22,14 +22,6 @@ const DailyProgressRow = ({ data, todayRamadhanDay }) => {
           {CHECK_LIST_ITEMS_WITH_ICONS.map(({ text, icon }) => (
             <span
               key={text}
-              // onClick={() => {
-              //   console.log(
-              //     `Updating Day: ${day}, Item: ${text}, New Value: ${!checklist[
-              //       text
-              //     ]}`
-              //   );
-              //   updateChecklist(day, text, !checklist[text]);
-              // }}
               className={`cursor-pointer ${
                 checklist[text]
                   ? "text-green-600 dark:text-green-400"
