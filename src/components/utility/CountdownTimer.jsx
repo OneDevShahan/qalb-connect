@@ -39,7 +39,7 @@ const CountdownTimer = ({ targetTime, label = "" }) => {
   }, [targetTime]);
 
   return (
-    <div className="p-4">
+    <div className="p-4 dark:text-white">
       <h2 className="text-lg font-semibold">{label}</h2>
       <p className="text-xl font-bold">
         {timeLeft.days > 0 && `${String(timeLeft.days).padStart(2, "0")}d `}

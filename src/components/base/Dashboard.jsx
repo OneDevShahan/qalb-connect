@@ -4,9 +4,11 @@ import DashboardCard from "./DashboardCard";
 import { useEffect, useState } from "react";
 import CountdownTimer from "../utility/CountdownTimer";
 import RamadhanMubarakConfetti from "../extras/RamadhanMubarakConfetti";
+import EidMubarakConfetti from "../extras/EidMubarakConfetti";
+import EidMubarak from "../extras/EidMubarak";
 function Dashboard({ dashboardData }) {
   const targetDate = new Date("2025-03-01").getTime();
-  const endDate = new Date("2025-03-30").getTime();
+  const endDate = new Date("2025-04-01").getTime();
   const [currentTime, setCurrentTime] = useState(Date.now());
   const [showConfetti, setShowConfetti] = useState(false);
 
@@ -60,18 +62,20 @@ function Dashboard({ dashboardData }) {
       </p>
 
       {/* Show countdown if Ramadhan hasn't started yet */}
-      {/* {currentTime < targetDate && (
+      {currentTime < targetDate && (
         <div className="text-center">
-          <CountdownTimer targetTime="2025-03-01" label="Ramadhan in" />
+          <CountdownTimer targetTime="2025-03-31" label="Eid in" />
         </div>
-      )} */}
+      )}
 
       {/* Show celebration popup if Ramadhan has started */}
-      {/* {showConfetti && (
+      {/* Confetti + Eid Mubarak Message when Eid starts */}
+      {showConfetti && (
         <div className="text-center">
-          <RamadhanMubarakConfetti numberOfPieces={200} />
+          <EidMubarakConfetti numberOfPieces={500} />
+          <EidMubarak />
         </div>
-      )} */}
+      )}
       {/* Cards Grid (Better Spacing & Alignment) */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full px-6 sm:px-8 md:px-10 mt-8">
         {dashboardData.map((data, index) => (
