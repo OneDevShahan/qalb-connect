@@ -7,7 +7,7 @@ import RamadhanMubarakConfetti from "../extras/RamadhanMubarakConfetti";
 import EidMubarakConfetti from "../extras/EidMubarakConfetti";
 import EidMubarak from "../extras/EidMubarak";
 function Dashboard({ dashboardData }) {
-  const targetDate = new Date("2025-03-01").getTime();
+  const targetDate = new Date("2025-03-31").getTime();
   const endDate = new Date("2025-04-01").getTime();
   const [currentTime, setCurrentTime] = useState(Date.now());
   const [showConfetti, setShowConfetti] = useState(false);
