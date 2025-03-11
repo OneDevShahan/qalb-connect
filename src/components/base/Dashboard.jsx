@@ -72,7 +72,11 @@ function Dashboard({ dashboardData }) {
       {/* Confetti + Eid Mubarak Message when Eid starts */}
       {showConfetti && (
         <div className="text-center">
-          <EidMubarakConfetti numberOfPieces={500} />
+          <EidMubarakConfetti
+            numberOfPieces={50}
+            recycle={false}
+            tweenDuration={1000}
+          />
           <EidMubarak />
         </div>
       )}
