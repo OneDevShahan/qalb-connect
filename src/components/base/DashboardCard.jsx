@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, lazy, Suspense } from "react";
 import PropTypes from "prop-types";
-import LoadingIcon from "../base/LoadingIcon";
+
+// Dynamically import LoadingIcon for code splitting
+const LoadingIcon = lazy(() => import("../base/LoadingIcon"));
 
 const DashboardCard = ({ title, desc, link, icon, fact, tagline }) => {
   const [showMore, setShowMore] = useState(false);
@@ -29,7 +31,6 @@ const DashboardCard = ({ title, desc, link, icon, fact, tagline }) => {
         <p className="text-sm text-gray-500 dark:text-gray-300 italic">
           {tagline}
         </p>
-
         {/* Tooltip for Fact */}
         {fact && (
           <div className="relative inline-block">
@@ -91,13 +92,20 @@ const DashboardCard = ({ title, desc, link, icon, fact, tagline }) => {
             text-white px-4 py-2 rounded-lg hover:from-green-500 hover:to-green-700 active:scale-95 transition-all duration-300"
             disabled={isLoading}
           >
-            {isLoading ? <LoadingIcon color="white" /> : "Know More"}
+            {isLoading ? (
+              <Suspense fallback={<div>Loading...</div>}>
+                <LoadingIcon color="white" />
+              </Suspense>
+            ) : (
+              "Know More"
+            )}
           </button>
         </Link>
       </div>
     </div>
   );
 };
+
 DashboardCard.propTypes = {
   title: PropTypes.string.isRequired,
   desc: PropTypes.string.isRequired,
