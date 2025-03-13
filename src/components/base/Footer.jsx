@@ -1,54 +1,114 @@
-import {
-  FaArrowUp,
-  FaEnvelope,
-  FaGithub,
-  FaInstagram,
-  FaLinkedinIn,
-  FaTwitter,
-} from "react-icons/fa";
-import { FaBookQuran, FaKaaba, FaPersonPraying } from "react-icons/fa6";
-import { HiOutlineCalculator } from "react-icons/hi";
-import { RiCompass3Line } from "react-icons/ri";
-import { SiBuymeacoffee } from "react-icons/si";
+import { lazy, Suspense } from "react";
 import { Link } from "react-router-dom";
+
+// Lazy-load icons from react-icons
+const FaArrowUp = lazy(() =>
+  import("react-icons/fa").then((module) => ({ default: module.FaArrowUp }))
+);
+const FaEnvelope = lazy(() =>
+  import("react-icons/fa").then((module) => ({ default: module.FaEnvelope }))
+);
+const FaGithub = lazy(() =>
+  import("react-icons/fa").then((module) => ({ default: module.FaGithub }))
+);
+const FaInstagram = lazy(() =>
+  import("react-icons/fa").then((module) => ({ default: module.FaInstagram }))
+);
+const FaLinkedinIn = lazy(() =>
+  import("react-icons/fa").then((module) => ({ default: module.FaLinkedinIn }))
+);
+const FaTwitter = lazy(() =>
+  import("react-icons/fa").then((module) => ({ default: module.FaTwitter }))
+);
+const FaBookQuran = lazy(() =>
+  import("react-icons/fa6").then((module) => ({ default: module.FaBookQuran }))
+);
+const FaKaaba = lazy(() =>
+  import("react-icons/fa6").then((module) => ({ default: module.FaKaaba }))
+);
+const FaPersonPraying = lazy(() =>
+  import("react-icons/fa6").then((module) => ({
+    default: module.FaPersonPraying,
+  }))
+);
+const HiOutlineCalculator = lazy(() =>
+  import("react-icons/hi").then((module) => ({
+    default: module.HiOutlineCalculator,
+  }))
+);
+const RiCompass3Line = lazy(() =>
+  import("react-icons/ri").then((module) => ({
+    default: module.RiCompass3Line,
+  }))
+);
+const SiBuymeacoffee = lazy(() =>
+  import("react-icons/si").then((module) => ({
+    default: module.SiBuymeacoffee,
+  }))
+);
 
 const Footer = () => {
   const date = new Date().getFullYear(); // Directly get the year
 
+  // Define social links with icons wrapped in Suspense
   const socialLinks = [
     {
       name: "LinkedIn",
-      icon: <FaLinkedinIn size={15} />,
+      icon: () => (
+        <Suspense fallback={<div style={{ width: 15, height: 15 }} />}>
+          <FaLinkedinIn size={15} />
+        </Suspense>
+      ),
       url: "https://www.linkedin.com/in/shahan-ahmad-5aa56b10a/",
       bgColor: "bg-blue-500 hover:bg-blue-600",
     },
     {
       name: "GitHub",
-      icon: <FaGithub size={15} />,
+      icon: () => (
+        <Suspense fallback={<div style={{ width: 15, height: 15 }} />}>
+          <FaGithub size={15} />
+        </Suspense>
+      ),
       url: "https://github.com/OneDevShahan",
       bgColor: "bg-gray-400 hover:bg-gray-800",
     },
     {
       name: "Twitter",
-      icon: <FaTwitter size={15} />,
+      icon: () => (
+        <Suspense fallback={<div style={{ width: 15, height: 15 }} />}>
+          <FaTwitter size={15} />
+        </Suspense>
+      ),
       url: "https://x.com/shahanahmad7",
       bgColor: "bg-blue-400 hover:bg-blue-500",
     },
     {
       name: "Email",
-      icon: <FaEnvelope size={15} />,
+      icon: () => (
+        <Suspense fallback={<div style={{ width: 15, height: 15 }} />}>
+          <FaEnvelope size={15} />
+        </Suspense>
+      ),
       url: "mailto:shahanahmad321@gmail.com",
       bgColor: "bg-red-500 hover:bg-red-600",
     },
     {
       name: "Instagram",
-      icon: <FaInstagram size={15} />,
+      icon: () => (
+        <Suspense fallback={<div style={{ width: 15, height: 15 }} />}>
+          <FaInstagram size={15} />
+        </Suspense>
+      ),
       url: "https://www.instagram.com/shahanahmad321/",
       bgColor: "bg-pink-500 hover:bg-pink-600",
     },
     {
       name: "BuyMeaCoffee",
-      icon: <SiBuymeacoffee  size={15}/>,
+      icon: () => (
+        <Suspense fallback={<div style={{ width: 15, height: 15 }} />}>
+          <SiBuymeacoffee size={15} />
+        </Suspense>
+      ),
       url: "https://www.buymeacoffee.com/onedevshahan",
       bgColor: "bg-yellow-400 hover:bg-yellow-500",
     },
@@ -104,41 +164,54 @@ const Footer = () => {
               to="/quran-dashboard"
               className="flex items-center space-x-2 hover:scale-110 transition-transform"
             >
-              <FaBookQuran className="text-lg text-green-500" />
+              <Suspense fallback={<div style={{ width: 20, height: 20 }} />}>
+                <FaBookQuran className="text-lg text-green-500" />
+              </Suspense>
               <span>Quran</span>
             </Link>
             <Link
               to="/ramadhan-dashboard"
               className="flex items-center space-x-2 hover:scale-110 transition-transform"
             >
-              🌙 <span>Ramadhan</span>
+              <span role="img" aria-label="Ramadhan">
+                🌙
+              </span>
+              <span>Ramadhan</span>
             </Link>
             <Link
               to="/dua-dashboard"
               className="flex items-center space-x-2 hover:scale-110 transition-transform"
             >
-              <FaPersonPraying className="text-lg text-gray-400" />
+              <Suspense fallback={<div style={{ width: 20, height: 20 }} />}>
+                <FaPersonPraying className="text-lg text-gray-400" />
+              </Suspense>
               <span>Dua</span>
             </Link>
             <Link
               to="/hajj-dashboard"
               className="flex items-center space-x-2 hover:scale-110 transition-transform"
             >
-              <FaKaaba className="text-gray-600 dark:text-gray-300" />
+              <Suspense fallback={<div style={{ width: 20, height: 20 }} />}>
+                <FaKaaba className="text-gray-600 dark:text-gray-300" />
+              </Suspense>
               <span>Hajj</span>
             </Link>
             <Link
               to="/zakat"
               className="flex items-center space-x-2 hover:scale-110 transition-transform"
             >
-              <HiOutlineCalculator className="text-lg text-red-400" />
+              <Suspense fallback={<div style={{ width: 20, height: 20 }} />}>
+                <HiOutlineCalculator className="text-lg text-red-400" />
+              </Suspense>
               <span>Zakat</span>
             </Link>
             <Link
               to="/find-qibla"
               className="flex items-center space-x-2 hover:scale-110 transition-transform"
             >
-              <RiCompass3Line className="mr-1 text-lg text-green-500" />
+              <Suspense fallback={<div style={{ width: 20, height: 20 }} />}>
+                <RiCompass3Line className="mr-1 text-lg text-green-500" />
+              </Suspense>
               <span>Qibla</span>
             </Link>
           </div>
@@ -156,7 +229,7 @@ const Footer = () => {
             aria-label={name}
             className={`inline-flex items-center justify-center text-white ${bgColor} p-3 rounded-full transition hover:scale-110`}
           >
-            {icon}
+            {icon()}
           </a>
         ))}
       </div>
@@ -168,7 +241,9 @@ const Footer = () => {
           className="bg-blue-600 text-white p-4 rounded-full shadow-lg hover:bg-blue-700 transition duration-200"
           aria-label="Back to Top"
         >
-          <FaArrowUp className="text-lg" />
+          <Suspense fallback={<div style={{ width: 20, height: 20 }} />}>
+            <FaArrowUp className="text-lg" />
+          </Suspense>
         </button>
       </div>
 

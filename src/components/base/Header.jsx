@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import {
   FaBars,
   FaBell,
@@ -15,7 +15,7 @@ import { HiOutlineCalculator } from "react-icons/hi";
 import { PiBookBookmark } from "react-icons/pi";
 import { RiCompass3Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
-import MobileMenu from "./MobileMenu";
+const MobileMenu = lazy(() => import("./MobileMenu"));
 import { GiPrayer, GiSpellBook } from "react-icons/gi";
 
 const Header = () => {
@@ -229,9 +229,17 @@ const Header = () => {
       </div>
 
       {/* Mobile Dropdown (Full Screen) */}
-      {isMenuOpen && (
+      {/* {isMenuOpen && (
         <MobileMenu dropdownOptions={dropdownOptions} toggleMenu={toggleMenu} />
-      )}
+      )} */}
+      <Suspense fallback={<div>Loading...</div>}>
+        {isMenuOpen && (
+          <MobileMenu
+            dropdownOptions={dropdownOptions}
+            toggleMenu={toggleMenu}
+          />
+        )}
+      </Suspense>
     </header>
   );
 };
